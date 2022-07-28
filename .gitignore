@@ -1,2 +1,3 @@
 credentials.json
 __pycache__/sp_playcount_funcs.cpython-39.pyc
+cache/*
