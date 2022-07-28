@@ -1,2 +1,2 @@
-# Used for testing the spotify api
-results from testing both the offical and a third party api
+# Music Metadata Collector
+Collect metadata of songs from several online sources
