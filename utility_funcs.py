@@ -15,7 +15,7 @@ def print_dict_keys(input_dict, keys):
     return
 
 
-def download_data(input, url, cache_folder):
+def download_data(input, url, cache_folder, headers=''):
     folder_path = 'cache/' + cache_folder
     if not os.path.exists(folder_path):
         os.mkdir(folder_path)

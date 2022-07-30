@@ -23,10 +23,7 @@ def create_auth_token():
 
 
 def spotify_download_data(request_type, input):
-    # https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artist'''
-    # https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-album'''
-    # https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track'''
-    # https://developer.spotify.com/documentation/web-api/reference/#/operations/search '''
+    # https://developer.spotify.com/documentation/web-api/reference/#/
     access_token = create_auth_token()
     # generate header
     headers = {
@@ -47,17 +44,21 @@ def spotify_download_data(request_type, input):
 
 
 if __name__ == '__main__':
+
     print('artist example')
     artists = spotify_download_data('artists', '3tSvlEzeDnVbQJBTkIA6nO')
     utility_funcs.print_dict_keys(
         artists, ['name', ['followers', 'total'], 'genres'])
+
     print('album example')
     albums = spotify_download_data('albums', '392RA8UhAIoBzpbn3bPy3Q')
     utility_funcs.print_dict_keys(
         albums, ['name', 'genres', 'uri'])
+
     print('track example')
     track = spotify_download_data('tracks', '6xZZM6GDxTKsLjF3TNDREL')
     print(track['name'], '-', track['artists'][0]['name'], track['popularity'])
+
     print('search artist example')
     search_artist = spotify_download_data('search_artist', 'artist:pendulum')
     print('show first 5 results - columns: name,followers,popularity,genres')
