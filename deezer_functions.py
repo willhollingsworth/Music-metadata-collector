@@ -18,7 +18,7 @@ def download_deezer_data(request_type, input):
         raise Exception('wrong type selected', locals())
     url = deezer_url + request_url + input
     cache_folder = 'deezer/' + request_type
-    return utility_funcs.download_data(input, url, cache_folder)
+    return utility_functions.download_data(input, url, cache_folder)
 
 
 def search(search_string, print_keys='', limit=0):
@@ -27,21 +27,21 @@ def search(search_string, print_keys='', limit=0):
         limit = len(search_data)
     if print_keys:
         for result in search_data[:limit]:
-            utility_funcs.print_dict_keys(result, print_keys)
+            utility_functions.print_dict_keys(result, print_keys)
     return search_data[:limit]
 
 
 def album_lookup(album_id, print_keys=''):
     album_data = download_deezer_data('album', album_id)
     if print_keys:
-        utility_funcs.print_dict_keys(album_data, print_keys)
+        utility_functions.print_dict_keys(album_data, print_keys)
     return album_data
 
 
 def track_lookup(track_id, print_keys=''):
     track_data = download_deezer_data('track', track_id)
     if print_keys:
-        utility_funcs.print_dict_keys(track_data, print_keys)
+        utility_functions.print_dict_keys(track_data, print_keys)
     return track_data
 
 

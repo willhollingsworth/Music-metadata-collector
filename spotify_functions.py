@@ -49,12 +49,12 @@ if __name__ == '__main__':
 
     print('artist example')
     artists = spotify_download_data('artists', '3tSvlEzeDnVbQJBTkIA6nO')
-    utility_funcs.print_dict_keys(
+    utility_functions.print_dict_keys(
         artists, ['name', ['followers', 'total'], 'genres'])
 
     print('album example')
     albums = spotify_download_data('albums', '392RA8UhAIoBzpbn3bPy3Q')
-    utility_funcs.print_dict_keys(
+    utility_functions.print_dict_keys(
         albums, ['name', 'genres', 'uri'])
 
     print('track example')
