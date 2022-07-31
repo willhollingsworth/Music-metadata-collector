@@ -1,4 +1,3 @@
-from turtle import down
 import requests
 import os
 import json

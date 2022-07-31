@@ -1,7 +1,7 @@
 import requests
 import json
 import os
-import utility_funcs
+import utility_functions
 # deezer's api docs are behind a login wall
 # some public api docs https://apieco.ir/docs/deezer#api-Search-search
 # also examples of use here https://github.com/deepjyoti30/ytmdl/blob/master/ytmdl/meta/deezer.py

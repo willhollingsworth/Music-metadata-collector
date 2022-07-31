@@ -1,6 +1,6 @@
 import json
 import requests
-import utility_funcs
+import utility_functions
 
 
 def create_auth_token():
@@ -23,6 +23,8 @@ def create_auth_token():
 
 
 def spotify_download_data(request_type, input):
+    # todo - use utility downloader to allow for local caching
+
     # https://developer.spotify.com/documentation/web-api/reference/#/
     access_token = create_auth_token()
     # generate header
