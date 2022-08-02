@@ -16,7 +16,7 @@ def download_deezer_data(request_type, input):
         request_url = request_types[request_type]
     else:
         raise Exception('wrong type selected', locals())
-    url = deezer_url + request_url + input
+    url = deezer_url + request_url + str(input)
     return utility_functions.download_data(url)
 
 
@@ -35,12 +35,36 @@ def track_lookup(track_id, print_keys=''):
     return download_deezer_data('track', track_id)
 
 
+def return_track_details(search_string):
+    output_dict = {}
+    track_results = search(search_string)
+    for track in track_results:
+        if track['type'] == 'track':
+            track_results = track
+            break
+    output_dict['track name'] = track_results['title']
+    output_dict['track type'] = track_results['type']
+    output_dict['track id'] = track_results['id']
+    output_dict['artist name'] = track_results['artist']['name']
+    output_dict['artist id'] = track_results['artist']['id']
+    output_dict['album name'] = track_results['album']['title']
+    output_dict['album id'] = track_results['album']['id']
+    album_results = album_lookup(output_dict['album id'])
+
+    output_dict['album genres'] = [genre['name']
+                                   for genre in album_results['genres']['data']]
+
+    return output_dict
+
+
 if __name__ == '__main__':
-    print('string search example:')
-    search_keys = ['title', ['artist', 'name'], [
-        'album', 'title'], ['album', 'id'], 'type', 'id']
-    search_data = search('peking duk')
-    utility_functions.print_dict_keys(search_data[0], search_keys)
+    print(return_track_details('bad kingdoms'))
+
+    # print('string search example:')
+    # search_keys = ['title', ['artist', 'name'], [
+    #     'album', 'title'], ['album', 'id'], 'type', 'id']
+    # search_data = search('peking duk')
+    # utility_functions.print_dict_keys(search_data[0], search_keys)
 
     # print('track id lookup example:')
     # track_keys = ['title', ['album', 'title'],
