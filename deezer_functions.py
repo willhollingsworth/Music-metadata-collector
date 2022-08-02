@@ -17,8 +17,7 @@ def download_deezer_data(request_type, input):
     else:
         raise Exception('wrong type selected', locals())
     url = deezer_url + request_url + input
-    cache_folder = 'deezer/' + request_type
-    return utility_functions.download_data(input, url, cache_folder)
+    return utility_functions.download_data(url)
 
 
 def search(search_string, print_keys='', limit=0):
@@ -40,17 +39,17 @@ if __name__ == '__main__':
     print('string search example:')
     search_keys = ['title', ['artist', 'name'], [
         'album', 'title'], ['album', 'id'], 'type', 'id']
-    search_data = search('caribou')
+    search_data = search('peking duk')
     utility_functions.print_dict_keys(search_data[0], search_keys)
 
-    print('track id lookup example:')
-    track_keys = ['title', ['album', 'title'],
-                  'duration', 'rank', 'bpm', 'gain', 'id']
-    track_data = track_lookup('395141722')
-    utility_functions.print_dict_keys(track_data, track_keys)
+    # print('track id lookup example:')
+    # track_keys = ['title', ['album', 'title'],
+    #               'duration', 'rank', 'bpm', 'gain', 'id']
+    # track_data = track_lookup('395141722')
+    # utility_functions.print_dict_keys(track_data, track_keys)
 
-    print('album lookup example')
-    album_keys = ['title', ['artist', 'name'], ['artist', 'id'],
-                  'fans',  'id']
-    album_data = album_lookup('46371952', album_keys)
-    utility_functions.print_dict_keys(album_data, album_keys)
+    # print('album lookup example')
+    # album_keys = ['title', ['artist', 'name'], ['artist', 'id'],
+    #               'fans',  'id']
+    # album_data = album_lookup('46371952', album_keys)
+    # utility_functions.print_dict_keys(album_data, album_keys)

@@ -15,11 +15,16 @@ def print_dict_keys(input_dict, keys):
     return
 
 
-def download_data(input, url, cache_folder, headers=''):
-    folder_path = 'cache/' + cache_folder
-    if not os.path.exists(folder_path):
-        os.mkdir(folder_path)
-    full_path = folder_path + '/' + input + '.json'
+def download_data(url, headers=''):
+    cache_folder = 'cache/'
+    if not os.path.exists(cache_folder):
+        os.mkdir(cache_folder)
+    striped_characters = ':/\|?'
+    processed_url = url
+    for char in striped_characters:
+        processed_url = processed_url.replace(char, '_')
+
+    full_path = cache_folder + processed_url + '.json'
     if os.path.exists(full_path):
         with open(full_path, 'r') as f:
             r = json.load(f)
