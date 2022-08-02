@@ -1,6 +1,7 @@
 import requests
 import os
 import json
+import utility_functions
 
 
 def download_data(request_type, id):
@@ -12,17 +13,8 @@ def download_data(request_type, id):
         request_url = 'artistInfo?artistid='
     else:
         raise Exception('wrong type selected', locals())
-    full_path = 'cache/'+request_type+'/'+id+'.json'
-    if os.path.exists(full_path):
-        with open(full_path, 'r') as f:
-            r = json.load(f)
-    else:
-        full_url = public_url + request_url + id
-        r = requests.get(full_url)
-        r = r.json()['data']
-        with open(full_path, 'w') as f:
-            f.write(json.dumps(r))
-    return r
+    full_url = public_url + request_url + id
+    return utility_functions.download_data(full_url)
 
 
 def list_tracks_from_album(album_id):
