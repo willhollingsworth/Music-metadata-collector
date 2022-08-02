@@ -29,7 +29,7 @@ def download_data(url, headers=''):
         with open(full_path, 'r') as f:
             r = json.load(f)
     else:
-        r = requests.get(url).json()
+        r = requests.get(url, headers=headers).json()
         if 'data' in r:
             r = r['data']
         with open(full_path, 'w') as f:

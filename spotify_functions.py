@@ -26,8 +26,6 @@ def create_headers():
 
 
 def spotify_download_data(request_type, input):
-    # todo - use utility downloader to allow for local caching
-
     # https://developer.spotify.com/documentation/web-api/reference/#/
     headers = create_headers()
     spotify_url = 'https://api.spotify.com/v1/'
@@ -35,7 +33,6 @@ def spotify_download_data(request_type, input):
                      'albums': 'albums/',
                      'tracks': 'tracks/'}
     valid_search_types = ['artist', 'track', 'album', 'genre']
-    #  'search_artist': 'search?type=artist&q='}
     if request_type in request_types:
         request_url = request_types[request_type]
     elif request_type.split('_')[0] == 'search':
@@ -48,8 +45,7 @@ def spotify_download_data(request_type, input):
     else:
         raise Exception('wrong type selected', locals())
     full_url = spotify_url + request_url + input
-    r = requests.get(full_url, headers=headers)
-    return r.json()
+    return utility_functions.download_data(full_url, headers)
 
 
 def artist_lookup(id):
@@ -125,3 +121,4 @@ if __name__ == '__main__':
 
     testing = (return_track_details('loud pipes'))
     print(testing)
+    example_uses()
