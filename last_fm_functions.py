@@ -22,17 +22,18 @@ def search_tracks(string):
 
 
 def track_lookup(track, artist):
+    # issue with most tracks not returning tags despite their being tags on the website
+    # example: why why why by dynoro
     search_args = 'track={}&artist={}'.format(track, artist)
     return last_fm_download_data('track.getInfo', search_args)
 
 
 def track_tags_lookup(track, artist):
     search_args = 'track={}&artist={}'.format(track, artist)
-    return last_fm_download_data('track.getTopTags', search_args)
+    return last_fm_download_data('track.getTopTags', search_args, overwrite=1)
 
 
 if __name__ == '__main__':
-    # response = track_lookup('why why why', 'dynoro')
-    response = track_lookup('believe', 'cher')
-    with open('response.json', 'w') as f:
-        f.write(json.dumps(response))
+    response = track_lookup('why why why', 'dynoro')
+    # response = track_lookup('believe', 'cher')
+    utility_functions.save_to_file(json.dumps(response), 'response.json')

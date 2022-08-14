@@ -49,3 +49,8 @@ def load_credentials(service):
     with open('credentials.json', 'r') as r:
         credentials = json.load(r)[service]
     return credentials
+
+
+def save_to_file(data, filename):
+    with open(filename, 'w') as f:
+        f.write(data)
