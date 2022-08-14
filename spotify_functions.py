@@ -2,11 +2,13 @@ import json
 import requests
 import utility_functions
 
+# having issues with track search being inaccurate
+# attempting to search track + artist but doesn't appear to be working
+# maybe try looking through search results and do a string match on track and artist names?
+
 
 def create_headers():
-    '''' load credentials via json'''
-    with open('credentials.json', 'r') as r:
-        credentials = json.load(r)
+    credentials = utility_functions.load_credentials('spotify')
     ''' generate auth token and headers'''
     AUTH_URL = 'https://accounts.spotify.com/api/token'
     # POST
@@ -25,7 +27,7 @@ def create_headers():
     return headers
 
 
-def spotify_download_data(request_type, input):
+def spotify_download_data(request_type, input, overwrite=0, debug=0):
     # https://developer.spotify.com/documentation/web-api/reference/#/
     headers = create_headers()
     spotify_url = 'https://api.spotify.com/v1/'
@@ -44,8 +46,19 @@ def spotify_download_data(request_type, input):
                 'wrong search selected, only the following are valid', valid_search_types, locals())
     else:
         raise Exception('wrong type selected', locals())
-    full_url = spotify_url + request_url + input
-    return utility_functions.download_data(full_url, headers)
+    processed_input = ''
+    if isinstance(input, dict):
+        for key in input:
+            if key == search_type:
+                processed_input += input[key]
+            else:
+                processed_input += '&' + key + ':' + input[key]
+    else:
+        processed_input = input
+
+    full_url = spotify_url + request_url + processed_input
+    # print('full url', full_url)
+    return utility_functions.download_data(full_url, headers, overwrite, debug)
 
 
 def artist_lookup(id):
@@ -64,11 +77,17 @@ def search_artists(string):
     return spotify_download_data('search_artist', string)
 
 
-def search_tracks(string, results=1):
+def multi_search(track, artist):
+    results = spotify_download_data(
+        'multi', {'track': track, 'artist': 'artist'})
+    return results
+
+
+def search_tracks(search_string, results=1, overwrite=0, debug=0):
     if results == 1:
-        return spotify_download_data('search_track', string)['tracks']['items'][0]
+        return spotify_download_data('search_track', search_string, overwrite, debug)['tracks']['items'][0]
     else:
-        return spotify_download_data('search_track', string)['tracks']['items'][:results]
+        return spotify_download_data('search_track', search_string, overwrite, debug)['tracks']['items'][:results]
 
 
 def search_albums(string):
@@ -77,7 +96,9 @@ def search_albums(string):
 
 def return_track_details(search_string):
     output_dict = {}
-    track_results = search_tracks(search_string)
+    if isinstance(search_string, list):
+        search_string = {'track': search_string[0], 'artist': search_string[1]}
+    track_results = search_tracks(search_string, 1, 1, 0)
     output_dict['track name'] = track_results['name']
     output_dict['track type'] = track_results['type']
     output_dict['track id'] = track_results['id']
@@ -118,7 +139,18 @@ def example_uses():
 
 
 if __name__ == '__main__':
-
-    testing = (return_track_details('loud pipes'))
-    print(testing)
-    example_uses()
+    # url = 'https://api.spotify.com/v1/' + \
+    #     'search?type=track&q=track:' + 'elecktor' + '&artist:'
+    # headers = create_headers()
+    # print(utility_functions.download_data(
+    #     url, headers).keys())
+    for string in ["another life", ["another life", "afrojack"]]:
+        track_details = return_track_details(string)
+        for details in ['track name', 'artist name', 'album name', 'artist genres']:
+            print(details, ':', track_details[details], end=', ')
+        print()
+    # print(return_track_details('another life'))
+    # print(return_track_details(["another life", "afrojack"]))
+    # multi_search(["Bla Bla Bla", "Gigi D'Agostino"])
+    # print(testing)
+    # example_uses()
