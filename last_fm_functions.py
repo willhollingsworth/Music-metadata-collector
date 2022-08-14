@@ -2,6 +2,8 @@ import requests
 import utility_functions
 import json
 '''
+    https://www.last.fm/api/intro
+
     issue with most tracks not returning tags despite their being tags on the website
     it doesn't seem to be defaults to album or artist tags either
     example: why why why by dynoro
@@ -19,6 +21,7 @@ def last_fm_download_data(method, search, overwrite=0, debug=0):
 
 
 def search_tracks(track):
+    # https://www.last.fm/api/show/track.search
     return last_fm_download_data('track.search', 'track='+track)
 
 

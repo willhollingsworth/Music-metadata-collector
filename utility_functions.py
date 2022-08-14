@@ -19,7 +19,7 @@ def download_data(url, headers='', overwrite=0, debug=0):
     cache_folder = 'cache/'
     if not os.path.exists(cache_folder):
         os.mkdir(cache_folder)
-    striped_characters = ':/\|?'
+    striped_characters = ':/\|?"'
     processed_url = url
     for char in striped_characters:
         processed_url = processed_url.replace(char, '_')
