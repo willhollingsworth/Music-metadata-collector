@@ -35,7 +35,7 @@ def download_data(url, headers='', overwrite=0, debug=0):
         if 'data' in r:
             r = r['data']
         with open(full_path, 'w') as f:
-            f.write(json.dumps(r))
+            f.write(json.dumps(r, indent=4))
     return r
 
 
