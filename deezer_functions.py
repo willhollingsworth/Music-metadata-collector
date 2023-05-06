@@ -35,9 +35,10 @@ def track_lookup(track_id, print_keys=''):
     return download_deezer_data('track', track_id)
 
 
-def return_track_details(search_string):
+def format_track_details(track_results):
+    # input is a track search result
+    #  output a better formatted dictionary 
     output_dict = {}
-    track_results = search(search_string)
     for track in track_results:
         if track['type'] == 'track':
             track_results = track
@@ -58,7 +59,8 @@ def return_track_details(search_string):
 
 
 if __name__ == '__main__':
-    print(return_track_details('bad kingdoms'))
+    results = search('bad kingdoms')
+    print(format_track_details(results))
 
     # print('string search example:')
     # search_keys = ['title', ['artist', 'name'], [
