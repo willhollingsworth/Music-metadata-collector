@@ -15,7 +15,7 @@ def print_dict_keys(input_dict, keys):
     return
 
 
-def download_data(url, headers='', overwrite=0, debug=0):
+def download_data(url, headers='', overwrite=0, debug=0, type='json'):
     cache_folder = 'cache/'
     if not os.path.exists(cache_folder):
         os.mkdir(cache_folder)
@@ -24,18 +24,30 @@ def download_data(url, headers='', overwrite=0, debug=0):
     for char in striped_characters:
         processed_url = processed_url.replace(char, '_')
 
-    full_path = cache_folder + processed_url + '.json'
+    full_path = cache_folder + processed_url
+    if type == 'json':
+        full_path += '.json'
+    if type == 'html':
+        full_path += '.html'
     if os.path.exists(full_path) and not overwrite:
         with open(full_path, 'r') as f:
-            r = json.load(f)
+            if type == 'json':
+                r = json.load(f)
+            else:
+                r = f
     else:
-        r = requests.get(url, headers=headers).json()
+        r = requests.get(url, headers=headers)
+        if type == 'json':
+            r = r.json()
         if debug:
             print(r['tracks'].keys())
         if 'data' in r:
             r = r['data']
         with open(full_path, 'w') as f:
-            f.write(json.dumps(r, indent=4))
+            if type == 'json':
+                f.write(json.dumps(r, indent=4))
+            else:
+                f.write(r)
     return r
 
 
