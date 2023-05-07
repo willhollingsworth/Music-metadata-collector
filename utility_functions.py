@@ -85,3 +85,6 @@ def show_structure(var, indent=0):
         return result
     else:
         return '...'
+
+def print_structure(var):
+    print(show_structure(var))
