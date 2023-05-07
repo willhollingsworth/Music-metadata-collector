@@ -3,7 +3,10 @@ import requests
 import json
 
 
-def print_dict_keys(input_dict, keys):
+def print_dict_keys(input_dict, keys=''):
+    # nicer printing of dictionaries
+    if len(keys) < 1: # if no keys specified then print all
+        keys = input_dict.keys()
     for key in keys:
         if isinstance(key, str):
             print(key, ':', input_dict[key], end=', ')
