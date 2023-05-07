@@ -3,10 +3,12 @@ import os
 import json
 import utility_functions
 
-
 def download_data(request_type, id):
     public_url = 'https://api.t4ils.dev/'
-
+    # no longer working as the publix api has been shut down
+    # could explore running it locally via 
+    # https://github.com/entriphy/sp-playcount-librespot
+    # 
     if request_type == 'album_playcount':
         request_url = 'albumPlayCount?albumid='
     elif request_type == 'artist_info':
