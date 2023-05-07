@@ -55,7 +55,7 @@ def download_data(url, headers='', overwrite=0, debug=0, type='json'):
 
 
 def load_credentials(service):
-    valid_services = ['spotify', 'last_fm']
+    valid_services = ['spotify', 'last_fm','genius']
     # add check for credentials file, if false create a blank one in the right format with appropriate error msg
     if not service in valid_services:
         raise Exception('chosen service: ', service,
@@ -69,3 +69,19 @@ def load_credentials(service):
 def save_to_file(data, filename):
     with open(filename, 'w') as f:
         f.write(data)
+
+def show_structure(var, indent=0):
+    if isinstance(var, dict):
+        result = '{\n'
+        for k, v in var.items():
+            result += ' ' * (indent + 4) + f'{k}: {show_structure(v, indent + 4)},\n'
+        result += ' ' * indent + '}'
+        return result
+    elif isinstance(var, list):
+        result = '[\n'
+        for v in var:
+            result += ' ' * (indent + 4) + f'{show_structure(v, indent + 4)},\n'
+        result += ' ' * indent + ']'
+        return result
+    else:
+        return '...'
