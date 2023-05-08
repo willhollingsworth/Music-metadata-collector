@@ -2,7 +2,12 @@ import utility_functions
 from pprint import pprint
 from collections import Counter
 
+# the genius api supports several types of data collecting but not genres (they call them tags)
+# you can scrape their web pages to get this but needs to be done per song.
+
+# official docs https://docs.genius.com/
 # example https://melaniewalsh.github.io/Intro-Cultural-Analytics/04-Data-Collection/07-Genius-API.html
+
 
 
 def genius_download_data(input):
@@ -26,7 +31,7 @@ def format_search_results(results):
         out.append('{} by {}'.format(i['result']['title'],i['result']['artist_names']))
     return out
 
-def get_artist(artist_id):
+def lookup_artist(artist_id):
     arg = 'artists/'
     return genius_download_data(arg + artist_id)
 
@@ -50,6 +55,11 @@ def get_all_songs(artist_id):
         page += 1
     return songs
 
+def lookup_song(song_id):
+    arg = 'songs/'
+    return genius_download_data(arg + song_id)
+
+
 def run_tests():
     # run search
     search_string = 'lane 8'
@@ -62,7 +72,7 @@ def run_tests():
     results = get_all_songs(artist_id='582604')
     print('get all songs: found {} songs by {}'.format(len(results),results[0]['artist_names']))
     # print(['{} by {}'.format(song['title'],song['artist_names']) for song in results])
-
+    lookup_song('3477832')
 
 if __name__ == '__main__':
     run_tests()
