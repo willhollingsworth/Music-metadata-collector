@@ -60,7 +60,7 @@ def format_track_details(track_results):
 
 if __name__ == '__main__':
     results = search('bad kingdoms')
-    print(format_track_details(results))
+    print(utility_functions.print_dict_keys(format_track_details(results)))
 
     # print('string search example:')
     # search_keys = ['title', ['artist', 'name'], [
