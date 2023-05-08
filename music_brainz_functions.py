@@ -33,7 +33,7 @@ def lookup_artist_id(id):
     return music_brainz_download_data('artist/'+id)
 
 def lookup_releases(id):
-    # example url https://musicbrainz.org/ws/2/release?artist=f2c454ec-69a2-49a7-a79c-eaabef25ba44
+    # example url https://musicbrainz.org/ws/2/release?artist=f2c454ec-69a2-49a7-a79c-eaabef25ba44&inc=release-groups
     return music_brainz_download_data(f'release?artist={id}&inc=release-groups')
 
 
