@@ -11,9 +11,11 @@ def print_dict_keys(input_dict, keys=''):
         if isinstance(key, str):
             print(key, ':', input_dict[key], end=', ')
         elif isinstance(key, list):
-            if len(key) == 2:
-                print(key[0], key[1], ':',
-                      input_dict[key[0]][key[1]], end=', ')
+            print('-'.join(map(str,key)),end='')
+            temp_dict = input_dict
+            for i in key:
+                temp_dict = temp_dict[i]
+            print(' :',temp_dict,end=', ')
     print()
     return
 
