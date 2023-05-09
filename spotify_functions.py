@@ -1,6 +1,7 @@
 import json
 import requests
 import utility_functions
+from pprint import pprint
 
 # having issues with track search being inaccurate
 # attempting to search track + artist but doesn't appear to be working
@@ -61,20 +62,37 @@ def spotify_download_data(request_type, input, overwrite=0, debug=0):
     return utility_functions.download_data(full_url, headers, overwrite, debug)
 
 
-def artist_lookup(id):
-    return spotify_download_data('artists', id)
+def artist_lookup(id,print_results=False):
+    results = spotify_download_data('artists', id)
+    if print_results:
+        utility_functions.print_dict_keys(
+        results, ['name', ['followers', 'total'], 'genres'])
+    return results
 
 
-def album_lookup(id):
-    return spotify_download_data('albums', id)
+def album_lookup(id,print_results=False):
+    results = spotify_download_data('albums', id)     
+    if print_results:
+        utility_functions.print_dict_keys(
+        results, ['name', 'genres', 'uri'])
+    return results
 
 
-def track_lookup(id):
-    return spotify_download_data('tracks', id)
+def track_lookup(id,print_results=False):
+    results = spotify_download_data('tracks', id)
+    if print_results:
+        utility_functions.print_dict_keys(
+        results, ['name', ['artists',0,'name'], 'popularity'])
+    return results
 
 
-def search_artists(string):
-    return spotify_download_data('search_artist', string)
+def search_artists(string,print_results=False):
+    results =  spotify_download_data('search_artist', string)
+    if print_results:
+        utility_functions.print_dict_keys(
+        results['artists']['items'][0], ['name', ['followers','total'], 'popularity','genres'])
+    # print(first_result['name'],', followers:',first_result['followers']['total'],', popularity',first_result['popularity'],', genres',first_result['genres'])
+    return results
 
 
 def multi_search(track, artist):
@@ -111,46 +129,58 @@ def return_track_details(search_string):
     return output_dict
 
 
-def example_uses():
-    print('artist example')
-    artists = artist_lookup('3tSvlEzeDnVbQJBTkIA6nO')
-    utility_functions.print_dict_keys(
-        artists, ['name', ['followers', 'total'], 'genres'])
+def examples():
+    print('running examples')
 
-    print('album example')
-    albums = album_lookup('2dIGnmEIy1WZIcZCFSj6i8')
-    print(albums.keys())
-    utility_functions.print_dict_keys(
-        albums, ['name', 'genres', 'uri'])
+    # lookups
+    artist_id = '3tSvlEzeDnVbQJBTkIA6nO'
+    print('artist lookup with id', artist_id, end=": ")
+    artist_lookup(artist_id,print_results=True)
 
-    print('track example')
-    track = track_lookup('6xZZM6GDxTKsLjF3TNDREL')
-    print(track['name'], '-', track['artists'][0]['name'], track['popularity'])
+    album_id = '2dIGnmEIy1WZIcZCFSj6i8'
+    print('album lookup with id',album_id, end=": ")
+    album_lookup(album_id,print_results=True)
+    
+    track_id = '6xZZM6GDxTKsLjF3TNDREL'
+    print('track lookup', track_id, end=": ")
+    track_lookup(track_id,print_results=True) 
+    # print(track['name'], '-', track['artists'][0]['name'], track['popularity'])
 
-    print('search artist example')
-    artist_results = search_artists('pendulum')
-    print('show first 5 results - columns: name,followers,popularity,genres')
-    for x in artist_results['artists']['items'][:5]:
-        print(x['name'], x['followers']['total'], x['popularity'], x['genres'])
+    # #searches
+    artist_string = 'pendulum'
+    print('artist search with string \"',artist_string,'"', end=" : ")
+    first_result = search_artists(artist_string,print_results=True)['artists']['items'][0]
+   
+    # print('show first 5 results - columns: name,followers,popularity,genres')
+    # for x in artist_results['artists']['items'][:5]:
+    #     print(x['name'], x['followers']['total'], x['popularity'], x['genres'])
 
-    search_track_results = search_tracks('la danza')
-    utility_functions.print_dict_keys(search_track_results,
-                                      ['name', 'type', 'id'])
+    # search_track_results = search_tracks('la danza')
+    # utility_functions.print_dict_keys(search_track_results,
+    #                                   ['name', 'type', 'id'])
 
 
 if __name__ == '__main__':
+    examples()
+
+    # album_id = '2dIGnmEIy1WZIcZCFSj6i8'
+    # print('album lookup with id',album_id, end=": ")
+    # albums = album_lookup(album_id)
+    # print(str(albums).encode(encoding="utf-8"))
+    
     # url = 'https://api.spotify.com/v1/' + \
     #     'search?type=track&q=track:' + 'elecktor' + '&artist:'
     # headers = create_headers()
     # print(utility_functions.download_data(
     #     url, headers).keys())
-    for string in ["another life", ["another life", "afrojack"]]:
-        track_details = return_track_details(string)
-        for details in ['track name', 'artist name', 'album name', 'artist genres']:
-            print(details, ':', track_details[details], end=', ')
-        print()
+
+    # for string in ["another life", ["another life", "afrojack"]]:
+    #     track_details = return_track_details(string)
+    #     for details in ['track name', 'artist name', 'album name', 'artist genres']:
+    #         print(details, ':', track_details[details], end=', ')
+    #     print()
+
     # print(return_track_details('another life'))
     # print(return_track_details(["another life", "afrojack"]))
     # multi_search(["Bla Bla Bla", "Gigi D'Agostino"])
     # print(testing)
-    # example_uses()
