@@ -2,3 +2,4 @@ credentials.json
 cache/*
 __pycache__/*
 response.json
+.env

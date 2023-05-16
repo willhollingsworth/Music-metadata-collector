@@ -2,13 +2,18 @@ import json
 import requests
 import utility_functions
 from pprint import pprint
+import spotipy
+from dotenv import load_dotenv
+from spotipy.oauth2 import SpotifyOAuth
+
+load_dotenv()
 
 # having issues with track search being inaccurate
 # attempting to search track + artist but doesn't appear to be working
 # maybe try looking through search results and do a string match on track and artist names?
 
 
-def create_headers():
+def create_client_headers():
     credentials = utility_functions.load_credentials('spotify')
     ''' generate auth token and headers'''
     AUTH_URL = 'https://accounts.spotify.com/api/token'
@@ -27,14 +32,13 @@ def create_headers():
     }
     return headers
 
-
-def spotify_download_data(request_type, input, overwrite=0, debug=0):
+def spotify_download_data(request_type, input='', overwrite=0, debug=0):
     # https://developer.spotify.com/documentation/web-api/reference/#/
-    headers = create_headers()
+    headers = create_client_headers()
     spotify_url = 'https://api.spotify.com/v1/'
     request_types = {'artists': 'artists/',
                      'albums': 'albums/',
-                     'tracks': 'tracks/'}
+                     'tracks': 'tracks/' }
     valid_search_types = ['artist', 'track', 'album', 'genre']
     if request_type in request_types:
         request_url = request_types[request_type]
@@ -128,6 +132,16 @@ def return_track_details(search_string):
     output_dict['artist genres'] = artist_results['genres']
     return output_dict
 
+def current_playing(print_results=False):
+    scope = 'user-read-playback-state'
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
+    current_playback = sp.current_playback()
+    if not current_playback:
+        return
+    if print_results:
+        utility_functions.print_dict_keys(
+        current_playback['item'], ['name',['artists',0,'name'], ['album','name'],'id'])
+    return current_playback
 
 def examples():
     print('running examples')
@@ -160,8 +174,12 @@ def examples():
     #                                   ['name', 'type', 'id'])
 
 
+
 if __name__ == '__main__':
-    examples()
+    results = current_playing(print_results=True)
+    # pprint(results)
+    # examples()
+
 
     # album_id = '2dIGnmEIy1WZIcZCFSj6i8'
     # print('album lookup with id',album_id, end=": ")
