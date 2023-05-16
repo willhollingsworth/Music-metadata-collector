@@ -3,3 +3,4 @@ cache/*
 __pycache__/*
 response.json
 .env
+.cache
