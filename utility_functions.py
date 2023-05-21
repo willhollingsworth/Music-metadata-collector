@@ -48,6 +48,9 @@ def download_data(url, headers='', overwrite=0, debug=0, type='json'):
             print(r['tracks'].keys())
         if 'data' in r:
             r = r['data']
+        if len(r) < 1:
+            print('error, response too small',r)
+            exit()
         with open(full_path, 'w') as f:
             if type == 'json':
                 f.write(json.dumps(r, indent=4))
@@ -90,3 +93,7 @@ def show_structure(var, indent=0):
 
 def print_structure(var):
     print(show_structure(var))
+
+def dump_json(json_data):
+    with open('temp.json', 'w') as f:
+        f.write(json.dumps(json_data, indent=4))
