@@ -1,3 +1,10 @@
+
+# Todo
+Add the following services
+-   Beatport
+-   wikipedia
+    -   need to find links to the correct wiki page, spotify seems to link it in their about section.
+
 # Related projects
 [github search results for music brainz](https://github.com/topics/musicbrainz?l=python)
 ## [YouTube Music Downloader](https://github.com/deepjyoti30/ytmdl)
