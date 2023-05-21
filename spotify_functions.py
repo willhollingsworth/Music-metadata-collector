@@ -143,6 +143,15 @@ def current_playing(print_results=False):
         current_playback['item'], ['name',['artists',0,'name'], ['album','name'],'id'])
     return current_playback
 
+def current_playing_detailed(print_results=False):
+    currently_playing = current_playing(print_results=print_results)
+    artist_id = currently_playing['item']['artists'][0]['id']
+    artist_results = artist_lookup(artist_id,print_results=print_results)
+
+    out_dict = {'currently_playing':currently_playing,
+                'artist_results':artist_results}
+    return out_dict
+
 def examples():
     print('running examples')
 
@@ -176,7 +185,8 @@ def examples():
 
 
 if __name__ == '__main__':
-    results = current_playing(print_results=True)
+    current_playing_detailed(print_results=True)
+    # pprint(artist_results.keys())
     # pprint(results)
     # examples()
 
