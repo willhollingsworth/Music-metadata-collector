@@ -2,6 +2,7 @@ import requests
 import json
 import os
 import utility_functions
+from pprint import pprint
 # deezer's api docs are behind a login wall
 # some public api docs https://apieco.ir/docs/deezer#api-Search-search
 # also examples of use here https://github.com/deepjyoti30/ytmdl/blob/master/ytmdl/meta/deezer.py
@@ -11,6 +12,7 @@ def download_deezer_data(request_type, input):
     deezer_url = "https://api.deezer.com/"
     request_types = {'search': 'search?q=',
                      'album': 'album/',
+                     'artist': 'artist/',
                      'track': 'track/'}
     if request_type in request_types:
         request_url = request_types[request_type]
@@ -20,20 +22,39 @@ def download_deezer_data(request_type, input):
     return utility_functions.download_data(url)
 
 
-def search(search_string, print_keys='', limit=0):
-    search_data = download_deezer_data('search', search_string)
-    if not limit:
-        limit = len(search_data)
-    return search_data[:limit]
+def search(search_string='',detailed=False,artist='',track=''):
+    search_items = []
+    if bool(search_string):
+        search_items.append(search_string)
+    if bool(artist):
+        search_items.append('artist:"{}"'.format(artist))
+    if bool(track):
+        search_items.append('track:"{}"'.format(track))
+    search_string_final = " ".join(search_items)
+    search_data = download_deezer_data('search', search_string_final)
+    if detailed:
+        search_data = {'search_data':search_data[0]}
+        album_id = search_data['search_data']['album']['id']
+        search_data['album_lookup'] = album_lookup(album_id)
+        artist_id = search_data['search_data']['artist']['id']
+        search_data['artist_lookup'] = artist_lookup(artist_id)
+        track_id = search_data['search_data']['id']
+        search_data['track_lookup'] = track_lookup(track_id)
+        genres = []
+        for genre in search_data['album_lookup']['genres']['data']:
+            genres.append(genre['name'])
+        search_data['genres'] = genres
+    return search_data
 
 
 def album_lookup(album_id, print_keys=''):
     return download_deezer_data('album', album_id)
 
+def artist_lookup(artist_id, print_keys=''):
+    return download_deezer_data('artist', artist_id)
 
 def track_lookup(track_id, print_keys=''):
     return download_deezer_data('track', track_id)
-
 
 def format_track_details(track_results):
     # input is a track search result
@@ -59,8 +80,10 @@ def format_track_details(track_results):
 
 
 if __name__ == '__main__':
-    results = search('bad kingdoms')
-    print(utility_functions.print_dict_keys(format_track_details(results)))
+    results = search('Need Your Attention Joris Delacroix',detailed=True)
+    results = search(artist='Joris Delacroix',track='Need Your Attention',detailed=True)
+    utility_functions.dump_json(results)
+    # print(utility_functions.print_dict_keys(format_track_details(results)))
 
     # print('string search example:')
     # search_keys = ['title', ['artist', 'name'], [
