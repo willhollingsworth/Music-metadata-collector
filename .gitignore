@@ -4,3 +4,6 @@ __pycache__/*
 response.json
 .env
 .cache
+temp.json
+spotify auth example.py
+spotipy_testing.py
