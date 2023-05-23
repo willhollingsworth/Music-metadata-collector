@@ -44,7 +44,11 @@ def search(search_string='',detailed=False,artist='',track=''):
         for genre in search_data['album_lookup']['genres']['data']:
             genres.append(genre['name'])
         search_data['genres'] = genres
-    return search_data
+    if isinstance(search_data,list):
+        return search_data[0]
+    else:
+        return search_data
+
 
 
 def album_lookup(album_id, print_keys=''):
