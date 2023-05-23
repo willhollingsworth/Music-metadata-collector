@@ -1,9 +1,18 @@
 
 # Todo
+Build out overall logic
+-   grab spotify current playing results and search all services for details, focus on genres first
+
+Music brainz
+-   when track searching also do a search on the album and artist and grab genre details  
+
 Add the following services
 -   Beatport
 -   wikipedia
     -   need to find links to the correct wiki page, spotify seems to link it in their about section.
+
+
+
 
 # Related projects
 [github search results for music brainz](https://github.com/topics/musicbrainz?l=python)
