@@ -26,7 +26,19 @@ def search_track(track, artist=''):
         url = 'recording?query="{}"'.format(track)
     else:
         url = 'recording?query="{}" AND artist:"{}"'.format(track, artist)
-    return music_brainz_download_data(url)
+    out_dict = {}        
+    result = music_brainz_download_data(url)
+    if result['count'] == 0:
+        return 'no results'
+    result = result['recordings'][0]
+    out_dict['track'] = result['title']
+    out_dict['artist'] = result['artist-credit'][0]['name']
+    out_dict['id'] = result['id']
+    if 'tags' in result.keys():
+        out_dict['genres'] = [g['name'] for g in result['tags']]
+    else:
+        out_dict['genres'] = ['none']
+    return out_dict
 
 def lookup_artist_id(id):
     # https://musicbrainz.org/doc/MusicBrainz_API/Search
@@ -49,10 +61,8 @@ def run_search_examples():
         print(x)
     track, track_artist = ('satisfaction', 'benny benassi')
     print('search for track:', track, 'by artist:', track_artist)
-    tracks = search_track(track, track_artist)
-    recording = tracks['recordings'][0]
-    print(recording['title'], 'by',
-          recording['artist-credit'][0]['name'])
+    st_results = search_track(track, track_artist)
+    print(st_results)
 
     # utility_functions.save_to_file(
     #     json.dumps(tracks, indent=1), 'response.json')
@@ -70,5 +80,6 @@ def run_chain_example(artist):
 
     return
 if __name__ == '__main__':
-    # run_search_examples()
-    run_chain_example('Joris Delacroix')
+    run_search_examples()
+
+    # run_chain_example('Joris Delacroix')
