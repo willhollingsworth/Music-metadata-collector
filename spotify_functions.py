@@ -12,7 +12,6 @@ load_dotenv()
 # attempting to search track + artist but doesn't appear to be working
 # maybe try looking through search results and do a string match on track and artist names?
 
-
 def create_client_headers():
     credentials = utility_functions.load_credentials('spotify')
     ''' generate auth token and headers'''
@@ -65,14 +64,12 @@ def spotify_download_data(request_type, input='', overwrite=0, debug=0):
     # print('full url', full_url)
     return utility_functions.download_data(full_url, headers, overwrite, debug)
 
-
 def artist_lookup(id,print_results=False):
     results = spotify_download_data('artists', id)
     if print_results:
         utility_functions.print_dict_keys(
         results, ['name', ['followers', 'total'], 'genres'])
     return results
-
 
 def album_lookup(id,print_results=False):
     results = spotify_download_data('albums', id)     
@@ -81,7 +78,6 @@ def album_lookup(id,print_results=False):
         results, ['name', 'genres', 'uri'])
     return results
 
-
 def track_lookup(id,print_results=False):
     results = spotify_download_data('tracks', id)
     if print_results:
@@ -89,6 +85,22 @@ def track_lookup(id,print_results=False):
         results, ['name', ['artists',0,'name'], 'popularity'])
     return results
 
+def track_lookup_detailed(id,print_results=False):
+    output_dict = {}
+    track = track_lookup(id)
+    output_dict['track name'] = track['name']
+    output_dict['track type'] = track['type']
+    output_dict['track id'] = track['id']
+    output_dict['artist name'] = track['artists'][0]['name']
+    output_dict['artist id'] = track['artists'][0]['id']
+    output_dict['album name'] = track['album']['name']
+    output_dict['album id'] = track['album']['id']
+    artist_results = artist_lookup(output_dict['artist id'])
+    output_dict['artist genres'] = artist_results['genres']
+    if print_results:
+        utility_functions.print_dict_keys(
+        output_dict,['track name','artist name','album name','artist genres'])
+    return output_dict
 
 def search_artists(string,print_results=False):
     results =  spotify_download_data('search_artist', string)
@@ -98,12 +110,10 @@ def search_artists(string,print_results=False):
     # print(first_result['name'],', followers:',first_result['followers']['total'],', popularity',first_result['popularity'],', genres',first_result['genres'])
     return results
 
-
 def multi_search(track, artist):
     results = spotify_download_data(
         'multi', {'track': track, 'artist': 'artist'})
     return results
-
 
 def search_tracks(search_string, results=1, overwrite=0, debug=0):
     if results == 1:
@@ -111,46 +121,20 @@ def search_tracks(search_string, results=1, overwrite=0, debug=0):
     else:
         return spotify_download_data('search_track', search_string, overwrite, debug)['tracks']['items'][:results]
 
-
 def search_albums(string):
     return spotify_download_data('search_album', string)
-
-
-def return_track_details(search_string):
-    output_dict = {}
-    if isinstance(search_string, list):
-        search_string = {'track': search_string[0], 'artist': search_string[1]}
-    track_results = search_tracks(search_string, 1, 1, 0)
-    output_dict['track name'] = track_results['name']
-    output_dict['track type'] = track_results['type']
-    output_dict['track id'] = track_results['id']
-    output_dict['artist name'] = track_results['artists'][0]['name']
-    output_dict['artist id'] = track_results['artists'][0]['id']
-    output_dict['album name'] = track_results['album']['name']
-    output_dict['album id'] = track_results['album']['id']
-    artist_results = artist_lookup(output_dict['artist id'])
-    output_dict['artist genres'] = artist_results['genres']
-    return output_dict
 
 def current_playing(print_results=False):
     scope = 'user-read-playback-state'
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
     current_playback = sp.current_playback()
     if not current_playback:
+        print('spotify is not currently playing anything')
         return
     if print_results:
         utility_functions.print_dict_keys(
         current_playback['item'], ['name',['artists',0,'name'], ['album','name'],'id'])
-    return current_playback
-
-def current_playing_detailed(print_results=False):
-    currently_playing = current_playing(print_results=print_results)
-    artist_id = currently_playing['item']['artists'][0]['id']
-    artist_results = artist_lookup(artist_id,print_results=print_results)
-
-    out_dict = {'currently_playing':currently_playing,
-                'artist_results':artist_results}
-    return out_dict
+    return current_playback['item']['id']
 
 def examples():
     print('running examples')
@@ -164,11 +148,14 @@ def examples():
     print('album lookup with id',album_id, end=": ")
     album_lookup(album_id,print_results=True)
     
+    # track_id = current_playing() # can use currently playing instead
     track_id = '6xZZM6GDxTKsLjF3TNDREL'
     print('track lookup', track_id, end=": ")
     track_lookup(track_id,print_results=True) 
-    # print(track['name'], '-', track['artists'][0]['name'], track['popularity'])
-
+    
+    print('detailed track lookup', end=": ")
+    track_lookup_detailed(track_id,print_results=True)
+          
     # #searches
     artist_string = 'pendulum'
     print('artist search with string \"',artist_string,'"', end=" : ")
@@ -182,10 +169,14 @@ def examples():
     # utility_functions.print_dict_keys(search_track_results,
     #                                   ['name', 'type', 'id'])
 
-
-
 if __name__ == '__main__':
-    current_playing_detailed(print_results=True)
+    examples()
+    # pprint(track_lookup_detailed(current_playing()))
+
+    # current_playing_detailed()
+    # track_lookup_detailed('7v0umDmPFMzmkBT1uWSYIL')
+
+
     # pprint(artist_results.keys())
     # pprint(results)
     # examples()
