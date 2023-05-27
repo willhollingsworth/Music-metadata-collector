@@ -97,3 +97,8 @@ def print_structure(var):
 def dump_json(json_data):
     with open('temp.json', 'w') as f:
         f.write(json.dumps(json_data, indent=4))
+
+def delete_cache():
+    cache_folder = 'cache/'
+    for file in os.listdir(cache_folder):
+        os.remove(cache_folder+file)
