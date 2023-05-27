@@ -7,7 +7,7 @@ import utility_functions as utils
 if __name__ == '__main__':
     spotify_current_id = spotify_functions.current_playing()
     #spotify
-    spotify_track = spotify_functions.track_lookup_detailed(spotify_current_id)
+    spotify_track = spotify_functions.lookup_track_detailed(spotify_current_id)
     current_playing_track,current_playing_artist = spotify_track['track name'],spotify_track['artist name']
     print('Spotify currently playing :', current_playing_track,'by',current_playing_artist)
     print('Spotify artist genres :',spotify_track['artist genres'])
