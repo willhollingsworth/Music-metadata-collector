@@ -4,23 +4,14 @@ import music_brainz_functions
 from pprint import pprint
 import utility_functions as utils
 
-def grab_current_track_artist():
-    spotify_playing = spotify_functions.current_playing()['item']
-    out_dict ={}
-    out_dict['track'] = spotify_playing['name']
-    out_dict['artist'] = spotify_playing['artists'][0]['name']
-
-    return out_dict
-
-
 if __name__ == '__main__':
-    spotify_results = grab_current_track_artist()
-    current_playing_track,current_playing_artist = spotify_results['track'],spotify_results['artist']
-    # current_playing_track,current_playing_artist = ('Trouble','Robby East')
+    spotify_current_id = spotify_functions.current_playing()
+    #spotify
+    spotify_track = spotify_functions.track_lookup_detailed(spotify_current_id)
+    current_playing_track,current_playing_artist = spotify_track['track name'],spotify_track['artist name']
     print('Spotify currently playing :', current_playing_track,'by',current_playing_artist)
-
-    
-    print()
+    print('Spotify artist genres :',spotify_track['artist genres'])
+    #Music brainz
     mb_track = music_brainz_functions.search_track(current_playing_track,current_playing_artist)
     if not isinstance(mb_track, dict):
         print('Music Brainz found no results')
@@ -32,6 +23,7 @@ if __name__ == '__main__':
                 print('Music Brainz found no genres')
         else:
             print('Music Brainz found no genres')
+    #deezer
     dez_track = deezer_functions.search(track=current_playing_track,artist=current_playing_artist,detailed=True)
     # print(len(dez_track['genres']))
     if len(dez_track['genres']) > 1:
