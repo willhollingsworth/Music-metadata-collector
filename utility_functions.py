@@ -2,9 +2,10 @@ import os
 import requests
 import json
 
-
 def print_dict_keys(input_dict, keys=''):
     # nicer printing of dictionaries
+    if not isinstance(input_dict,dict):
+        raise TypeError('Not a dictionary ' + input_dict)
     if len(keys) < 1: # if no keys specified then print all
         keys = input_dict.keys()
     for key in keys:
@@ -18,7 +19,6 @@ def print_dict_keys(input_dict, keys=''):
             print(' :',temp_dict,end=', ')
     print()
     return
-
 
 def download_data(url, headers='', overwrite=0, debug=0, type='json'):
     cache_folder = 'cache/'
