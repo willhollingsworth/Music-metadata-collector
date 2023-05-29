@@ -136,6 +136,11 @@ def current_playing(print_results=False):
         current_playback['item'], ['name',['artists',0,'name'], ['album','name'],'id'])
     return current_playback['item']['id']
 
+def current_playing_detailed(print_results=False):
+    track_id = current_playing()
+    track_details = lookup_track_detailed(track_id,print_results)
+    return track_details
+
 def examples():
     print('running examples')
 
@@ -171,6 +176,7 @@ def examples():
 
 if __name__ == '__main__':
     examples()
+    # current_playing_detailed(print_results=True)
     # pprint(lookup_track_detailed(current_playing()))
 
     # current_playing_detailed()
