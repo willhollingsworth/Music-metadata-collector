@@ -62,10 +62,11 @@ def format_track_details(track_results):
     # input is a track search result
     #  output a better formatted dictionary 
     output_dict = {}
-    for track in track_results:
-        if track['type'] == 'track':
-            track_results = track
-            break
+    if isinstance(track_results,list):
+        for track in track_results:
+            if track['type'] == 'track':
+                track_results = track
+                break
     output_dict['track name'] = track_results['title']
     output_dict['track type'] = track_results['type']
     output_dict['track id'] = track_results['id']
@@ -80,8 +81,31 @@ def format_track_details(track_results):
 
     return output_dict
 
+def examples():
+    ''' deezer examples'''
+    track = 'la danza'
+
+    print('string search for track:',track,end=", result =  ")
+    track_data = search(track)
+    better_format = format_track_details(track_data)
+    utility_functions.print_dict_keys(better_format)
+
+    track_id ='395141722'
+    print('track id lookup:',track_id,end=", result =  ")
+    track_data = lookup_track(track_id)
+    utility_functions.print_dict_keys(track_data, ['title', ['album', 'title'],
+                    'duration', 'rank', 'bpm', 'gain', 'id'])
+    
+    album_id = '46371952'
+    print('album id lookup:',album_id,end=", result =  ")
+    album_data = lookup_album(album_id)
+    utility_functions.print_dict_keys(album_data, ['title', ['artist', 'name'], ['artist', 'id'],
+                    'fans',  'id'])
+
 
 if __name__ == '__main__':
+    utility_functions.delete_cache()
+    examples()
     # results = search('Need Your Attention Joris Delacroix',detailed=True)
     # results = search(artist='Joris Delacroix',track='Need Your Attention',detailed=True)
     # utility_functions.dump_json(results)
