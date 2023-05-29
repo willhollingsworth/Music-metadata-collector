@@ -8,3 +8,4 @@ temp.json
 spotify auth example.py
 spotipy_testing.py
 *.pyc
+temp_testing/*
