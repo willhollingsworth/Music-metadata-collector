@@ -1,19 +1,19 @@
-import json
 import requests
-import utility_functions
-from pprint import pprint
 import spotipy
-from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyOAuth
+from pprint import pprint
 
-load_dotenv()
+import json
+from dotenv import load_dotenv
+
+import MMC.Util.utility as utility
 
 # having issues with track search being inaccurate
 # attempting to search track + artist but doesn't appear to be working
 # maybe try looking through search results and do a string match on track and artist names?
 
 def create_client_headers():
-    credentials = utility_functions.load_credentials('spotify')
+    credentials = utility.load_credentials('spotify')
     ''' generate auth token and headers'''
     AUTH_URL = 'https://accounts.spotify.com/api/token'
     # POST
@@ -62,26 +62,26 @@ def spotify_download_data(request_type, input='', overwrite=0, debug=0):
 
     full_url = spotify_url + request_url + processed_input
     # print('full url', full_url)
-    return utility_functions.download_data(full_url, headers, overwrite, debug)
+    return utility.download_data(full_url, headers, overwrite, debug)
 
 def lookup_artist(id,print_results=False):
     results = spotify_download_data('artists', id)
     if print_results:
-        utility_functions.print_dict_keys(
+        utility.print_dict_keys(
         results, ['name', ['followers', 'total'], 'genres'])
     return results
 
 def lookup_album(id,print_results=False):
     results = spotify_download_data('albums', id)     
     if print_results:
-        utility_functions.print_dict_keys(
+        utility.print_dict_keys(
         results, ['name', 'genres', 'uri'])
     return results
 
 def lookup_track(id,print_results=False):
     results = spotify_download_data('tracks', id)
     if print_results:
-        utility_functions.print_dict_keys(
+        utility.print_dict_keys(
         results, ['name', ['artists',0,'name'], 'popularity'])
     return results
 
@@ -98,14 +98,14 @@ def lookup_track_detailed(id,print_results=False):
     artist_results = lookup_artist(output_dict['artist id'])
     output_dict['artist genres'] = artist_results['genres']
     if print_results:
-        utility_functions.print_dict_keys(
+        utility.print_dict_keys(
         output_dict,['track name','artist name','album name','artist genres'])
     return output_dict
 
 def search_artists(string,print_results=False):
     results =  spotify_download_data('search_artist', string)
     if print_results:
-        utility_functions.print_dict_keys(
+        utility.print_dict_keys(
         results['artists']['items'][0], ['name', ['followers','total'], 'popularity','genres'])
     # print(first_result['name'],', followers:',first_result['followers']['total'],', popularity',first_result['popularity'],', genres',first_result['genres'])
     return results
@@ -125,6 +125,7 @@ def search_albums(string):
     return spotify_download_data('search_album', string)
 
 def current_playing(print_results=False):
+    load_dotenv()
     scope = 'user-read-playback-state'
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
     current_playback = sp.current_playback()
@@ -132,7 +133,7 @@ def current_playing(print_results=False):
         print('spotify is not currently playing anything')
         return
     if print_results:
-        utility_functions.print_dict_keys(
+        utility.print_dict_keys(
         current_playback['item'], ['name',['artists',0,'name'], ['album','name'],'id'])
     return current_playback['item']['id']
 

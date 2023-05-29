@@ -1,8 +1,9 @@
 import requests
 import json
 import os
-import utility_functions
 from pprint import pprint
+
+import MMC.Util.utility as utility
 # deezer's api docs are behind a login wall
 # some public api docs https://apieco.ir/docs/deezer#api-Search-search
 # also examples of use here https://github.com/deepjyoti30/ytmdl/blob/master/ytmdl/meta/deezer.py
@@ -19,7 +20,7 @@ def download_deezer_data(request_type, input):
     else:
         raise Exception('wrong type selected', locals())
     url = deezer_url + request_url + str(input)
-    return utility_functions.download_data(url)
+    return utility.download_data(url)
 
 def build_search_args(search_string, artist, track):
     search_items = []
@@ -78,7 +79,7 @@ def lookup_track_detailed(track_id, print_results=False):
     output_dict['album genres'] = [genre['name']
                                    for genre in album_results['genres']['data']]
     if print_results:
-        utility_functions.print_dict_keys(
+        utility.print_dict_keys(
         output_dict)
     return output_dict
 
@@ -110,23 +111,23 @@ def examples():
     print('string search for track:',track,end=", result =  ")
     track_data = search(track)
     better_format = format_track_details(track_data)
-    utility_functions.print_dict_keys(better_format)
+    utility.print_dict_keys(better_format)
 
     track_id ='395141722'
     print('track id lookup:',track_id,end=", result =  ")
     track_data = lookup_track(track_id)
-    utility_functions.print_dict_keys(track_data, ['title', ['album', 'title'],
+    utility.print_dict_keys(track_data, ['title', ['album', 'title'],
                     'duration', 'rank', 'bpm', 'gain', 'id'])
     
     album_id = '46371952'
     print('album id lookup:',album_id,end=", result =  ")
     album_data = lookup_album(album_id)
-    utility_functions.print_dict_keys(album_data, ['title', ['artist', 'name'], ['artist', 'id'],
+    utility.print_dict_keys(album_data, ['title', ['artist', 'name'], ['artist', 'id'],
                     'fans',  'id'])
 
 
 if __name__ == '__main__':
-    utility_functions.delete_cache()
+    utility.delete_cache()
     # lookup_track_detailed(395141722,print_results=True)
     # examples()
     # results = search('Need Your Attention Joris Delacroix',detailed=True)

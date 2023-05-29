@@ -1,17 +1,18 @@
 import json
 import requests
 import bs4
-import utility_functions
+import MMC.Util.utility as utility
 
 
 # api key request link is currently broken
-# will use scraping instead
+# could use web scraping 
+# api workaround example : https://github.com/Samik081/beets-beatport4
 
 
 def beatport_download_data(input):
     beatport_api_url = 'https://api.beatport.com/v4/catalog'
     full_url = beatport_api_url + input
-    return utility_functions.download_data(full_url)
+    return utility.download_data(full_url)
 
 
 def run_tests():

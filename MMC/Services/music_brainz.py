@@ -1,5 +1,5 @@
 import requests
-import utility_functions
+import MMC.Util.utility as utility
 import json
 from pprint import pprint
 '''
@@ -7,19 +7,23 @@ from pprint import pprint
     https://musicbrainz.org/doc/MusicBrainz_API/Examples
 '''
 
-
 def music_brainz_download_data(url_args, overwrite=0, debug=0):
     base_url = 'https://musicbrainz.org/ws/2/'
     if '?' in url_args:
        url_args += '&fmt=json'
     else:
         url_args += '?fmt=json'
-    return utility_functions.download_data(base_url + url_args)
+    return utility.download_data(base_url + url_args)
 
-
-def search_artist(artist):
+def search_artist(artist, print_results=False):
     # https://musicbrainz.org/doc/MusicBrainz_API/Search
-    return music_brainz_download_data('artist?query='+artist)
+    results = music_brainz_download_data('artist?query='+artist)
+    if print_results:
+        formatted_artists = ([f"name: {a['name']}, id: {a['id']}, score: {a['score']}"
+            for a in (results)['artists']])
+        for x in formatted_artists[:1]:
+            print(x)
+    return results['artists'][0]
 
 def search_track(track, artist=''):
     if not artist:
@@ -40,30 +44,26 @@ def search_track(track, artist=''):
         out_dict['genres'] = ['none']
     return out_dict
 
-def lookup_artist_id(id):
-    # https://musicbrainz.org/doc/MusicBrainz_API/Search
+def lookup_artist(id):
+    # https://musicbrainz.org/doc/MusicBrainz_API#Lookups
     return music_brainz_download_data('artist/'+id)
 
-def lookup_releases(id):
+def lookup_album(id):
     # example url https://musicbrainz.org/ws/2/release?artist=f2c454ec-69a2-49a7-a79c-eaabef25ba44&inc=release-groups
-    return music_brainz_download_data(f'release?artist={id}&inc=release-groups')
+    return music_brainz_download_data(f'release?release={id}')
 
+def lookup_track(id):
+    return music_brainz_download_data(f'recording/{id}?inc=artists+releases')
 
-
-def run_search_examples():
+def examples():
+    # searches
     artist = 'Joris Delacroix'
-    print('search for artist:', artist)
-    artists = search_artist(artist)
-
-    results = ([f"name: {a['name']}, id: {a['id']}, score: {a['score']}"
-          for a in (artists)['artists']])
-    for x in results[:1]:
-        print(x)
+    print('search for artist :', artist, end = ': ')
+    search_artist(artist,print_results=True)
     track, track_artist = ('satisfaction', 'benny benassi')
-    print('search for track:', track, 'by artist:', track_artist)
+    print('search for track:', track, 'by artist:', track_artist, end = ': ')
     st_results = search_track(track, track_artist)
     print(st_results)
-
     # utility_functions.save_to_file(
     #     json.dumps(tracks, indent=1), 'response.json')
 
@@ -71,15 +71,20 @@ def run_chain_example(artist):
     results = search_artist(artist)
     artist_id = results['artists'][0]['id']
     print(artist_id)
-    artist_details = lookup_artist_id(artist_id)
+    artist_details = lookup_artist(artist_id)
     # print()
-    releases = lookup_releases(artist_id)
+    releases = lookup_album(artist_id)
     # pprint(releases)
     release_details = [f"{r['title']} - {r['release-group']['primary-type']}" for r in releases['releases']]
     pprint(release_details)
 
-    return
 if __name__ == '__main__':
-    run_search_examples()
-
+    utility.delete_cache()
+    # examples()
+    #lookups
+    track_id = '4e0be2ce-4672-423e-ba35-6ce49773d1ab'
+    track = lookup_track(track_id)
+    for release in track['releases']:
+        print(release['title'])
+    # pprint(track)   
     # run_chain_example('Joris Delacroix')

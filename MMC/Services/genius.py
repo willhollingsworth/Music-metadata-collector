@@ -1,4 +1,4 @@
-import utility_functions
+import MMC.Util.utility as utility
 from pprint import pprint
 from collections import Counter
 
@@ -11,7 +11,7 @@ from collections import Counter
 
 
 def genius_download_data(input):
-    credentials = utility_functions.load_credentials('genius')
+    credentials = utility.load_credentials('genius')
     if '?' in input:
         cred_arg = '&access_token=' + credentials['access_token']
     else:
@@ -19,7 +19,7 @@ def genius_download_data(input):
     genius_api_url = 'https://api.genius.com/'
     full_url = genius_api_url + input + cred_arg
 
-    return utility_functions.download_data(full_url)
+    return utility.download_data(full_url)
 
 def search(track):
     arg = 'search?q='
