@@ -1,27 +1,44 @@
-import os
-import requests
-import json
+"""Utility functions and classes for music metadata collection."""
 
-def print_dict_keys(input_dict, keys=''):
-    # nicer printing of dictionaries
-    if not isinstance(input_dict,dict):
-        raise TypeError('Not a dictionary ' + input_dict)
-    if len(keys) < 1: # if no keys specified then print all
+from __future__ import annotations
+
+import json
+import os
+from typing import Any, Optional
+
+import requests
+
+
+def print_dict_keys(
+    input_dict: dict[str, Any],
+    keys: list[str | list[str]] | None = None,
+) -> None:
+    """Print specified keys from a dictionary in a nicer way."""
+    if keys is None or len(keys) < 1:  # if no keys specified then print all
         keys = input_dict.keys()
     for key in keys:
         if isinstance(key, str):
             print(key, ':', input_dict[key], end=', ')
         elif isinstance(key, list):
-            print('-'.join(map(str,key)),end='')
+            print('-'.join(map(str, key)), end='')
             temp_dict = input_dict
             for i in key:
                 temp_dict = temp_dict[i]
-            print(' :',temp_dict,end=', ')
+            print(' :', temp_dict, end=', ')
     print()
-    return
 
-def download_data(url, headers='', overwrite=0, debug=0, type='json'):
+
+def download_data(
+        url: str,
+        headers: dict[str, str] | None = None,
+        overwrite: bool = False,
+        debug: bool = False,
+        file_type: str = 'json',
+        ):
+    """Download data from a URL and cache it locally."""
     cache_folder = 'cache/'
+    if headers is None:
+        headers = {}
     if not os.path.exists(cache_folder):
         os.mkdir(cache_folder)
     striped_characters = ':/\|?"'
@@ -30,29 +47,26 @@ def download_data(url, headers='', overwrite=0, debug=0, type='json'):
         processed_url = processed_url.replace(char, '_')
 
     full_path = cache_folder + processed_url
-    if type == 'json':
+    if file_type == 'json':
         full_path += '.json'
-    if type == 'html':
+    if file_type == 'html':
         full_path += '.html'
     if os.path.exists(full_path) and not overwrite:
         with open(full_path, 'r') as f:
-            if type == 'json':
-                r = json.load(f)
-            else:
-                r = f
+            r = json.load(f) if file_type == 'json' else f
     else:
         r = requests.get(url, headers=headers)
-        if type == 'json':
+        if file_type == 'json':
             r = r.json()
         if debug:
             print(r['tracks'].keys())
         if 'data' in r:
             r = r['data']
         if len(r) < 1:
-            print('error, response too small',r)
+            print('error, response too small', r)
             exit()
         with open(full_path, 'w') as f:
-            if type == 'json':
+            if file_type == 'json':
                 f.write(json.dumps(r, indent=4))
             else:
                 f.write(r)
@@ -89,11 +103,14 @@ def load_credentials(service: str) -> dict[str, str]:
         return json.load(r)[service]
 
 
-def save_to_file(data, filename):
+def save_to_file(data, filename) -> None:
+    """Save data to a file."""
     with open(filename, 'w') as f:
         f.write(data)
 
+
 def show_structure(var, indent=0):
+    """Recursively show the structure of a variable."""
     if isinstance(var, dict):
         result = '{\n'
         for k, v in var.items():
@@ -109,14 +126,20 @@ def show_structure(var, indent=0):
     else:
         return '...'
 
-def print_structure(var):
+
+def print_structure(var) -> None:
+    """Print the structure of a variable."""
     print(show_structure(var))
 
+
 def dump_json(json_data):
+    """Dump JSON data to a temp file."""
     with open('temp.json', 'w') as f:
         f.write(json.dumps(json_data, indent=4))
 
+
 def delete_cache():
+    """Delete all files in the cache folder."""
     cache_folder = 'cache/'
     for file in os.listdir(cache_folder):
-        os.remove(cache_folder+file)
+        os.remove(cache_folder + file)
