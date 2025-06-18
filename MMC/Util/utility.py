@@ -59,16 +59,34 @@ def download_data(url, headers='', overwrite=0, debug=0, type='json'):
     return r
 
 
-def load_credentials(service):
-    valid_services = ['spotify', 'last_fm','genius']
-    # add check for credentials file, if false create a blank one in the right format with appropriate error msg
-    if not service in valid_services:
-        raise Exception('chosen service: ', service,
-                        ' is not a valid service, only the following are allowed', valid_services)
-    '''' load credentials via json'''
-    with open('credentials.json', 'r') as r:
-        credentials = json.load(r)[service]
-    return credentials
+class InvalidServiceException(Exception):
+    """Custom exception for invalid service selection."""
+    pass
+
+
+def load_credentials(service: str) -> dict[str, str]:
+    """Load credentials for a given service from a JSON file.
+
+    Args:
+        service (str): The name of the service to load credentials for.
+
+    Returns:
+        dict: The credentials for the specified service.
+
+    Raises:
+        InvalidServiceException: If the specified service is not valid.
+
+    """
+    valid_services = ['spotify', 'last_fm', 'genius']
+    if service not in valid_services:
+        msg = (
+            f"Invalid service: {service}. "
+            f"Please choose from the following valid services: {valid_services}."
+        )
+        raise InvalidServiceException(msg)
+    # load credentials via json
+    with open('credentials.json', encoding='utf-8') as r:
+        return json.load(r)[service]
 
 
 def save_to_file(data, filename):
