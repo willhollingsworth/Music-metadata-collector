@@ -1,12 +1,9 @@
 import requests
 import spotipy
-from spotipy.oauth2 import SpotifyOAuth
-from pprint import pprint
-
-import json
 from dotenv import load_dotenv
+from spotipy.oauth2 import SpotifyOAuth
 
-import MMC.Util.utility as utility
+from MMC.Util import utility
 
 # having issues with track search being inaccurate
 # attempting to search track + artist but doesn't appear to be working
@@ -143,7 +140,7 @@ def current_playing_detailed(print_results=False):
     return track_details
 
 def examples():
-    print('running examples')
+    print('running spotify api examples')
 
     # lookups
     artist_id = '3tSvlEzeDnVbQJBTkIA6nO'
@@ -176,6 +173,7 @@ def examples():
     #                                   ['name', 'type', 'id'])
 
 if __name__ == '__main__':
+    print('running spotify.py as main')
     examples()
     # current_playing_detailed(print_results=True)
     # pprint(lookup_track_detailed(current_playing()))
