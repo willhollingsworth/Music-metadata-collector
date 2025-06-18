@@ -26,10 +26,9 @@ def create_client_headers() -> dict[str, str]:
     auth_response_data = auth_response.json()
     # save the access token
     access_token = auth_response_data['access_token']
-    headers = {
-        'Authorization': 'Bearer {token}'.format(token=access_token)
+    return {
+        'Authorization': f'Bearer {access_token}',
     }
-    return headers
 
 
 def spotify_download_data(request_type, input='', overwrite=0, debug=0):
@@ -170,24 +169,24 @@ def examples():
     # lookups
     artist_id = '3tSvlEzeDnVbQJBTkIA6nO'
     print('artist lookup with id', artist_id, end=": ")
-    lookup_artist(artist_id,print_results=True)
+    lookup_artist(artist_id, print_results=True)
 
     album_id = '2dIGnmEIy1WZIcZCFSj6i8'
-    print('album lookup with id',album_id, end=": ")
-    lookup_album(album_id,print_results=True)
+    print('album lookup with id', album_id, end=": ")
+    lookup_album(album_id, print_results=True)
 
     # track_id = current_playing() # can use currently playing instead
     track_id = '6xZZM6GDxTKsLjF3TNDREL'
     print('track lookup', track_id, end=": ")
-    lookup_track(track_id,print_results=True) 
+    lookup_track(track_id, print_results=True) 
 
     print('detailed track lookup', end=": ")
-    lookup_track_detailed(track_id,print_results=True)
+    lookup_track_detailed(track_id, print_results=True)
 
     # #searches
     artist_string = 'pendulum'
     print('artist search with string \"',artist_string,'"', end=" : ")
-    first_result = search_artists(artist_string,print_results=True)['artists']['items'][0]
+    first_result = search_artists(artist_string, print_results=True)['artists']['items'][0]
 
     # print('show first 5 results - columns: name,followers,popularity,genres')
     # for x in artist_results['artists']['items'][:5]:
