@@ -1,10 +1,15 @@
+"""Module for interacting with the Spotify API."""
+
 from __future__ import annotations
+
 import requests
 import spotipy
 from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyOAuth
 
-from MMC.Util import utility
+from MMC.Util.credentials import load_credentials
+from MMC.Util.debug import print_dict_keys
+from MMC.Util.http_client import download_json
 
 # having issues with track search being inaccurate
 # attempting to search track + artist but doesn't appear to be working
@@ -15,7 +20,7 @@ AUTH_URL = 'https://accounts.spotify.com/api/token'
 
 def create_client_headers() -> dict[str, str]:
     """Create headers for spotify api requests."""
-    credentials = utility.load_credentials('spotify')
+    credentials = load_credentials('spotify')
     # generate auth token and headers
     # POST
     auth_response = requests.post(AUTH_URL, {
@@ -70,14 +75,14 @@ def spotify_download_data(
         processed_input = input_value
 
     full_url = spotify_url + request_url + processed_input
-    return utility.download_json(full_url, headers, overwrite, debug)
+    return download_json(full_url, headers, overwrite, debug)
 
 
 def lookup_artist(id,print_results=False):
     """Lookup an artist on Spotify."""
     results = spotify_download_data('artists', id)
     if print_results:
-        utility.print_dict_keys(
+        print_dict_keys(
         results, ['name', ['followers', 'total'], 'genres'])
     return results
 
@@ -86,7 +91,7 @@ def lookup_album(id, print_results=False):
     """Lookup an album on Spotify."""
     results = spotify_download_data('albums', id)
     if print_results:
-        utility.print_dict_keys(
+        print_dict_keys(
         results, ['name', 'genres', 'uri'])
     return results
 
@@ -96,7 +101,7 @@ def lookup_track(id, print_results=False):
     results = spotify_download_data('tracks', id)
 
     if print_results:
-        utility.print_dict_keys(
+        print_dict_keys(
         results, ['name', ['artists', 0, 'name'], 'popularity'])
     return results
 
@@ -105,7 +110,7 @@ def lookup_track_detailed(id, print_results=False):
     """Lookup a track on Spotify with detailed information."""
     output_dict = {}
     track = lookup_track(id)
-    # print(utility.print_dict_keys(track))
+    # print(print_dict_keys(track))
     output_dict['track name'] = track['name']
     output_dict['track type'] = track['type']
     output_dict['track id'] = track['id']
@@ -120,7 +125,7 @@ def lookup_track_detailed(id, print_results=False):
     artist_results = lookup_artist(output_dict['artist id'])
     output_dict['artist genres'] = artist_results['genres']
     if print_results:
-        utility.print_dict_keys(
+        print_dict_keys(
         output_dict, ['track name', 'artist name', 'album name', 'artist genres'])
     return output_dict
 
@@ -129,7 +134,7 @@ def search_artists(string, print_results=False):
     """Search for an artist on Spotify."""
     results = spotify_download_data('search_artist', string)
     if print_results:
-        utility.print_dict_keys(
+        print_dict_keys(
         results['artists']['items'][0], ['name', ['followers','total'], 'popularity','genres'])
     # print(first_result['name'],', followers:',first_result['followers']['total'],', popularity',first_result['popularity'],', genres',first_result['genres'])
     return results
@@ -165,7 +170,7 @@ def current_playing(print_results=False):
         print('spotify is not currently playing anything')
         return
     if print_results:
-        utility.print_dict_keys(
+        print_dict_keys(
         current_playback['item'], ['name',['artists',0,'name'], ['album','name'],'id'])
     return current_playback['item']['id']
 
@@ -207,7 +212,7 @@ def examples():
     #     print(x['name'], x['followers']['total'], x['popularity'], x['genres'])
 
     # search_track_results = search_tracks('la danza')
-    # utility_functions.print_dict_keys(search_track_results,
+    # print_dict_keys(search_track_results,
     #                                   ['name', 'type', 'id'])
 
 
