@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import os
-from typing import Any, Optional
+from typing import Any
 
 import requests
 
@@ -28,15 +28,81 @@ def print_dict_keys(
     print()
 
 
-def download_data(
+def check_cache(url: str, file_type: str = 'json') -> str | None:
+    """Check if a url is cached and return the contents if it exists."""
+    cache_folder = 'cache/'
+    if not os.path.exists(cache_folder):
+        os.mkdir(cache_folder)
+    processed_url = process_cache_url(url)
+    full_path = f'{cache_folder}{processed_url}.{file_type}'
+    if not os.path.exists(full_path):
+        return None
+    with open(full_path) as file:
+        if file_type == 'json':
+            return json.load(file)
+        return file.read()
+
+
+def write_cache(url: str, file_type: str, data: Any) -> None:
+    """Write data to a cache file."""
+    cache_folder = 'cache/'
+    if not os.path.exists(cache_folder):
+        os.mkdir(cache_folder)
+    processed_url = process_cache_url(url)
+    full_path = f'{cache_folder}{processed_url}.{file_type}'
+    with open(full_path, 'w') as file:
+        if file_type == 'json':
+            file.write(json.dumps(data, indent=4))
+        else:
+            file.write(data)
+
+
+def process_cache_url(url: str) -> str:
+    """Process a URL to create a valid cache filename."""
+    striped_characters: str = ':/\|?"'
+    processed_url: str = url
+    for char in striped_characters:
+        processed_url = processed_url.replace(char, '_')
+    return processed_url
+
+
+def download_json(
         url: str,
         headers: dict[str, str] | None = None,
         overwrite: bool = False,
         debug: bool = False,
-        file_type: str = 'json',
+        ):
+    """Download data from a URL and cache it locally."""
+    file_type = 'json'
+    if headers is None:
+        headers = {}
+    processed_url = url
+    data = check_cache(url, file_type)
+    if data is not None and not overwrite:
+        if debug:
+            print(f'Using cached data from {processed_url}')
+    else:
+        data = requests.get(url, headers=headers).json()
+        if 'data' in data:
+            data = data['data']
+        if len(data) < 1:
+            msg = f'Error, response too small: {data}'
+            raise ValueError(msg)
+        write_cache(url, file_type, data)
+    if debug:
+        print(data['tracks'].keys())
+    return data
+
+
+def download_html(
+        url: str,
+        headers: dict[str, str] | None = None,
+        overwrite: bool = False,
+        debug: bool = False,
         ):
     """Download data from a URL and cache it locally."""
     cache_folder = 'cache/'
+    file_type = 'html'
     if headers is None:
         headers = {}
     if not os.path.exists(cache_folder):
@@ -45,33 +111,22 @@ def download_data(
     processed_url = url
     for char in striped_characters:
         processed_url = processed_url.replace(char, '_')
-
-    full_path = cache_folder + processed_url
-    if file_type == 'json':
-        full_path += '.json'
-    if file_type == 'html':
-        full_path += '.html'
+    full_path = f'{cache_folder}{processed_url}.{file_type}'
     if os.path.exists(full_path) and not overwrite:
-        with open(full_path, 'r') as f:
-            r = json.load(f) if file_type == 'json' else f
+        with open(full_path, 'r') as file:
+            response = file
     else:
-        r = requests.get(url, headers=headers)
-        if file_type == 'json':
-            r = r.json()
+        response = requests.get(url, headers=headers)
         if debug:
-            print(r['tracks'].keys())
-        if 'data' in r:
-            r = r['data']
-        if len(r) < 1:
-            print('error, response too small', r)
+            print(response['tracks'].keys())
+        if 'data' in response:
+            response = response['data']
+        if len(response) < 1:
+            print('error, response too small', response)
             exit()
-        with open(full_path, 'w') as f:
-            if file_type == 'json':
-                f.write(json.dumps(r, indent=4))
-            else:
-                f.write(r)
-    return r
-
+        with open(full_path, 'w') as file:
+            file.write(response)
+    return response
 
 class InvalidServiceException(Exception):
     """Custom exception for invalid service selection."""

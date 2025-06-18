@@ -12,7 +12,7 @@ import MMC.Util.utility as utility
 def beatport_download_data(input):
     beatport_api_url = 'https://api.beatport.com/v4/catalog'
     full_url = beatport_api_url + input
-    return utility.download_data(full_url)
+    return utility.download_json(full_url)
 
 
 def run_tests():

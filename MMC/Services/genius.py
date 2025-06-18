@@ -19,7 +19,7 @@ def genius_download_data(input):
     genius_api_url = 'https://api.genius.com/'
     full_url = genius_api_url + input + cred_arg
 
-    return utility.download_data(full_url)
+    return utility.download_json(full_url)
 
 def search(track):
     arg = 'search?q='

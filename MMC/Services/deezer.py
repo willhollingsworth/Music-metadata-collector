@@ -20,7 +20,7 @@ def download_deezer_data(request_type, input):
     else:
         raise Exception('wrong type selected', locals())
     url = deezer_url + request_url + str(input)
-    return utility.download_data(url)
+    return utility.download_json(url)
 
 def build_search_args(search_string, artist, track):
     search_items = []
