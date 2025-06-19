@@ -1,36 +1,56 @@
 from unittest.mock import patch
 import pytest
-from MMC.Services.deezer import lookup_track, lookup_track_detailed
+from MMC.Services.deezer import lookup_track, lookup_track_genres
 
 
 def test_lookup_track_success():
-    fake_track = {'id': '123', 'title': 'Test Track'}
+    fake_json = {
+        'id': '123',
+        'title': 'Test Track',
+        'artist': {'name': 'Test Artist', 'id': '456'},
+        'album': {'title': 'Test Album', 'id': '789'},
+        'duration': 300,
+        'explicit_lyrics': False,
+    }
+    expected_track_output = {
+        'track name': 'Test Track',
+        'track id': '123',
+        'artist name': 'Test Artist',
+        'artist id': '456',
+        'album name': 'Test Album',
+        'album id': '789',
+    }
     with patch(
         'MMC.Services.deezer.download_json',
-        return_value=fake_track,
+        return_value=fake_json,
     ) as mock_download_json:
         result = lookup_track('123')
         mock_download_json.assert_called_once()
-        assert result == fake_track
+        assert result == expected_track_output
 
 
 def test_lookup_track_detailed_success() -> None:
-    fake_track = {
-        'title': 'Test Song',
-        'id': '1',
-        'artist': {'name': 'Test Artist', 'id': '10'},
-        'album': {'title': 'Test Album', 'id': '100'},
+    fake_track_output = {
+        'track name': 'Test Track',
+        'track id': '123',
+        'artist name': 'Test Artist',
+        'artist id': '456',
+        'album name': 'Test Album',
+        'album id': '789',
     }
     fake_album = {'genres': {'data': [{'name': 'Electronic'}]}}
-
-    with patch('MMC.Services.deezer.lookup_track', return_value=fake_track), \
+    with patch('MMC.Services.deezer.lookup_track', return_value=fake_track_output), \
          patch('MMC.Services.deezer.lookup_album', return_value=fake_album):
-        result = lookup_track_detailed('1')
-        assert result['track name'] == 'Test Song'
-        assert result['album genres'] == ['Electronic']
+        result = lookup_track_genres('123')
+        assert result['track name'] == 'Test Track'
+        assert result['album genres'] == 'Electronic'
 
 
 def test_lookup_track_detailed_fail() -> None:
     with patch('MMC.Services.deezer.lookup_track', side_effect=KeyError("id")), \
          pytest.raises(KeyError):
-        lookup_track_detailed('bad_id')
+        lookup_track_genres('bad_id')
+
+
+if __name__ == "__main__":
+    pytest.main([__file__])
