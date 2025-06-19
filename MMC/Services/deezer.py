@@ -9,23 +9,36 @@ from MMC.Util.http_client import download_json
 # some public api docs https://apieco.ir/docs/deezer#api-Search-search
 # also examples of use here https://github.com/deepjyoti30/ytmdl/blob/master/ytmdl/meta/deezer.py
 
+DEEZER_API_URL = "https://api.deezer.com/"
 
-def download_deezer_data(request_type: str, input_string: str):
+
+class InvalidRequestType(Exception):
+    """Exception raised for invalid request types."""
+
+
+def download_deezer_data(
+    request_type: str, input_string: str
+) -> dict[str, Any] | list[Any]:
     """Download data from the Deezer API."""
-    deezer_url = "https://api.deezer.com/"
-    request_types = {'search': 'search?q=',
-                     'album': 'album/',
-                     'artist': 'artist/',
-                     'track': 'track/'}
+    request_types: dict[str, str] = {
+        'search': 'search?q=',
+        'album': 'album/',
+        'artist': 'artist/',
+        'track': 'track/',
+        }
     if request_type in request_types:
         request_url = request_types[request_type]
     else:
-        raise Exception('wrong type selected', locals())
-    url = deezer_url + request_url + str(input_string)
+        raise InvalidRequestType(request_type)
+    url = DEEZER_API_URL + request_url + str(input_string)
     return download_json(url)
 
 
-def build_search_args(search_string: str, artist: str, track: str) -> str:
+def build_search_args(
+        search_string: str = '',
+        artist: str = '',
+        track: str = '',
+    ) -> str:
     """Build the search arguments for Deezer."""
     search_items: list[str] = []
     if bool(search_string):
@@ -37,8 +50,12 @@ def build_search_args(search_string: str, artist: str, track: str) -> str:
     return " ".join(search_items)
 
 
-def search_deezer(search_string: str = '', artist: str = '', track: str = ''):
-    """Search for a track on Deezer using a string"""
+def search_deezer(
+    search_string: str = '',
+    artist: str = '',
+    track: str = '',
+    ) -> dict[str, Any]:
+    """Search for a track on Deezer using a string."""
     search_string_final = build_search_args(search_string, artist, track)
     search_data = download_deezer_data('search', search_string_final)
     if isinstance(search_data, list):
@@ -51,6 +68,7 @@ def search_track(
     artist: str = '',
     track: str = '',
     ) -> dict[str, Any]:
+    """Search for a track on Deezer and return its details."""
     output_dict: dict[str, Any] = {}
     result = search_deezer(search_string, artist, track)
     output_dict['track name'] = result['title']
@@ -96,15 +114,14 @@ def lookup_track_detailed(track_id: str, print_results: bool = False) -> dict[st
     output_dict['album genres'] = [genre['name']
                                    for genre in album_results['genres']['data']]
     if print_results:
-        print_dict_keys(
-        output_dict)
+        print_dict_keys(output_dict)
     return output_dict
 
 
 def format_track_details(track_results: dict[str, Any]) -> dict[str, Any]:
     """Format track details from a Deezer track search result."""
     output_dict: dict[str, Any] = {}
-    if isinstance(track_results,list):
+    if isinstance(track_results, list):
         for track in track_results:
             if track['type'] == 'track':
                 track_results = track
@@ -146,7 +163,8 @@ def examples() -> None:
 if __name__ == '__main__':
     # delete_cache()
     # lookup_track_detailed(395141722, print_results=True)
-    examples()
+    # examples()
+    print(search_track('la danza'))
     # results = search('Need Your Attention Joris Delacroix',detailed=True)
     # print(search_track(artist='Joris Delacroix',track='Need Your Attention'))
     # utility_functions.dump_json(results)
