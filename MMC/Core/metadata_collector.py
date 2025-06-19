@@ -1,12 +1,12 @@
 """Overall metadata collection logic."""
 
-import MMC.Util.utility as utils
 from MMC.Services import deezer, spotify
+from MMC.Util.cache import delete_cache
 
 
 def get_current_track_details() -> None:
     """Grab current playing spotify track and return details from multiple services."""
-    utils.delete_cache()
+    delete_cache()
     spotify_current_id = spotify.current_playing()
     # spotify
     if spotify_current_id:
