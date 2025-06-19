@@ -1,6 +1,8 @@
-import requests
-import MMC.Util.utility as utility
 import json
+
+from MMC.Util.credentials import load_credentials
+from MMC.Util.http_client import download_json
+
 '''
     https://www.last.fm/api/intro
 
@@ -12,12 +14,12 @@ import json
 
 def last_fm_download_data(method, search, overwrite=0, debug=0):
     # https://developer.spotify.com/documentation/web-api/reference/#/
-    credentials = utility.load_credentials('last_fm')
+    credentials = load_credentials('last_fm')
     api_key = credentials['api_key']
     last_fm_url = 'http://ws.audioscrobbler.com/2.0/'
     url_args_format = '?method={}&{}&api_key={}&format=json'
     url_args_full = url_args_format.format(method, search, api_key)
-    return utility.download_json(last_fm_url + url_args_full)
+    return download_json(last_fm_url + url_args_full)
 
 
 def search_tracks(track):

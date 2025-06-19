@@ -1,6 +1,7 @@
-import MMC.Util.utility as utility
-from pprint import pprint
 from collections import Counter
+
+from MMC.Util.credentials import load_credentials
+from MMC.Util.http_client import download_json
 
 # the genius api supports several types of data collecting but not genres (they call them tags)
 # you can scrape their web pages to get this but needs to be done per song.
@@ -11,7 +12,7 @@ from collections import Counter
 
 
 def genius_download_data(input):
-    credentials = utility.load_credentials('genius')
+    credentials = load_credentials('genius')
     if '?' in input:
         cred_arg = '&access_token=' + credentials['access_token']
     else:
@@ -19,7 +20,7 @@ def genius_download_data(input):
     genius_api_url = 'https://api.genius.com/'
     full_url = genius_api_url + input + cred_arg
 
-    return utility.download_json(full_url)
+    return download_json(full_url)
 
 def search(track):
     arg = 'search?q='

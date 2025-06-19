@@ -1,7 +1,8 @@
-import requests
-import MMC.Util.utility as utility
-import json
 from pprint import pprint
+
+from MMC.Util.cache import delete_cache
+from MMC.Util.http_client import download_json
+
 '''
     https://musicbrainz.org/doc/MusicBrainz_API
     https://musicbrainz.org/doc/MusicBrainz_API/Examples
@@ -13,7 +14,7 @@ def music_brainz_download_data(url_args, overwrite=0, debug=0):
        url_args += '&fmt=json'
     else:
         url_args += '?fmt=json'
-    return utility.download_data(base_url + url_args)
+    return download_json(base_url + url_args)
 
 def search_artist(artist, print_results=False):
     # https://musicbrainz.org/doc/MusicBrainz_API/Search
@@ -79,7 +80,7 @@ def run_chain_example(artist):
     pprint(release_details)
 
 if __name__ == '__main__':
-    utility.delete_cache()
+    delete_cache()
     # examples()
     #lookups
     track_id = '4e0be2ce-4672-423e-ba35-6ce49773d1ab'

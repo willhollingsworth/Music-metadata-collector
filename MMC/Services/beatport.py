@@ -1,8 +1,4 @@
-import json
-import requests
-import bs4
-import MMC.Util.utility as utility
-
+from MMC.Util.http_client import download_json
 
 # api key request link is currently broken
 # could use web scraping 
@@ -12,7 +8,7 @@ import MMC.Util.utility as utility
 def beatport_download_data(input):
     beatport_api_url = 'https://api.beatport.com/v4/catalog'
     full_url = beatport_api_url + input
-    return utility.download_json(full_url)
+    return download_json(full_url)
 
 
 def run_tests():

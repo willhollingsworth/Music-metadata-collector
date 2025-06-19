@@ -1,14 +1,11 @@
-import requests
-import os
-import json
-import MMC.Util.utility as utility
+from MMC.Util.http_client import download_json
+
 
 def download_data(request_type, id):
     public_url = 'https://api.t4ils.dev/'
     # no longer working as the publix api has been shut down
     # could explore running it locally via 
     # https://github.com/entriphy/sp-playcount-librespot
-    # 
     if request_type == 'album_playcount':
         request_url = 'albumPlayCount?albumid='
     elif request_type == 'artist_info':
@@ -16,7 +13,7 @@ def download_data(request_type, id):
     else:
         raise Exception('wrong type selected', locals())
     full_url = public_url + request_url + id
-    return utility.download_data(full_url)
+    return download_json(full_url)
 
 
 def list_tracks_from_album(album_id):
