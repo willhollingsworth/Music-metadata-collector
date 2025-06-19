@@ -4,6 +4,7 @@ from typing import Any
 from MMC.Util.cache import delete_cache
 from MMC.Util.debug import print_dict_keys
 from MMC.Util.http_client import download_json
+from MMC.Util.dict_helper import map_dict_keys
 
 # deezer's api docs are behind a login wall
 # some public api docs https://apieco.ir/docs/deezer#api-Search-search
@@ -97,44 +98,52 @@ def lookup_track(track_id: str) -> dict[str, Any]:
 
 def lookup_track_detailed(track_id: str, print_results: bool = False) -> dict[str, Any]:
     """Retrieve detailed information about a track from Deezer."""
-    output_dict: dict[str, Any] = {}
+    output_dict: dict[str, str] = {}
     track = lookup_track(track_id)
     if isinstance(track, list):
         for t in track:
             if t['type'] == 'track':
                 track = t
                 break
-    output_dict['track name'] = track['title']
-    output_dict['track id'] = track['id']
-    output_dict['artist name'] = track['artist']['name']
-    output_dict['artist id'] = track['artist']['id']
-    output_dict['album name'] = track['album']['title']
-    output_dict['album id'] = track['album']['id']
+    output_dict = map_dict_keys(
+        track,
+        [
+            ('track name', 'title'),
+            ('track id', 'id'),
+            ('artist name', ['artist', 'name']),
+            ('artist id', ['artist', 'id']),
+            ('album name', ['album', 'title']),
+            ('album id', ['album', 'id']),
+        ])
     album_results = lookup_album(output_dict['album id'])
-    output_dict['album genres'] = [genre['name']
-                                   for genre in album_results['genres']['data']]
+    output_dict['album genres'] = ', '.join([genre['name']
+                                   for genre in album_results['genres']['data']])
     if print_results:
         print_dict_keys(output_dict)
     return output_dict
 
 
-def format_track_details(track_results: dict[str, Any]) -> dict[str, Any]:
+def format_track_details(track_results: dict[str, Any]) -> dict[str, str]:
     """Format track details from a Deezer track search result."""
-    output_dict: dict[str, Any] = {}
+    output_dict: dict[str, str] = {}
     if isinstance(track_results, list):
         for track in track_results:
             if track['type'] == 'track':
                 track_results = track
                 break
-    output_dict['track name'] = track_results['title']
-    output_dict['track id'] = track_results['id']
-    output_dict['artist name'] = track_results['artist']['name']
-    output_dict['artist id'] = track_results['artist']['id']
-    output_dict['album name'] = track_results['album']['title']
-    output_dict['album id'] = track_results['album']['id']
+    output_dict = map_dict_keys(
+        track_results,
+        [
+            ('track name', 'title'),
+            ('track id', 'id'),
+            ('artist name', ['artist', 'name']),
+            ('artist id', ['artist', 'id']),
+            ('album name', ['album', 'title']),
+            ('album id', ['album', 'id']),
+        ])
     album_results = lookup_album(output_dict['album id'])
-    output_dict['album genres'] = [genre['name']
-                                   for genre in album_results['genres']['data']]
+    output_dict['album genres'] = ', '.join([genre['name']
+                                   for genre in album_results['genres']['data']])
     return output_dict
 
 
@@ -164,7 +173,9 @@ if __name__ == '__main__':
     # delete_cache()
     # lookup_track_detailed(395141722, print_results=True)
     # examples()
-    print(search_track('la danza'))
+    # print(search_track('la danza'))
+    print(format_track_details(lookup_track('395141722')))
+    print(lookup_track_detailed('395141722'))
     # results = search('Need Your Attention Joris Delacroix',detailed=True)
     # print(search_track(artist='Joris Delacroix',track='Need Your Attention'))
     # utility_functions.dump_json(results)
