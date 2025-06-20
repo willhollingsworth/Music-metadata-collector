@@ -1,32 +1,22 @@
+"""Unit tests for Deezer track lookup functionality."""
 from unittest.mock import patch
+
 import pytest
+
 from MMC.Services.deezer import lookup_track, lookup_track_genres
+from tests.utils.fixtures import load_json_fixture
 
 
-def test_lookup_track_success():
-    fake_json = {
-        'id': '123',
-        'title': 'Test Track',
-        'artist': {'name': 'Test Artist', 'id': '456'},
-        'album': {'title': 'Test Album', 'id': '789'},
-        'duration': 300,
-        'explicit_lyrics': False,
-    }
-    expected_track_output = {
-        'track name': 'Test Track',
-        'track id': '123',
-        'artist name': 'Test Artist',
-        'artist id': '456',
-        'album name': 'Test Album',
-        'album id': '789',
-    }
+def test_lookup_track_success() -> None:
+    mock_track_data = load_json_fixture('deezer/tracks/395141722')
+    expected_track_result = load_json_fixture('deezer/tracks/395141722_expected')
     with patch(
         'MMC.Services.deezer.download_json',
-        return_value=fake_json,
+        return_value=mock_track_data,
     ) as mock_download_json:
         result = lookup_track('123')
         mock_download_json.assert_called_once()
-        assert result == expected_track_output
+        assert result == expected_track_result
 
 
 def test_lookup_track_detailed_success() -> None:
