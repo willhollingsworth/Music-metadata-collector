@@ -22,10 +22,10 @@ def get_current_track_details() -> None:
             track=playing_track,
             artist=playing_artist,
             )
-        dez_details = deezer.lookup_track_detailed(dez_search['track id'])
-        track: str = dez_details['track name']
-        artist: str = dez_details['artist name']
-        album_genres: str = dez_details['album genres']
+        track: str = dez_search['track name']
+        artist: str = dez_search['artist name']
+
+        album_genres: list[str] = deezer.lookup_track_genres(dez_search['track id'])
         print(
             f'deezer results for {track} by {artist}',
             f'album genres : {album_genres}',
