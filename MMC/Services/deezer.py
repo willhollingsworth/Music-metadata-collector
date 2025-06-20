@@ -88,6 +88,8 @@ def lookup_artist(artist_id: str) -> dict[str, Any]:
 def lookup_track(track_id: str) -> dict[str, str]:
     """Lookup a track on Deezer."""
     track = download_deezer_data('track', track_id)
+    if isinstance(track, list):
+        track = get_first_track(track)
     track = format_track_details(track)
     return track
 
@@ -102,7 +104,7 @@ def lookup_track_genres(track_id: str, print_results: bool = False) -> dict[str,
     return output_dict
 
 
-def get_first_track(track_results: dict[str, Any]) -> dict[str, Any]:
+def get_first_track(track_results: dict[str, Any] | list[Any]) -> dict[str, Any]:
     """Get the first track from a Deezer track search result."""
     if isinstance(track_results, list):
         for track in track_results:
