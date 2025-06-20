@@ -75,9 +75,11 @@ def search_track(
     return result
 
 
-def lookup_album(album_id: str) -> dict[str, Any]:
+def lookup_album(album_id: str) -> dict[str, str | list[str]]:
     """Lookup an album on Deezer."""
-    return download_deezer_data('album', album_id)
+    album_json = download_deezer_data('album', album_id)
+    album = format_album_details(album_json)
+    return album
 
 
 def lookup_artist(artist_id: str) -> dict[str, Any]:
@@ -127,6 +129,25 @@ def format_track_details(track_results: dict[str, Any]) -> dict[str, str]:
             ('album name', ['album', 'title']),
             ('album id', ['album', 'id']),
         ])
+    return output_dict
+
+def format_album_details(track_results: dict[str, Any]) -> dict[str, str | list[str]]:
+    """Format track details from a Deezer track search result."""
+    output_dict = {}
+    track_results = get_first_track(track_results)
+    output_dict = map_dict_keys(
+        track_results,
+        [
+            ('album name', 'title'),
+            ('album id', 'id'),
+            ('artist name', ['artist', 'name']),
+            ('artist id', ['artist', 'id']),
+            ('track count', 'nb_tracks'),
+            ('fans', 'fans'),
+            ('release date', 'release_date'),
+            ('link', 'link'),
+        ])
+    output_dict['genres'] = [genre['name'] for genre in track_results['genres']['data']]
     return output_dict
 
 
