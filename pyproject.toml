@@ -10,3 +10,6 @@ dependencies = [
     "requests>=2.32.4",
     "spotipy>=2.25.1",
 ]
+
+[tool.ruff]
+per-file-ignores = { "test_*.py" = ["D103"] }
