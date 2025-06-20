@@ -78,13 +78,18 @@ def search_track(
 def lookup_album(album_id: str) -> dict[str, str | list[str]]:
     """Lookup an album on Deezer."""
     album_json = download_deezer_data('album', album_id)
+    if not isinstance(album_json, dict):
+        raise ValueError(f"Album needs to be a dict, got {type(album_json)}")
     album = format_album_details(album_json)
     return album
 
 
 def lookup_artist(artist_id: str) -> dict[str, Any]:
     """Lookup an artist on Deezer."""
-    return download_deezer_data('artist', artist_id)
+    artist = download_deezer_data('artist', artist_id)
+    if not isinstance(artist, dict):
+        raise ValueError(f"Artist needs to be a dict, got {type(artist)}")  
+    return artist
 
 
 def lookup_track(track_id: str) -> dict[str, str]:
@@ -96,14 +101,13 @@ def lookup_track(track_id: str) -> dict[str, str]:
     return track
 
 
-def lookup_track_genres(track_id: str, print_results: bool = False) -> dict[str, str]:
+def lookup_track_genres(track_id: str) -> list[str]:
     """Retrieve detailed information on a track including album genres."""
-    output_dict: dict[str, str] = {}
-    output_dict = lookup_track(track_id)
-    album_results = lookup_album(output_dict['album id'])
-    output_dict['album genres'] = ', '.join([genre['name']
-                                   for genre in album_results['genres']['data']])
-    return output_dict
+    album_id = lookup_track(track_id)['album id']
+    genres = lookup_album(album_id)['genres']
+    if not isinstance(genres, list):
+        raise ValueError(f"Expected genres to be a list, got {type(genres)}")
+    return genres
 
 
 def get_first_track(track_results: dict[str, Any] | list[Any]) -> dict[str, Any]:
@@ -112,6 +116,8 @@ def get_first_track(track_results: dict[str, Any] | list[Any]) -> dict[str, Any]
         for track in track_results:
             if track['type'] == 'track':
                 return track
+    if not isinstance(track_results, dict):
+        raise ValueError(f"Expected a dict or list, got {type(track_results)}")        
     return track_results
 
 
@@ -179,7 +185,16 @@ def examples() -> None:
 
 if __name__ == '__main__':
     # delete_cache()
-    examples()
+    # examples()
+    # album_id = '46371952'
+    # print('album id lookup:', album_id, end=", result =  ")
+    # album_data = lookup_album(album_id)
+
+
+    track_id = '395141722'
+    print('track id lookup with genres:', track_id, end=", result =  ")
+    print(lookup_track_genres(track_id))
+
 
     # print('string search example:')
     # search_keys = ['title', ['artist', 'name'], [
