@@ -12,6 +12,18 @@ dependencies = [
 ]
 
 [tool.ruff]
+lint.select = [
+ "ALL"
+]
+ignore = [
+
+ "Q000", # single vs double quotes
+ "Q002", # single vs double quotes in docstrings
+ "T201", # print statements
+ "CPY001", # copywrite comments
+
+]
+preview = true
 per-file-ignores = { "test_*.py" = ["D103"] }
 
 [dependency-groups]
