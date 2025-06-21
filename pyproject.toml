@@ -13,3 +13,8 @@ dependencies = [
 
 [tool.ruff]
 per-file-ignores = { "test_*.py" = ["D103"] }
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.0",
+]
