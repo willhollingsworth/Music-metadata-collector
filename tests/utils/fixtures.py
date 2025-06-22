@@ -18,16 +18,39 @@ def load_json_fixture(full_path: Path) -> dict[str, Any]:
             raise FileNotFoundError(msg)
         return json.load(file)
 
+
 def load_json_listing(folder: str) -> list[tuple[Path, Path]]:
-    """Provide a listing of JSON files in a folder."""
+    """Provide a listing of JSON files in a folder.
+
+    Raises:
+        NotADirectoryError: If the specified folder is not a directory.
+
+    """
     folder_path = Path('tests', 'fixtures', folder)
     if not folder_path.is_dir():
-        raise NotADirectoryError(f"{folder_path} is not a directory.")
-    standard_files = [f for f in folder_path.glob('*.json') if not f.name.endswith('_expected.json')]
+        msg = f"{folder_path} is not a directory."
+        raise NotADirectoryError(msg)
+    standard_files = [
+        f for f in folder_path.glob('*.json') if not f.name.endswith('_expected.json')
+        ]
     expected_files = folder_path.glob('*_expected.json')
-    return list(zip(standard_files, expected_files))
+    return list(zip(standard_files, expected_files, strict=False))
 
-    
+
+def read_folder_names(folder: str) -> list[str]:
+    """Read folder names from a given folder.
+
+    Raises:
+        NotADirectoryError: If the specified folder is not a directory.
+
+    """
+    folder_path = Path('tests', 'fixtures', folder)
+    if not folder_path.is_dir():
+        msg = f"{folder_path} is not a directory."
+        raise NotADirectoryError(msg)
+    return [f.name for f in folder_path.iterdir() if f.is_dir()]
+
+
 if __name__ == "__main__":
     # Example json fixture loading
     path = Path('tests/fixtures/deezer/tracks/2582922142.json')
