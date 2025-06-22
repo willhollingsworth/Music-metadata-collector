@@ -4,12 +4,15 @@ import json
 from pathlib import Path
 from typing import Any
 
+from MMC.constants import (
+    EXPECTED_FILENAME_PREFIX,
+    LOOKUP_FUNCTION_SUFFIX,
+    TEST_FIXTURE_DIR,
+)
 from MMC.Services import deezer
 
-FIXTURE_DIR = Path('tests/fixtures/deezer/')
-EXPECTED_FILENAME_PREFIX = '_expected'
-LOOKUP_FUNCTION_SUFFIX = 'lookup_'
-
+SERVICE_NAME = 'deezer'
+FIXTURE_FOLDER: Path = TEST_FIXTURE_DIR / SERVICE_NAME
 
 def generate_deezer_fixtures(fixture_type: str, fixture_id: int) -> None:
     """Generate a fixture from Deezer's API response.
@@ -18,22 +21,21 @@ def generate_deezer_fixtures(fixture_type: str, fixture_id: int) -> None:
         ValueError: If no lookup function is found for the given type.
 
     """
+    FIXTURE_TYPE_FOLDER = FIXTURE_FOLDER / fixture_type
     api_response = deezer.download_deezer_data(fixture_type, str(fixture_id))
     if isinstance(api_response, list):
         api_response = deezer.get_first_track(api_response)
-    path = FIXTURE_DIR / fixture_type / f'{fixture_id}.json'
-    write_json_fixture(api_response, path)
-    print(f'Fixture written to {path}')
+    api_file_path = FIXTURE_TYPE_FOLDER / f'{fixture_id}.json'
+    write_json_fixture(api_response, api_file_path)
+    print(f'Fixture written to {api_file_path}')
     # Generate expected outcome from the lookup function.
     lookup_function = getattr(deezer, f'{LOOKUP_FUNCTION_SUFFIX}{fixture_type}', None)
     if lookup_function is None:
         msg = f'No lookup function found for "{LOOKUP_FUNCTION_SUFFIX}{fixture_type}"'
         raise ValueError(msg)
-    expected_response = lookup_function(str(fixture_id))
-    expected_path = (
-        FIXTURE_DIR / fixture_type / f'{fixture_id}{EXPECTED_FILENAME_PREFIX}.json'
-    )
-    write_json_fixture(expected_response, expected_path)
+    expected_file_path = lookup_function(str(fixture_id))
+    expected_path = FIXTURE_TYPE_FOLDER / f'{fixture_id}{EXPECTED_FILENAME_PREFIX}.json'
+    write_json_fixture(expected_file_path, expected_path)
     print(f'Fixture written to {expected_path}')
 
 
@@ -46,7 +48,7 @@ def write_json_fixture(data: dict[str, Any], path: Path) -> None:
 
 def delete_deezer_fixtures() -> None:
     """Deleta all folders in the fixture dir."""
-    for item in FIXTURE_DIR.iterdir():
+    for item in FIXTURE_FOLDER.iterdir():
         if item.is_dir():
             for f in item.iterdir():
                 f.unlink()
