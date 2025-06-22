@@ -21,10 +21,11 @@ ignore = [
  "Q002", # single vs double quotes in docstrings
  "T201", # print statements
  "CPY001", # copywrite comments
+ "DOC201", # document function arguments
 
 ]
 preview = true
-per-file-ignores = { "test_*.py" = ["D103"] }
+per-file-ignores = { "test_*.py" = ["D103", "S101"] } #ignore docs and asserts in tests
 
 [dependency-groups]
 dev = [
