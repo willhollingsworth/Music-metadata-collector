@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "pucelle.run-on-save",
+    "charliermarsh.ruff"
+  ]
+}
