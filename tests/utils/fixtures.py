@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 from typing import Any
+from MMC.constants import EXPECTED_FILENAME_PREFIX, TEST_FIXTURE_DIR
 
 
 def load_json_fixture(full_path: Path) -> dict[str, Any]:
@@ -26,14 +27,14 @@ def load_json_listing(folder: str) -> list[tuple[Path, Path]]:
         NotADirectoryError: If the specified folder is not a directory.
 
     """
-    folder_path = Path('tests', 'fixtures', folder)
+    folder_path = TEST_FIXTURE_DIR / folder
     if not folder_path.is_dir():
         msg = f"{folder_path} is not a directory."
         raise NotADirectoryError(msg)
     standard_files = [
         f for f in folder_path.glob('*.json') if not f.name.endswith('_expected.json')
         ]
-    expected_files = folder_path.glob('*_expected.json')
+    expected_files = folder_path.glob(f'*{EXPECTED_FILENAME_PREFIX}.json')
     return list(zip(standard_files, expected_files, strict=False))
 
 
@@ -44,7 +45,7 @@ def read_folder_names(folder: str) -> list[str]:
         NotADirectoryError: If the specified folder is not a directory.
 
     """
-    folder_path = Path('tests', 'fixtures', folder)
+    folder_path = TEST_FIXTURE_DIR / folder
     if not folder_path.is_dir():
         msg = f"{folder_path} is not a directory."
         raise NotADirectoryError(msg)
@@ -53,12 +54,14 @@ def read_folder_names(folder: str) -> list[str]:
 
 if __name__ == "__main__":
     # Example json fixture loading
-    path = Path('tests/fixtures/deezer/tracks/2582922142.json')
-    fixture_data = load_json_fixture(path)
-    print(fixture_data)
+    service_name = 'deezer'
+    folder = read_folder_names(service_name)[0]
+    full_folder_path = f'{service_name}/{folder}'
+    file = load_json_listing(full_folder_path)[0][1]
+    print(load_json_fixture(file))
+
     # Example usage for listing JSON files in a folder
-    folder = 'deezer/tracks'
-    json_files = load_json_listing(folder)
+    json_files = load_json_listing(full_folder_path)
     for standard, expected in json_files:
         print(standard)
         print(expected)
