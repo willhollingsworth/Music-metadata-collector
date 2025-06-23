@@ -2,8 +2,7 @@
 
 from typing import Any
 
-from MMC.Util.debug import print_dict_keys
-from MMC.Util.dict_helper import map_dict_keys
+from MMC.Services.deezer_models import Album, Artist, Track
 from MMC.Util.http_client import download_json
 
 # deezer's api docs are behind a login wall
@@ -70,61 +69,52 @@ def search_track(
     search_string: str = "",
     artist: str = "",
     track: str = "",
-) -> dict[str, str]:
+) -> Track:
     """Search for a track on Deezer and return its details."""
     result = search_deezer(search_string, artist, track)
-    return format_track_details(result)
+    return Track.from_dict(get_first_track(result))
 
 
-def lookup_album(album_id: str) -> dict[str, str | list[str]]:
+def lookup_album(album_id: int) -> Album:
     """Lookup an album on Deezer.
 
     Raises:
         TypeError: If the album data is not a dictionary.
 
     """
-    album_json = download_deezer_data("album", album_id)
+    album_json = download_deezer_data("album", str(album_id))
     if not isinstance(album_json, dict):
         msg = f"Album needs to be a dict, got {type(album_json)}"
         raise TypeError(msg)
-    return format_album_details(album_json)
+    return Album.from_dict(album_json)
 
 
-def lookup_artist(artist_id: str) -> dict[str, Any]:
+def lookup_artist(artist_id: int) -> Artist:
     """Lookup an artist on Deezer.
 
     Raises:
         TypeError: If the artist data is not a dictionary.
 
     """
-    artist = download_deezer_data("artist", artist_id)
+    artist = download_deezer_data("artist", str(artist_id))
     if not isinstance(artist, dict):
         msg = f"Artist needs to be a dict, got {type(artist)}"
         raise TypeError(msg)
-    return artist
+    return Artist.from_dict(artist)
 
 
-def lookup_track(track_id: str) -> dict[str, str]:
+def lookup_track(track_id: int) -> Track:
     """Lookup a track on Deezer."""
-    track = download_deezer_data("track", track_id)
+    track = download_deezer_data("track", str(track_id))
     if isinstance(track, list):
         track = get_first_track(track)
-    return format_track_details(track)
+    return Track.from_dict(track)
 
 
-def lookup_track_genres(track_id: str) -> list[str]:
-    """Retrieve detailed information on a track including album genres.
-
-    Raises:
-        TypeError: If genres is not a list.
-
-    """
-    album_id = lookup_track(track_id)["album id"]
-    genres = lookup_album(album_id)["genres"]
-    if not isinstance(genres, list):
-        msg = f"Expected genres to be a list, got {type(genres)}"
-        raise TypeError(msg)
-    return genres
+def lookup_track_genres(track_id: int) -> list[str]:
+    """Retrieve detailed information on a track including album genres."""
+    album_id = lookup_track(track_id).album_id
+    return lookup_album(album_id).genres
 
 
 def get_first_track(track_results: dict[str, Any] | list[Any]) -> dict[str, Any]:
@@ -144,43 +134,6 @@ def get_first_track(track_results: dict[str, Any] | list[Any]) -> dict[str, Any]
     return track_results
 
 
-def format_track_details(track_results: dict[str, Any]) -> dict[str, str]:
-    """Format track details from a Deezer track search result."""
-    track_results = get_first_track(track_results)
-    return map_dict_keys(
-        track_results,
-        [
-            ("track name", "title"),
-            ("track id", "id"),
-            ("artist name", ["artist", "name"]),
-            ("artist id", ["artist", "id"]),
-            ("album name", ["album", "title"]),
-            ("album id", ["album", "id"]),
-        ],
-    )
-
-
-def format_album_details(track_results: dict[str, Any]) -> dict[str, str | list[str]]:
-    """Format track details from a Deezer track search result."""
-    output_dict = {}
-    track_results = get_first_track(track_results)
-    output_dict = map_dict_keys(
-        track_results,
-        [
-            ("album name", "title"),
-            ("album id", "id"),
-            ("artist name", ["artist", "name"]),
-            ("artist id", ["artist", "id"]),
-            ("track count", "nb_tracks"),
-            ("fans", "fans"),
-            ("release date", "release_date"),
-            ("link", "link"),
-        ],
-    )
-    output_dict["genres"] = [genre["name"] for genre in track_results["genres"]["data"]]
-    return output_dict
-
-
 def examples() -> None:
     """Run the deezer examples."""
     print("Running Deezer examples...")
@@ -189,32 +142,29 @@ def examples() -> None:
     print("string search for track:", track, end=", result =  ")
     print(search_track(track))
     print()
-    track_id = "395141722"
+    track_id = 395141722
     print("track id lookup:", track_id, end=", result =  ")
     print(lookup_track(track_id))
     print()
     print("track id lookup with genres:", track_id, end=", result =  ")
     print(lookup_track_genres(track_id))
     print()
-    artist_id = "12170972"
+    artist_id = 12170972
     print("artist id lookup:", artist_id, end=", result =  ")
     print(lookup_artist(artist_id))
     print()
-    album_id = "46371952"
+    album_id = 46371952
     print("album id lookup:", album_id, end=", result =  ")
     album_data = lookup_album(album_id)
-    print_dict_keys(
-        album_data,
-        ["title", ["artist", "name"], ["artist", "id"], "fans", "id"],
-    )
+    print(album_data)
 
 
 if __name__ == "__main__":
     # delete_cache()
-    # examples()
-    track_id = "395141722"
-    print("track id lookup:", track_id, end=", result =  ")
-    print(lookup_track(track_id))
+    examples()
+    # track_id = "395141722"
+    # print("track id lookup:", track_id, end=", result =  ")
+    # print(lookup_track(track_id))
 
     # track_id = '395141722'
     # print('track id lookup with genres:', track_id, end=", result =  ")
