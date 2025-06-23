@@ -49,10 +49,9 @@ def write_json_fixture(data: dict[str, Any], path: Path) -> None:
 
 
 def delete_deezer_fixtures() -> None:
-    """Delete all folders and files in the fixture dir."""
+    """Delete all files in the fixture dir."""
     for item in FIXTURE_FOLDER.iterdir():
         if item.is_dir():
-            # shutil.rmtree(item)
             print(f"skipping folder {item}")
         else:
             item.unlink()
