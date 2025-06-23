@@ -82,9 +82,9 @@ def lookup_album(album_id: int) -> Album:
         TypeError: If the album data is not a dictionary.
 
     """
-    album_json = download_deezer_data("album", str(album_id))
-    if not isinstance(album_json, dict):
-        msg = f"Album needs to be a dict, got {type(album_json)}"
+    json = download_deezer_data("album", str(album_id))
+    if not isinstance(json, dict):
+        msg = f"Album needs to be a dict, got {type(json)}"
         raise TypeError(msg)
     return Album(json)
 
@@ -96,9 +96,9 @@ def lookup_artist(artist_id: int) -> Artist:
         TypeError: If the artist data is not a dictionary.
 
     """
-    artist = download_deezer_data("artist", str(artist_id))
-    if not isinstance(artist, dict):
-        msg = f"Artist needs to be a dict, got {type(artist)}"
+    json = download_deezer_data("artist", str(artist_id))
+    if not isinstance(json, dict):
+        msg = f"Artist needs to be a dict, got {type(json)}"
         raise TypeError(msg)
     return Artist(json)
 
@@ -162,28 +162,3 @@ def examples() -> None:
 if __name__ == "__main__":
     # delete_cache()
     examples()
-    # track_id = "395141722"
-    # print("track id lookup:", track_id, end=", result =  ")
-    # print(lookup_track(track_id))
-
-    # track_id = '395141722'
-    # print('track id lookup with genres:', track_id, end=", result =  ")
-    # print(lookup_track_genres(track_id))
-
-    # print('string search example:')
-    # search_keys = ['title', ['artist', 'name'], [
-    #     'album', 'title'], ['album', 'id'], 'type', 'id']
-    # search_data = search('peking duk')
-    # utility_functions.print_dict_keys(search_data[0], search_keys)
-
-    # print('track id lookup example:')
-    # track_keys = ['title', ['album', 'title'],
-    #               'duration', 'rank', 'bpm', 'gain', 'id']
-    # track_data = lookup_track('395141722')
-    # utility_functions.print_dict_keys(track_data, track_keys)
-
-    # print('album lookup example')
-    # album_keys = ['title', ['artist', 'name'], ['artist', 'id'],
-    #               'fans',  'id']
-    # album_data = lookup_album('46371952', album_keys)
-    # utility_functions.print_dict_keys(album_data, album_keys)
