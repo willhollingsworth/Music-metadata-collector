@@ -1,11 +1,11 @@
 {
-  "album name": "Swim",
-  "album id": 523121232,
-  "artist name": "Caribou",
-  "artist id": 3892,
-  "track count": 9,
+  "album_name": "Swim",
+  "album_id": 523121232,
+  "artist_name": "Caribou",
+  "artist_id": 3892,
+  "track_count": 9,
   "fans": 608,
-  "release date": "2010-01-01",
+  "release_date": "2010-01-01",
   "link": "https://www.deezer.com/album/523121232",
   "genres": [
     "Electro"

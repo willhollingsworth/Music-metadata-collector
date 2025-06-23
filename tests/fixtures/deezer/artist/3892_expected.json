@@ -1,16 +1,4 @@
 {
-  "id": 3892,
-  "name": "Caribou",
-  "link": "https://www.deezer.com/artist/3892",
-  "share": "https://www.deezer.com/artist/3892?utm_source=deezer&utm_content=artist-3892&utm_term=0_1750488994&utm_medium=web",
-  "picture": "https://api.deezer.com/artist/3892/image",
-  "picture_small": "https://cdn-images.dzcdn.net/images/artist/373b284334c5d7514cd3994f4da19911/56x56-000000-80-0-0.jpg",
-  "picture_medium": "https://cdn-images.dzcdn.net/images/artist/373b284334c5d7514cd3994f4da19911/250x250-000000-80-0-0.jpg",
-  "picture_big": "https://cdn-images.dzcdn.net/images/artist/373b284334c5d7514cd3994f4da19911/500x500-000000-80-0-0.jpg",
-  "picture_xl": "https://cdn-images.dzcdn.net/images/artist/373b284334c5d7514cd3994f4da19911/1000x1000-000000-80-0-0.jpg",
-  "nb_album": 19,
-  "nb_fan": 168912,
-  "radio": true,
-  "tracklist": "https://api.deezer.com/artist/3892/top?limit=50",
-  "type": "artist"
+  "artist_name": "Caribou",
+  "artist_id": 3892
 }
