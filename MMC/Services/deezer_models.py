@@ -3,82 +3,60 @@
 from dataclasses import dataclass
 from typing import Any
 
-from MMC.Util.dict_helper import get_nested
-
 
 @dataclass
 class Track:
     """A Deezer track model."""
 
-    track_name: str
-    track_id: int
-    artist_name: str
-    artist_id: int
-    album_name: str
-    album_id: int
+    def __init__(self, data: dict[str, Any]) -> None:
+        """Initialize a Track instance from a dictionary."""
+        self.track_name: str = data["title"]
+        self.track_id: int = data["id"]
+        self.artist_name: str = data["artist"]["name"]
+        self.artist_id: int = data["artist"]["id"]
+        self.album_name: str = data["album"]["title"]
+        self.album_id: int = data["album"]["id"]
 
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "Track":
-        """Create a Track instance from a dictionary."""
-        fields: list[tuple[str, str | list[str], type]] = [
-            ("track_name", "title", str),
-            ("track_id", "id", int),
-            ("artist_name", ["artist", "name"], str),
-            ("artist_id", ["artist", "id"], int),
-            ("album_name", ["album", "title"], str),
-            ("album_id", ["album", "id"], int),
-        ]
-        values = {name: caster(get_nested(data, key)) for name, key, caster in fields}
-        return cls(**values)
+    def __str__(self) -> str:
+        """Return a string representation of the track."""
+        return ", ".join(f"{k}:{v}" for k, v in self.__dict__.items())
 
 
 @dataclass
 class Album:
     """A Deezer album model."""
 
-    album_name: str
-    album_id: int
-    artist_name: str
-    artist_name: str
-    artist_id: int
-    track_count: int
-    fans: int
-    release_date: str
-    link: str
-    genres: list[str]
-
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "Album":
-        """Create a album instance from a dictionary."""
-        fields: list[tuple[str, str | list[str], type]] = [
-            ("album_name", "title", str),
-            ("album_id", "id", int),
-            ("artist_name", ["artist", "name"], str),
-            ("artist_id", ["artist", "id"], int),
-            ("track_count", "nb_tracks", int),
-            ("fans", "fans", int),
-            ("release_date", "release_date", str),
-            ("link", "link", str),
-            ("genres", ["genres", "data"], list),
+    def __init__(self, data: dict[str, Any]) -> None:
+        """Initialize a album instance from a dictionary."""
+        self.album_name: str = data["title"]
+        self.album_id: int = data["id"]
+        self.artist_name: str = data["artist"]["name"]
+        self.artist_id: int = data["artist"]["id"]
+        self.track_count: int = data["nb_tracks"]
+        self.fans: int = data["fans"]
+        self.release_date: str = data["release_date"]
+        self.link: str = data["link"]
+        self.genres: list[str] = [
+            genre["name"] for genre in data.get("genres", {}).get("data", [])
         ]
-        values = {name: caster(get_nested(data, key)) for name, key, caster in fields}
-        values["genres"] = [genre["name"] for genre in values["genres"]]
-        return cls(**values)
+
+    def __str__(self) -> str:
+        """Return a string representation of the album."""
+        return ", ".join(f"{k}:{v}" for k, v in self.__dict__.items())
 
 
 @dataclass
 class Artist:
     """A Deezer artist model."""
 
-    artist_name: str
-    artist_id: int
+    def __init__(self, data: dict[str, Any]) -> None:
+        """Initialize a artist instance from a dictionary."""
+        self.artist_name: str = data["name"]
+        self.artist_id: int = data["id"]
+        self.track_count: int = data["nb_album"]
+        self.fans_count: int = data["nb_fan"]
+        self.link: str = data["link"]
 
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "Artist":
-        """Create an Artist instance from a dictionary."""
-        fields: list[tuple[str, str | list[str], type]] = [
-            ("artist_name", "name", str),
-            ("artist_id", "id", int),
-        ]
-        values = {name: caster(get_nested(data, key)) for name, key, caster in fields}
-        return cls(**values)
+    def __str__(self) -> str:
+        """Return a string representation of the artist."""
+        return ", ".join(f"{k}:{v}" for k, v in self.__dict__.items())

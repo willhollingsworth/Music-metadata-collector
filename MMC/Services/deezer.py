@@ -72,7 +72,7 @@ def search_track(
 ) -> Track:
     """Search for a track on Deezer and return its details."""
     result = search_deezer(search_string, artist, track)
-    return Track.from_dict(get_first_track(result))
+    return Track(get_first_track(result))
 
 
 def lookup_album(album_id: int) -> Album:
@@ -86,7 +86,7 @@ def lookup_album(album_id: int) -> Album:
     if not isinstance(album_json, dict):
         msg = f"Album needs to be a dict, got {type(album_json)}"
         raise TypeError(msg)
-    return Album.from_dict(album_json)
+    return Album(json)
 
 
 def lookup_artist(artist_id: int) -> Artist:
@@ -100,15 +100,15 @@ def lookup_artist(artist_id: int) -> Artist:
     if not isinstance(artist, dict):
         msg = f"Artist needs to be a dict, got {type(artist)}"
         raise TypeError(msg)
-    return Artist.from_dict(artist)
+    return Artist(json)
 
 
 def lookup_track(track_id: int) -> Track:
     """Lookup a track on Deezer."""
-    track = download_deezer_data("track", str(track_id))
-    if isinstance(track, list):
-        track = get_first_track(track)
-    return Track.from_dict(track)
+    json = download_deezer_data("track", str(track_id))
+    if isinstance(json, list):
+        json = get_first_track(json)
+    return Track(json)
 
 
 def lookup_track_genres(track_id: int) -> list[str]:
