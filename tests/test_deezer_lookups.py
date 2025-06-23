@@ -1,7 +1,7 @@
 """testing deezer lookups."""
 
 from collections.abc import Callable
-from typing import Any
+from dataclasses import asdict
 from unittest.mock import patch
 
 import pytest
@@ -10,12 +10,13 @@ from MMC.constants import (
     LOOKUP_FUNCTION_SUFFIX,
 )
 from MMC.Services import deezer
+from MMC.Services.deezer_types import DeezerEntity
 from tests.utils.fixtures import load_json_fixture, load_json_listing, read_folder_names
 
 SERVICE_NAME = "deezer"
 
 # Define type aliases for readability
-LookupFunc = Callable[[str], dict[str, Any]]
+LookupFunc = Callable[[str], DeezerEntity]
 PytestParam = tuple[str, LookupFunc]
 
 
@@ -51,7 +52,7 @@ def test_lookup_success(folder: str, lookup_func: LookupFunc) -> None:
             "MMC.Services.deezer.download_json",
             return_value=mock_data,
         ) as mock_download_json:
-            result = lookup_func(mock_data["id"])
+            result = asdict(lookup_func(mock_data["id"]))
             mock_download_json.assert_called_once()
             assert result == expected_result
 
