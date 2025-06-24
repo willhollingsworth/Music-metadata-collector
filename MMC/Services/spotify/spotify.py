@@ -85,57 +85,6 @@ def spotify_download_data(
     return download_json(full_url, headers)
 
 
-def lookup_artist(id) -> dict[str, Any]:
-    """Lookup an artist on Spotify."""
-    results = spotify_download_data("artists", id)
-    if False:
-        print_dict_keys(results, ["name", ["followers", "total"], "genres"])
-    return results
-
-
-def lookup_album(id) -> dict[str, Any]:
-    """Lookup an album on Spotify."""
-    results = spotify_download_data("albums", id)
-    if False:
-        print_dict_keys(results, ["name", "genres", "uri"])
-    return results
-
-
-def lookup_track(id):
-    """Lookup a track on Spotify."""
-    results = spotify_download_data("tracks", id)
-
-    if False:
-        print_dict_keys(results, ["name", ["artists", 0, "name"], "popularity"])
-    return results
-
-
-def lookup_track_detailed(id):  # -> dict[Any, Any]:# -> dict[Any, Any]:
-    """Lookup a track on Spotify with detailed information."""
-    output_dict = {}
-    track = lookup_track(id)
-    # print(print_dict_keys(track))
-    output_dict["track name"] = track["name"]
-    output_dict["track type"] = track["type"]
-    output_dict["track id"] = track["id"]
-    if isinstance(track["artists"], list):
-        output_dict["artist name"] = track["artists"][0]["name"]
-        output_dict["artist id"] = track["artists"][0]["id"]
-    else:
-        output_dict["artist name"] = track["artists"]
-        output_dict["artist id"] = track["artists"]
-    output_dict["album name"] = track["album"]["name"]
-    output_dict["album id"] = track["album"]["id"]
-    artist_results = lookup_artist(output_dict["artist id"])
-    output_dict["artist genres"] = artist_results["genres"]
-    if False:
-        print_dict_keys(
-            output_dict,
-            ["track name", "artist name", "album name", "artist genres"],
-        )
-    return output_dict
-
-
 def search_artists(string):
     """Search for an artist on Spotify."""
     results = spotify_download_data("search_artist", string)
@@ -193,25 +142,8 @@ def current_playing_detailed():
     return track_details
 
 
-def examples():
+def examples() -> None:
     print("running spotify api examples")
-
-    # lookups
-    artist_id = "3tSvlEzeDnVbQJBTkIA6nO"
-    print("artist lookup with id", artist_id, end=": ")
-    print(lookup_artist(artist_id))
-
-    album_id = "2dIGnmEIy1WZIcZCFSj6i8"
-    print("album lookup with id", album_id, end=": ")
-    print(lookup_album(album_id))
-
-    # track_id = current_playing()  # can use currently playing instead
-    track_id = "6xZZM6GDxTKsLjF3TNDREL"
-    print("track lookup", track_id, end=": ")
-    print(lookup_track(track_id))
-
-    print("detailed track lookup", end=": ")
-    print(lookup_track_detailed(track_id))
 
     # #searches
     artist_string = "pendulum"
