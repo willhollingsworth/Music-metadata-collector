@@ -13,6 +13,7 @@ from MMC.constants import (
 from MMC.Services import deezer
 
 SERVICE_NAME = "deezer"
+
 FIXTURE_FOLDER: Path = TEST_FIXTURE_DIR / SERVICE_NAME
 
 
@@ -59,6 +60,8 @@ def delete_deezer_fixtures() -> None:
 
 if __name__ == "__main__":
     """Main function to generate Deezer fixtures based on predefined IDs."""
+    FIXTURE_FOLDER.mkdir(parents=True, exist_ok=True)
+
     # Delete existing fixtures
     delete_deezer_fixtures()
     # open the deezer_fixture_ids.json as json object
