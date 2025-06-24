@@ -27,8 +27,12 @@ def map_dict_keys(
 def get_nested(nested_dict: dict[str, Any], keys: list[str] | str) -> Any:
     """Traverse nested dictionaries using a list of keys."""
     if isinstance(keys, str):
-        # adds support for non nested keys
-        return nested_dict[keys]
+        if "." in keys:
+            # allows for nested keys in a string format
+            keys = keys.split(".")
+        else:
+            # adds support for non nested keys
+            return nested_dict[keys]
     for key in keys:
         nested_dict = nested_dict[key]
     return nested_dict
