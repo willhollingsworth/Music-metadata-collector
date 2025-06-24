@@ -1,12 +1,16 @@
+"""Lookups for Spotify data using the Spotify API."""
+
 from typing import Any
 
-from mmc.services.spotify.spotify import spotify_download_data
+from mmc.models.spotify_models import SpotifyTrack
+from mmc.services.spotify.api_requests import spotify_download_data
 
 
-def lookup_track(track_id: str) -> dict[str, Any]:
+def lookup_track(track_id: str) -> SpotifyTrack:
     """Lookup a track on Spotify."""
+    results = spotify_download_data("tracks", track_id)
     # print_dict_keys(results, ["name", ["artists", 0, "name"], "popularity"])
-    return spotify_download_data("tracks", track_id)
+    return SpotifyTrack.from_dict(results)
 
 
 def lookup_album(album_id: str) -> dict[str, Any]:
@@ -44,18 +48,18 @@ def lookup_track_detailed(id: str) -> dict[str, Any]:
 
 if __name__ == "__main__":
     print("Running Spotify lookups...")
-    artist_id: str = "3tSvlEzeDnVbQJBTkIA6nO"
-    print("artist lookup with id", artist_id, end=": ")
-    print(lookup_artist(artist_id))
 
-    album_id: str = "2dIGnmEIy1WZIcZCFSj6i8"
-    print("album lookup with id", album_id, end=": ")
-    print(lookup_album(album_id))
-
-    # track_id = current_playing()  # can use currently playing instead
     track_id: str = "6xZZM6GDxTKsLjF3TNDREL"
     print("track lookup", track_id, end=": ")
     print(lookup_track(track_id))
 
-    print("detailed track lookup", end=": ")
-    print(lookup_track_detailed(track_id))
+    # artist_id: str = "3tSvlEzeDnVbQJBTkIA6nO"
+    # print("artist lookup with id", artist_id, end=": ")
+    # print(lookup_artist(artist_id))
+
+    # album_id: str = "2dIGnmEIy1WZIcZCFSj6i8"
+    # print("album lookup with id", album_id, end=": ")
+    # print(lookup_album(album_id))
+
+    # print("detailed track lookup", end=": ")
+    # print(lookup_track_detailed(track_id))
