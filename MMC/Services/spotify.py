@@ -9,9 +9,9 @@ import spotipy  # type: ignore  # noqa: PGH003
 from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyOAuth  # type: ignore  # noqa: PGH003
 
-from MMC.Util.credentials import load_credentials
-from MMC.Util.debug import print_dict_keys
-from MMC.Util.http_client import download_json
+from mmc.utils.credentials import load_credentials
+from mmc.utils.debug import print_dict_keys
+from mmc.utils.http_client import download_json
 
 # having issues with track search being inaccurate
 # attempting to search track + artist but doesn't appear to be working
@@ -229,7 +229,11 @@ def examples():
 
 if __name__ == "__main__":
     print("running spotify.py as main")
-    examples()
+    track_id = "6xZZM6GDxTKsLjF3TNDREL"
+    print("track lookup", track_id, end=": ")
+    print(lookup_track(track_id))
+
+    # examples()
     # current_playing_detaile)
     # pprint(lookup_track_detailed(current_playing()))
 

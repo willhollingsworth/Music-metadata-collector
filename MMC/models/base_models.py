@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Any, Self
 
-from MMC.Util.dict_helper import get_nested
+from mmc.utils.dict_helper import get_nested
 
 
 @dataclass

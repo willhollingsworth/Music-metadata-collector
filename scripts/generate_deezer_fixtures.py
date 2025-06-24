@@ -5,12 +5,12 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
-from MMC.constants import (
+from mmc.constants import (
     EXPECTED_FILENAME_PREFIX,
     LOOKUP_FUNCTION_SUFFIX,
     TEST_FIXTURE_DIR,
 )
-from MMC.Services import deezer
+from mmc.services import deezer
 
 SERVICE_NAME = "deezer"
 

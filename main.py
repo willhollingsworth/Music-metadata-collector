@@ -3,7 +3,7 @@
 This module initializes the metadata collector and retrieves the current track details.
 """
 
-from MMC.Core import metadata_collector
+from mmc.core import metadata_collector
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     metadata_collector.get_current_track_details()

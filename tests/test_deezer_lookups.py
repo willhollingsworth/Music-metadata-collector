@@ -6,11 +6,11 @@ from unittest.mock import patch
 
 import pytest
 
-from MMC.constants import (
+from mmc.constants import (
     LOOKUP_FUNCTION_SUFFIX,
 )
-from MMC.Services import deezer
-from MMC.Services.deezer_types import DeezerEntity
+from mmc.services import deezer
+from mmc.services.deezer_types import DeezerEntity
 from tests.utils.fixtures import load_json_fixture, load_json_listing, read_folder_names
 
 SERVICE_NAME = "deezer"
@@ -49,7 +49,7 @@ def test_lookup_success(folder: str, lookup_func: LookupFunc) -> None:
         mock_data = load_json_fixture(mock_path)
         expected_result = load_json_fixture(expected_path)
         with patch(
-            "MMC.Services.deezer.download_json",
+            "mmc.services.deezer.download_json",
             return_value=mock_data,
         ) as mock_download_json:
             result = asdict(lookup_func(mock_data["id"]))

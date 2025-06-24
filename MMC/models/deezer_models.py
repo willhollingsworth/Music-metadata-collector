@@ -1,9 +1,10 @@
 """Models for the Deezer service."""
 
+# TODO(Will): Move to mmc/model
 from dataclasses import dataclass, field
 from typing import Any, Self, TypeVar, cast
 
-from MMC.Util.dict_helper import get_nested
+from mmc.utils.dict_helper import get_nested
 
 T = TypeVar("T", bound="BaseModel")
 

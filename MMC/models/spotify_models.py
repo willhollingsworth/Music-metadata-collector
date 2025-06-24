@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 
-from MMC.models.base_models import BaseModel
+from .base_models import BaseModel
 
 
 @dataclass

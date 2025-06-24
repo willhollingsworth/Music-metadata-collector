@@ -2,8 +2,8 @@
 
 from typing import Any
 
-from MMC.Services.deezer_models import Album, Artist, Track
-from MMC.Util.http_client import download_json
+from mmc.models.deezer_models import Album, Artist, Track
+from mmc.utils.http_client import download_json
 
 # deezer's api docs are behind a login wall
 # some public api docs https://apieco.ir/docs/deezer#api-Search-search

@@ -1,8 +1,10 @@
 """Utility functions for loading JSON fixtures in tests."""
+
 import json
 from pathlib import Path
 from typing import Any
-from MMC.constants import EXPECTED_FILENAME_PREFIX, TEST_FIXTURE_DIR
+
+from mmc.constants import EXPECTED_FILENAME_PREFIX, TEST_FIXTURE_DIR
 
 
 def load_json_fixture(full_path: Path) -> dict[str, Any]:
@@ -12,7 +14,7 @@ def load_json_fixture(full_path: Path) -> dict[str, Any]:
         FileNotFoundError: If the fixture file does not exist or is not a file.
 
     """
-    with full_path.open('r', encoding='utf-8') as file:
+    with full_path.open("r", encoding="utf-8") as file:
         # Ensure the file exists
         if not full_path.exists() or not full_path.is_file():
             msg = f"Fixture file {full_path} does not exist or is not a file."
@@ -32,9 +34,9 @@ def load_json_listing(folder: str) -> list[tuple[Path, Path]]:
         msg = f"{folder_path} is not a directory."
         raise NotADirectoryError(msg)
     standard_files = [
-        f for f in folder_path.glob('*.json') if not f.name.endswith('_expected.json')
-        ]
-    expected_files = folder_path.glob(f'*{EXPECTED_FILENAME_PREFIX}.json')
+        f for f in folder_path.glob("*.json") if not f.name.endswith("_expected.json")
+    ]
+    expected_files = folder_path.glob(f"*{EXPECTED_FILENAME_PREFIX}.json")
     return list(zip(standard_files, expected_files, strict=False))
 
 
@@ -54,9 +56,9 @@ def read_folder_names(folder: str) -> list[str]:
 
 if __name__ == "__main__":
     # Example json fixture loading
-    service_name = 'deezer'
+    service_name = "deezer"
     folder = read_folder_names(service_name)[0]
-    full_folder_path = f'{service_name}/{folder}'
+    full_folder_path = f"{service_name}/{folder}"
     file = load_json_listing(full_folder_path)[0][1]
     print(load_json_fixture(file))
 
