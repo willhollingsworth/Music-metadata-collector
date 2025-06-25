@@ -10,3 +10,4 @@ spotipy_testing.py
 *.pyc
 temp_testing/*
 notes.md
+spotify playcount api.ipynb
