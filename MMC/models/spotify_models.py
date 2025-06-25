@@ -23,13 +23,22 @@ class SpotifyTrack(BaseModel):
 class SpotifyAlbum(BaseModel):
     """A spotify album model."""
 
-    album_name: str
-    album_id: int
+    # TODO(Will): add support for genres and multiple artists
+    album_name: str = field(metadata={"key": "name"})
+    album_id: int = field(metadata={"key": "id"})
+    popularity: int = field(metadata={"key": "popularity"})
+    artist_name: str = field(metadata={"key": "artists.0.name"})
+    artist_id: int = field(metadata={"key": "artists.0.id"})
+    release_date: str = field(metadata={"key": "release_date"})
+    album_type: str = field(metadata={"key": "album_type"})
+    track_count: int = field(metadata={"key": "tracks.total"})
 
 
 @dataclass
 class SpotifyArtist(BaseModel):
     """A spotify artist model."""
 
-    artist_name: str
-    artist_id: int
+    artist_name: str = field(metadata={"key": "name"})
+    artist_id: int = field(metadata={"key": "id"})
+    followers: int = field(metadata={"key": "followers.total"})
+    popularity: int = field(metadata={"key": "popularity"})
