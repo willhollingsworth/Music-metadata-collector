@@ -2,27 +2,27 @@
 
 from typing import Any
 
-from mmc.models.spotify_models import SpotifyTrack
-from mmc.services.spotify.api_requests import spotify_download_data
+from mmc.models.spotify_models import SpotifyAlbum, SpotifyArtist, SpotifyTrack
+from mmc.services.spotify.api_requests import lookup_data
 
 
 def lookup_track(track_id: str) -> SpotifyTrack:
     """Lookup a track on Spotify."""
-    results = spotify_download_data("tracks", track_id)
+    results = lookup_data("tracks", track_id)
     # print_dict_keys(results, ["name", ["artists", 0, "name"], "popularity"])
     return SpotifyTrack.from_dict(results)
 
 
-def lookup_album(album_id: str) -> dict[str, Any]:
+def lookup_album(album_id: str) -> SpotifyAlbum:
     """Lookup an album on Spotify."""
     # print_dict_keys(results, ["name", "genres", "uri"])
-    return spotify_download_data("albums", album_id)
+    return SpotifyAlbum.from_dict(lookup_data("albums", album_id))
 
 
-def lookup_artist(id) -> dict[str, Any]:
+def lookup_artist(artist_id: str) -> SpotifyArtist:
     """Lookup an artist on Spotify."""
     # print_dict_keys(results, ["name", ["followers", "total"], "genres"])
-    return spotify_download_data("artists", id)
+    return SpotifyArtist.from_dict(lookup_data("artists", artist_id))
 
 
 def lookup_track_detailed(id: str) -> dict[str, Any]:
