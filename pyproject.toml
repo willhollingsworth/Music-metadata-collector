@@ -12,22 +12,22 @@ dependencies = [
 ]
 
 [tool.ruff]
-lint.select = [
- "ALL"
-]
+lint.select = ["ALL"]
 ignore = [
 
- "Q000", # single vs double quotes
- "Q002", # single vs double quotes in docstrings
- "T201", # print statements
- "CPY001", # copywrite comments
- "DOC201", # document function arguments
+    "Q000",   # single vs double quotes
+    "Q002",   # single vs double quotes in docstrings
+    "T201",   # print statements
+    "CPY001", # copywrite comments
+    "DOC201", # document function arguments
+    "TD003",  # Issue link for TODO comments
 
 ]
 preview = true
-per-file-ignores = { "test_*.py" = ["D103", "S101"] } #ignore docs and asserts in tests
+per-file-ignores = { "test_*.py" = [
+    "D103",
+    "S101",
+] } #ignore docs and asserts in tests
 
 [dependency-groups]
-dev = [
-    "ruff>=0.12.0",
-]
+dev = ["ruff>=0.12.0"]
