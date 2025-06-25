@@ -33,9 +33,9 @@ def lookup_data(request_type: str, input_value: str) -> dict[str, Any]:
     """Lookup data from the Spotify API."""
     headers = create_client_headers()
     request_types = {
-        "artists": "artists/",
-        "albums": "albums/",
-        "tracks": "tracks/",
+        "artist": "artists/",
+        "album": "albums/",
+        "track": "tracks/",
     }
     if request_type in request_types:
         request_url = request_types[request_type]

@@ -1,0 +1,27 @@
+    {
+        "deezer": {
+            "track": [
+                "2582922142",
+                "2582922152"
+            ],
+            "album": [
+                "523121232",
+                "7933290"
+            ],
+            "artist": [
+                "257473",
+                "3892"
+            ]
+        },
+        "spotify": {
+            "track": [
+                "1w0YqmsRPGnUhw5WPCjbwL"
+            ],
+            "album": [
+                "5j49qhDj0R2sNiYhyvsgUl"
+            ],
+            "artist": [
+                "6ob0DwL4uI6eR5i9cc5tNn"
+            ]
+        }
+    }
