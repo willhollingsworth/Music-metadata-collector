@@ -1,37 +1,18 @@
 """Models for the Deezer service."""
 
-# TODO(Will): Move to mmc/model
 from dataclasses import dataclass, field
-from typing import Any, Self, TypeVar, cast
+from typing import Any, cast
 
-from mmc.utils.dict_helper import get_nested
+from mmc.models.base_models import BaseModel
 
-T = TypeVar("T", bound="BaseModel")
-
-
-@dataclass
-class BaseModel:
-    """Base model for Deezer data models."""
-
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> Self:
-        """Create an instance of the model from a dictionary."""
-        field_values = {}
-        for data_field in cls.__dataclass_fields__:
-            dict_key = cls.__dataclass_fields__[data_field].metadata["key"]
-            dict_value = get_nested(data, dict_key)
-            field_values[data_field] = dict_value
-        return cls(**field_values)
-
-    def __str__(self) -> str:
-        """Return a string representation of the track."""
-        return ", ".join(f"{k}:{v}" for k, v in self.__dict__.items())
+# TODO(Will): change names from Track to DeezerTrack Etc..
 
 
 @dataclass
 class Track(BaseModel):
     """A Deezer track model."""
 
+    # TODO(Will): multiple artists support
     track_name: str = field(metadata={"key": "title"})
     track_id: int = field(metadata={"key": "id"})
     artist_name: str = field(metadata={"key": "artist.name"})
@@ -43,6 +24,8 @@ class Track(BaseModel):
 @dataclass
 class Album(BaseModel):
     """A Deezer album model."""
+
+    # TODO(Will): multiple artists support
 
     album_name: str = field(metadata={"key": "title"})
     album_id: int = field(metadata={"key": "id"})
