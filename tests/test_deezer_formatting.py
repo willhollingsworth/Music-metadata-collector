@@ -1,4 +1,4 @@
-from mmc.services.deezer import build_search_args
+from mmc.services.deezer.searches import build_search_args
 
 
 def test_build_search_args_all_empty():
