@@ -5,34 +5,38 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
+import mmc
 from mmc.constants import (
     EXPECTED_FILENAME_PREFIX,
     LOOKUP_FUNCTION_SUFFIX,
     TEST_FIXTURE_DIR,
 )
-from mmc.services import deezer
+from mmc.services.deezer.api_requests import download_deezer_data
 
 SERVICE_NAME = "deezer"
 
 FIXTURE_FOLDER: Path = TEST_FIXTURE_DIR / SERVICE_NAME
 
 
-def generate_deezer_fixtures(fixture_type: str, fixture_id: int) -> None:
-    """Generate a fixture from Deezer's API response.
+def generate_deezer_lookup_fixtures(fixture_type: str, fixture_id: int) -> None:
+    """Generate a fixture from Deezer's API lookup response.
 
     Raises:
         ValueError: If no lookup function is found for the given type.
+        TypeError: If the API response is not a dictionary.
 
     """
     fixture_type_folder = FIXTURE_FOLDER / fixture_type
-    api_response = deezer.download_deezer_data(fixture_type, str(fixture_id))
-    if isinstance(api_response, list):
-        api_response = deezer.get_first_track(api_response)
+    api_response = download_deezer_data(fixture_type, str(fixture_id))
     api_file_path = fixture_type_folder / f"{fixture_id}.json"
+    if not isinstance(api_response, dict):
+        msg = f"API response needs to be a dict, got {type(api_response)}"
+        raise TypeError(msg)
     write_json_fixture(api_response, api_file_path)
     print(f"Fixture written to {api_file_path}")
     # Generate expected outcome from the lookup function.
-    lookup_function = getattr(deezer, f"{LOOKUP_FUNCTION_SUFFIX}{fixture_type}", None)
+    lookup_name = f"{SERVICE_NAME}_{LOOKUP_FUNCTION_SUFFIX}{fixture_type}"
+    lookup_function = getattr(mmc, lookup_name, None)
     if lookup_function is None:
         msg = f'No lookup function found for "{LOOKUP_FUNCTION_SUFFIX}{fixture_type}"'
         raise ValueError(msg)
@@ -71,5 +75,5 @@ if __name__ == "__main__":
         for fixture_type, id_list in ids.items():
             for fixture_id in id_list:
                 print(f"Generating fixture for {fixture_type} {fixture_id}")
-                generate_deezer_fixtures(fixture_type, fixture_id)
+                generate_deezer_lookup_fixtures(fixture_type, fixture_id)
     print("All fixtures generated successfully.")

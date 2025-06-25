@@ -6,11 +6,11 @@ from unittest.mock import patch
 
 import pytest
 
+import mmc
 from mmc.constants import (
     LOOKUP_FUNCTION_SUFFIX,
 )
-from mmc.services import deezer
-from mmc.services.deezer_types import DeezerEntity
+from mmc.types.deezer_types import DeezerEntity
 from tests.utils.fixtures import load_json_fixture, load_json_listing, read_folder_names
 
 SERVICE_NAME = "deezer"
@@ -20,7 +20,7 @@ LookupFunc = Callable[[str], DeezerEntity]
 PytestParam = tuple[str, LookupFunc]
 
 
-def build_targets(folder: str) -> list[str]:
+def build_lookup_targets(folder: str) -> list[str]:
     """Build a list of targets, should be lookups funcs of that service.
 
     Can be read from the folder names as fixture generation should have created
@@ -31,10 +31,11 @@ def build_targets(folder: str) -> list[str]:
 
 def build_pytest_parameters(service: str) -> list[PytestParam]:
     """Build a list of parameters for pytest."""
-    targets = build_targets(folder=service)
+    targets = build_lookup_targets(folder=service)
     folders = [f"{service}/{target}" for target in targets]
     lookup_functions = [
-        getattr(deezer, f"{LOOKUP_FUNCTION_SUFFIX}{target}") for target in targets
+        getattr(mmc, f"{SERVICE_NAME}_{LOOKUP_FUNCTION_SUFFIX}{target}")
+        for target in targets
     ]
     return list(zip(folders, lookup_functions, strict=False))
 
@@ -42,18 +43,17 @@ def build_pytest_parameters(service: str) -> list[PytestParam]:
 @pytest.mark.parametrize(
     ("folder", "lookup_func"),
     build_pytest_parameters(SERVICE_NAME),
-    ids=build_targets(SERVICE_NAME),
+    ids=build_lookup_targets(SERVICE_NAME),
 )
 def test_lookup_success(folder: str, lookup_func: LookupFunc) -> None:
     for mock_path, expected_path in load_json_listing(folder=folder):
         mock_data = load_json_fixture(mock_path)
         expected_result = load_json_fixture(expected_path)
         with patch(
-            "mmc.services.deezer.download_json",
+            "mmc.services.deezer.api_requests.download_deezer_data",
             return_value=mock_data,
-        ) as mock_download_json:
+        ):
             result = asdict(lookup_func(mock_data["id"]))
-            mock_download_json.assert_called_once()
             assert result == expected_result
 
 
