@@ -9,7 +9,7 @@ from .base_models import BaseModel
 class SpotifyTrack(BaseModel):
     """A spotify track model."""
 
-    # TODO(Will): add support for multiple artists
+    # TODO(Will): multiple artists support
     track_name: str = field(metadata={"key": "name"})
     track_id: str = field(metadata={"key": "id"})
     popularity: int = field(metadata={"key": "popularity"})
@@ -23,7 +23,7 @@ class SpotifyTrack(BaseModel):
 class SpotifyAlbum(BaseModel):
     """A spotify album model."""
 
-    # TODO(Will): add support for genres and multiple artists
+    # TODO(Will): add genres and multiple artists
     album_name: str = field(metadata={"key": "name"})
     album_id: int = field(metadata={"key": "id"})
     popularity: int = field(metadata={"key": "popularity"})

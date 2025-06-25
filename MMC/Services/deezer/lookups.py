@@ -52,6 +52,11 @@ def lookup_track_genres(track_id: int) -> list[str]:
     return lookup_album(album_id).genres
 
 
+def lookup_artist_genres(artist_id: int) -> list[str]:
+    """Retrieve detailed information on an artist including genres."""
+    "TODO: Implement this function to retrieve artist genres."
+
+
 if __name__ == "__main__":
     track_id = 395141722
     print("track id lookup:", track_id)
