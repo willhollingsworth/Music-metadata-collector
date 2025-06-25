@@ -2,10 +2,9 @@ from typing import Any
 
 import requests
 
+from mmc.constants import SPOTIFY_API_URL, SPOTIFY_AUTH_URL
 from mmc.utils.credentials import load_credentials
 from mmc.utils.http_client import download_json
-
-AUTH_URL = "https://accounts.spotify.com/api/token"
 
 
 def create_client_headers() -> dict[str, str]:
@@ -14,7 +13,7 @@ def create_client_headers() -> dict[str, str]:
     # generate auth token and headers
     # POST
     auth_response = requests.post(
-        AUTH_URL,
+        SPOTIFY_AUTH_URL,
         {
             "grant_type": "client_credentials",
             "client_id": credentials["client_id"],
@@ -30,14 +29,30 @@ def create_client_headers() -> dict[str, str]:
     }
 
 
-def spotify_download_data(
+def lookup_data(request_type: str, input_value: str) -> dict[str, Any]:
+    """Lookup data from the Spotify API."""
+    headers = create_client_headers()
+    request_types = {
+        "artists": "artists/",
+        "albums": "albums/",
+        "tracks": "tracks/",
+    }
+    if request_type in request_types:
+        request_url = request_types[request_type]
+    else:
+        msg = f"wrong type selected, {request_type} is not allowed"
+        raise TypeError(msg)
+    full_url = SPOTIFY_API_URL + request_url + input_value
+    return download_json(full_url, headers)
+
+
+def search_data(
     request_type: str,
     input_value: str | dict[str, str],
 ) -> dict[str, Any]:
     """Download data from the Spotify API."""
     # https://developer.spotify.com/documentation/web-api/reference/#/
     headers = create_client_headers()
-    spotify_url = "https://api.spotify.com/v1/"
     request_types = {
         "artists": "artists/",
         "albums": "albums/",
@@ -68,12 +83,12 @@ def spotify_download_data(
     else:
         processed_input = input_value
 
-    full_url = spotify_url + request_url + processed_input
+    full_url = SPOTIFY_API_URL + request_url + processed_input
     return download_json(full_url, headers)
 
 
 if __name__ == "__main__":
     print("Running Spotify API requests module...")
     track_id = "6xZZM6GDxTKsLjF3TNDREL"
-    api_response = spotify_download_data("tracks", track_id)
+    api_response = lookup_data("tracks", track_id)
     print("API response for track lookup:", api_response)
