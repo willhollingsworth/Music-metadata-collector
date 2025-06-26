@@ -1,7 +1,7 @@
 """Lookup functions for Deezer API."""
 
 from mmc.models.deezer_models import Album, Artist, Track
-from mmc.services.deezer.api_requests import download_deezer_data
+from mmc.services.deezer.api_requests import request_lookup
 
 
 def lookup_album(album_id: int) -> Album:
@@ -11,7 +11,7 @@ def lookup_album(album_id: int) -> Album:
         TypeError: If the album data is not a dictionary.
 
     """
-    json = download_deezer_data("album", str(album_id))
+    json = request_lookup("album", str(album_id))
     if not isinstance(json, dict):
         msg = f"Album needs to be a dict, got {type(json)}"
         raise TypeError(msg)
@@ -25,7 +25,7 @@ def lookup_artist(artist_id: int) -> Artist:
         TypeError: If the artist data is not a dictionary.
 
     """
-    json = download_deezer_data("artist", str(artist_id))
+    json = request_lookup("artist", str(artist_id))
     if not isinstance(json, dict):
         msg = f"Artist needs to be a dict, got {type(json)}"
         raise TypeError(msg)
@@ -39,7 +39,7 @@ def lookup_track(track_id: int) -> Track:
         TypeError: If the track data is not a dictionary.
 
     """
-    json = download_deezer_data("track", str(track_id))
+    json = request_lookup("track", str(track_id))
     if not isinstance(json, dict):
         msg = f"track needs to be a dict, got {type(json)}"
         raise TypeError(msg)

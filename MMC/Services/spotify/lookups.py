@@ -1,22 +1,22 @@
 """Lookups for Spotify data using the Spotify API."""
 
 from mmc.models.spotify_models import SpotifyAlbum, SpotifyArtist, SpotifyTrack
-from mmc.services.spotify.api_requests import lookup_data
+from mmc.services.spotify.api_requests import request_lookup
 
 
 def lookup_track(track_id: str) -> SpotifyTrack:
     """Lookup a track on Spotify."""
-    return SpotifyTrack.from_dict(lookup_data("track", track_id))
+    return SpotifyTrack.from_dict(request_lookup("track", track_id))
 
 
 def lookup_album(album_id: str) -> SpotifyAlbum:
     """Lookup an album on Spotify."""
-    return SpotifyAlbum.from_dict(lookup_data("album", album_id))
+    return SpotifyAlbum.from_dict(request_lookup("album", album_id))
 
 
 def lookup_artist(artist_id: str) -> SpotifyArtist:
     """Lookup an artist on Spotify."""
-    return SpotifyArtist.from_dict(lookup_data("artist", artist_id))
+    return SpotifyArtist.from_dict(request_lookup("artist", artist_id))
 
 
 if __name__ == "__main__":

@@ -13,10 +13,10 @@ from mmc.constants import (
     TEST_FIXTURE_DIR,
 )
 from mmc.services.deezer.api_requests import (
-    lookup_data as deezer_data_lookup,  # noqa: F401
+    request_lookup as deezer_data_lookup,  # noqa: F401
 )
 from mmc.services.spotify.api_requests import (
-    lookup_data as spotify_data_lookup,  # noqa: F401
+    request_lookup as spotify_data_lookup,  # noqa: F401
 )
 
 

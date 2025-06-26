@@ -29,7 +29,7 @@ def create_client_headers() -> dict[str, str]:
     }
 
 
-def lookup_data(request_type: str, input_value: str) -> dict[str, Any]:
+def request_lookup(request_type: str, input_value: str) -> dict[str, Any]:
     """Lookup data from the Spotify API."""
     headers = create_client_headers()
     request_types = {
@@ -90,5 +90,5 @@ def search_data(
 if __name__ == "__main__":
     print("Running Spotify API requests module...")
     track_id = "6xZZM6GDxTKsLjF3TNDREL"
-    api_response = lookup_data("tracks", track_id)
+    api_response = request_lookup("tracks", track_id)
     print("API response for track lookup:", api_response)

@@ -11,7 +11,7 @@ from mmc.utils.http_client import download_json
 DEEZER_API_URL = "https://api.deezer.com/"
 
 
-def lookup_data(
+def request_lookup(
     request_type: str,
     id_number: str,
 ) -> dict[str, Any] | list[Any]:
