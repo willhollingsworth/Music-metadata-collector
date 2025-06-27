@@ -67,6 +67,7 @@ def lookup_track(id):
 
 def examples():
     # searches
+
     artist = "Joris Delacroix"
     print("search for artist :", artist, end=": ")
     search_artist(artist, print_results=True)
@@ -97,7 +98,7 @@ if __name__ == "__main__":
     delete_cache()
     # examples()
     # lookups
-    track_id = "4e0be2ce-4672-423e-ba35-6ce49773d1ab"
+    track_id = "a9bdcdd0-e18b-4890-8b9c-b56aaa0792ab"
     track = lookup_track(track_id)
     for release in track["releases"]:
         print(release["title"])
