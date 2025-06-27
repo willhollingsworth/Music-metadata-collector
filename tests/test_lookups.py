@@ -1,6 +1,5 @@
 """testing lookups."""
 
-# TODO(Will): get spotify testing working
 import importlib
 from collections.abc import Callable
 from dataclasses import asdict
@@ -95,9 +94,6 @@ def test_lookup_success(service_name: str, lookup_type: str, id_value: str) -> N
     except (ModuleNotFoundError, AttributeError) as err:
         msg = f"Function '{lookup_function}' not found in {lookup_module_path}"
         raise ValueError(msg) from err
-    if lookup_func is None:
-        msg = f"Function '{lookup_function}' not found in globals()"
-        raise ValueError(msg)
     # confirm lookup matches expected results
     with patch(api_function_path, return_value=mock_api_data):
         result = asdict(lookup_func(mock_api_data["id"]))
