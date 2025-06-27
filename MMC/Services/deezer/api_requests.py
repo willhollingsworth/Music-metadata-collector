@@ -34,25 +34,9 @@ def request_lookup(
     return download_json(url)
 
 
-def download_deezer_data(
-    request_type: str,
+def request_search(
     input_string: str,
 ) -> dict[str, Any] | list[Any]:
-    """Download data from the Deezer API.
-
-    Raises:
-        TypeError: If the request_type is not supported.
-
-    """
-    request_types: dict[str, str] = {
-        "search": "search?q=",
-        "album": "album/",
-        "artist": "artist/",
-        "track": "track/",
-    }
-    if request_type in request_types:
-        request_url = request_types[request_type]
-    else:
-        raise TypeError(request_type)
-    url = DEEZER_API_URL + request_url + str(input_string)
-    return download_json(url)
+    """Download data from the Deezer API."""
+    search_url = DEEZER_API_URL + "search?q=" + str(input_string)
+    return download_json(search_url)

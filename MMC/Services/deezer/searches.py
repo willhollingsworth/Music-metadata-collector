@@ -3,7 +3,7 @@
 from typing import Any
 
 from mmc.models.deezer_models import Track
-from mmc.services.deezer.api_requests import download_deezer_data
+from mmc.services.deezer.api_requests import request_search
 from mmc.services.deezer.utils import get_first_track
 
 
@@ -28,12 +28,20 @@ def search_deezer(
     artist: str = "",
     track: str = "",
 ) -> dict[str, Any]:
-    """Search for a track on Deezer using a string."""
+    """Search for a track on Deezer using a string.
+
+    Raises:
+        TypeError: If the search result is not a dictionary.
+
+    """
     search_string_final = build_search_args(search_string, artist, track)
-    search_data = download_deezer_data("search", search_string_final)
+    search_data = request_search(search_string_final)
     if isinstance(search_data, list):
         search_data = search_data[0]
-    return search_data
+    if isinstance(search_data, dict):
+        return search_data
+    msg = f"Expected a dict, got {type(search_data)}"
+    raise TypeError(msg)
 
 
 def search_track(
