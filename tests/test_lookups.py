@@ -84,7 +84,7 @@ def test_lookup_success(service_name: str, lookup_type: str, id_value: str) -> N
     expected_result = load_json_fixture(expected_response_fullpath)
     # setup function variables
     api_function_name = "request_lookup"
-    api_function_path = f"mmc.services.{service_name}.api_requests.{api_function_name}"
+    api_function_path = f"mmc.services.{service_name}.lookups.{api_function_name}"
     lookup_module_path = f"mmc.services.{service_name}.lookups"
     lookup_function = f"lookup_{lookup_type}"
     # import lookup function
