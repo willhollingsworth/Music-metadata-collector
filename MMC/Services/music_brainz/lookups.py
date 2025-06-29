@@ -17,14 +17,14 @@ def lookup_artist(id_value: str) -> MusicBrainzArtist:
 
 
 def lookup_album(id_value: str) -> MusicBrainzAlbum:
-    """Lookup an album by its ID."""
+    """Lookup an album aka release by its ID."""
     formatted_url = f"release/{id_value}?inc=artists+recordings"
     json = request_lookup(formatted_url)
     return MusicBrainzAlbum.from_dict(json)
 
 
 def lookup_track(id_value: str) -> MusicBrainzTrack:
-    """Lookup a track by its ID."""
+    """Lookup a track aka recording by its ID."""
     formatted_url = f"recording/{id_value}?inc=artists+releases"
     json = request_lookup(formatted_url)
     return MusicBrainzTrack.from_dict(json)
