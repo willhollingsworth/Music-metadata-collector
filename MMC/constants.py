@@ -15,7 +15,7 @@ VALID_LOOKUP_TYPES: list[str] = [
 TEST_DIR: Path = Path("tests")
 TEST_FIXTURE_DIR: Path = TEST_DIR / "fixtures"
 EXPECTED_FILENAME_PREFIX: str = "_expected"
-
+CACHE_FOLDER: Path = Path("cache")
 LOOKUP_FUNCTION_SUFFIX: str = "lookup_"
 SPOTIFY_API_URL = "https://api.spotify.com/v1/"
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/api/token"

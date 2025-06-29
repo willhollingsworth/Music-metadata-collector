@@ -1,7 +1,6 @@
 """Script to generate Deezer API fixtures and expected lookup results for testing."""
 
 import json
-from collections.abc import Callable
 from dataclasses import asdict
 from pathlib import Path
 from typing import Any
@@ -12,12 +11,9 @@ from mmc.constants import (
     LOOKUP_FUNCTION_SUFFIX,
     TEST_FIXTURE_DIR,
 )
-from mmc.services.deezer.api_requests import (
-    request_lookup as deezer_data_lookup,  # noqa: F401
-)
-from mmc.services.spotify.api_requests import (
-    request_lookup as spotify_data_lookup,  # noqa: F401
-)
+from mmc.utils.cache import load_cache_file
+
+# recreated lookup logic in this file
 
 
 class generate_fixture:
@@ -27,32 +23,22 @@ class generate_fixture:
         self,
         service_name: str,
         fixture_type: str,
-        fixture_id: str | int,
+        fixture_id: str,
     ) -> None:
         self.service_name = service_name
         self.fixture_type = fixture_type
         self.fixture_id = fixture_id
         self.fixture_type_folder = TEST_FIXTURE_DIR / service_name / fixture_type
-        self.generate_raw_api_response()
         self.generate_expected_lookup_response()
+        self.generate_raw_api_response()
 
     def generate_raw_api_response(self) -> None:
         """Generate a raw API response fixture.
 
-        Raises:
-            TypeError: If the API response is not a dictionary.
-
+        Loads the api response from the cache and writes it to a JSON file.
         """
-        download_function_name = f"{self.service_name}_data_lookup"
-        download_function = globals().get(download_function_name)
-        if not isinstance(download_function, Callable):
-            msg = f'No download function found for "{download_function_name}"'
-            raise TypeError(msg)
-        api_response = download_function(self.fixture_type, self.fixture_id)
+        api_response = load_cache_file(self.service_name, str(self.fixture_id))
         api_file_path = self.fixture_type_folder / f"{self.fixture_id}.json"
-        if not isinstance(api_response, dict):
-            msg = f"API response needs to be a dict, got {type(api_response)}"
-            raise TypeError(msg)
         write_json_fixture(api_response, api_file_path)
         print(f"Fixture written to {api_file_path}")
 
@@ -89,9 +75,9 @@ def write_json_fixture(data: dict[str, Any], path: Path) -> None:
         json.dump(data, f, indent=2)
 
 
-def delete_deezer_fixtures() -> None:
+def delete_all_fixtures() -> None:
     """Delete all files in the fixture dir."""
-    for item in FIXTURE_FOLDER.iterdir():
+    for item in TEST_FIXTURE_DIR.iterdir():
         if item.is_dir():
             print(f"skipping folder {item}")
         else:
