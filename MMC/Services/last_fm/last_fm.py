@@ -72,6 +72,12 @@ def print_name_artist_tag(in_data):
     print()
 
 
+def run_lookup_examples():
+    print("Running Last.fm lookup examples...")
+    track_id = "8bbcbc5a-6ce0-4cd1-8824-16ba4796a8a1"  # Example MBID
+    track = track_lookup(track_id)
+
+
 if __name__ == "__main__":
     # print(json.dumps(artist_top_tracks_lookup('dynoro'), indent=2))
 
@@ -79,7 +85,7 @@ if __name__ == "__main__":
     mbid lookup not working, look at pulling it from the musicbrainz api
     """
     print(
-        json.dumps(track_lookup_mbid("8bbcbc5a-6ce0-4cd1-8824-16ba4796a8a1"), indent=2)
+        json.dumps(track_lookup_mbid("8bbcbc5a-6ce0-4cd1-8824-16ba4796a8a1"), indent=2),
     )
 
     # testing_broken_tags()
