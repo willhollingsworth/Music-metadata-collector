@@ -1,0 +1,134 @@
+{
+  "title": "Anything",
+  "length": 187333,
+  "artist-credit": [
+    {
+      "joinphrase": " feat. ",
+      "name": "Teho",
+      "artist": {
+        "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+        "country": "FR",
+        "sort-name": "Teho",
+        "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+        "name": "Teho",
+        "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+        "type": "Person"
+      }
+    },
+    {
+      "artist": {
+        "type": "Person",
+        "disambiguation": "Mathilde Gloumeaud",
+        "sort-name": "Carott",
+        "id": "b35a6f21-8bfb-4228-a8bc-e7f7026cf43f",
+        "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+        "country": null,
+        "name": "Carott"
+      },
+      "joinphrase": "",
+      "name": "Carott"
+    }
+  ],
+  "first-release-date": "2020-02-21",
+  "id": "a9bdcdd0-e18b-4890-8b9c-b56aaa0792ab",
+  "disambiguation": "",
+  "video": false,
+  "releases": [
+    {
+      "barcode": "4058765530528",
+      "release-events": [
+        {
+          "date": "2020-02-21",
+          "area": {
+            "type-id": null,
+            "sort-name": "France",
+            "id": "08310658-51eb-3801-80de-5a0739207115",
+            "name": "France",
+            "iso-3166-1-codes": [
+              "FR"
+            ],
+            "disambiguation": "",
+            "type": null
+          }
+        }
+      ],
+      "status": "Official",
+      "country": "FR",
+      "packaging-id": "8f931351-d2e2-310f-afc6-37b89ddba246",
+      "artist-credit": [
+        {
+          "name": "Teho",
+          "joinphrase": "",
+          "artist": {
+            "name": "Teho",
+            "country": "FR",
+            "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+            "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+            "sort-name": "Teho",
+            "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+            "type": "Person"
+          }
+        }
+      ],
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "title": "Polytone",
+      "quality": "normal",
+      "text-representation": {
+        "language": null,
+        "script": null
+      },
+      "packaging": "Digipak",
+      "date": "2020-02-21",
+      "id": "c4eff4ec-4601-4220-93ab-ade1a95746d9",
+      "disambiguation": ""
+    },
+    {
+      "country": "FR",
+      "packaging-id": null,
+      "artist-credit": [
+        {
+          "artist": {
+            "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+            "sort-name": "Teho",
+            "country": "FR",
+            "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+            "name": "Teho",
+            "type": "Person",
+            "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France."
+          },
+          "name": "Teho",
+          "joinphrase": ""
+        }
+      ],
+      "status": "Official",
+      "barcode": null,
+      "release-events": [
+        {
+          "date": "2020-02-21",
+          "area": {
+            "disambiguation": "",
+            "name": "France",
+            "iso-3166-1-codes": [
+              "FR"
+            ],
+            "type": null,
+            "type-id": null,
+            "id": "08310658-51eb-3801-80de-5a0739207115",
+            "sort-name": "France"
+          }
+        }
+      ],
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "packaging": null,
+      "date": "2020-02-21",
+      "text-representation": {
+        "script": null,
+        "language": null
+      },
+      "quality": "normal",
+      "id": "3f9aa682-b39a-4f32-9b89-c810937e602d",
+      "title": "Polytone",
+      "disambiguation": ""
+    }
+  ]
+}

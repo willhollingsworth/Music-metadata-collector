@@ -1,0 +1,41 @@
+{
+  "ipis": [],
+  "type": "Person",
+  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+  "disambiguation": "",
+  "begin-area": {
+    "name": "Paris",
+    "id": "dc10c22b-e510-4006-8b7f-fecb4f36436e",
+    "type": null,
+    "type-id": null,
+    "disambiguation": "",
+    "sort-name": "Paris",
+    "iso-3166-2-codes": [
+      "FR-75"
+    ]
+  },
+  "end-area": null,
+  "gender-id": "36d3d30a-839d-3eda-8cb3-29be4384e4a9",
+  "isnis": [],
+  "name": "Romain Garcia",
+  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+  "country": "FR",
+  "sort-name": "Garcia, Romain",
+  "gender": "Male",
+  "area": {
+    "name": "France",
+    "iso-3166-1-codes": [
+      "FR"
+    ],
+    "id": "08310658-51eb-3801-80de-5a0739207115",
+    "type-id": null,
+    "type": null,
+    "sort-name": "France",
+    "disambiguation": ""
+  },
+  "life-span": {
+    "end": null,
+    "ended": false,
+    "begin": null
+  }
+}
