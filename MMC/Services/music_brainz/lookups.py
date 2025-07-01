@@ -11,22 +11,19 @@ from mmc.services.music_brainz.api_requests import request_lookup
 def lookup_artist(id_value: str) -> MusicBrainzArtist:
     """Lookup an artist by its ID."""
     # https://musicbrainz.org/doc/MusicBrainz_API#Lookups
-    formatted_url = f"artist/{id_value}"
-    json = request_lookup(formatted_url)
+    json = request_lookup("artist", id_value)
     return MusicBrainzArtist.from_dict(json)
 
 
 def lookup_album(id_value: str) -> MusicBrainzAlbum:
     """Lookup an album aka release by its ID."""
-    formatted_url = f"release/{id_value}?inc=artists+recordings"
-    json = request_lookup(formatted_url)
+    json = request_lookup("album", id_value)
     return MusicBrainzAlbum.from_dict(json)
 
 
 def lookup_track(id_value: str) -> MusicBrainzTrack:
     """Lookup a track aka recording by its ID."""
-    formatted_url = f"recording/{id_value}?inc=artists+releases"
-    json = request_lookup(formatted_url)
+    json = request_lookup("track", id_value)
     return MusicBrainzTrack.from_dict(json)
 
 

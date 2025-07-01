@@ -6,6 +6,8 @@ from mmc.constants import SPOTIFY_API_URL, SPOTIFY_AUTH_URL
 from mmc.utils.credentials import load_credentials
 from mmc.utils.http_client import download_json
 
+SERVCIE_NAME = "spotify"
+
 
 def create_client_headers() -> dict[str, str]:
     """Create headers for spotify api requests."""
@@ -29,7 +31,7 @@ def create_client_headers() -> dict[str, str]:
     }
 
 
-def request_lookup(request_type: str, input_value: str) -> dict[str, Any]:
+def request_lookup(request_type: str, request_args: str) -> dict[str, Any]:
     """Lookup data from the Spotify API."""
     headers = create_client_headers()
     request_types = {
@@ -42,8 +44,8 @@ def request_lookup(request_type: str, input_value: str) -> dict[str, Any]:
     else:
         msg = f"wrong type selected, {request_type} is not allowed"
         raise TypeError(msg)
-    full_url = SPOTIFY_API_URL + request_url + input_value
-    return download_json(full_url, headers)
+    full_url = SPOTIFY_API_URL + request_url + request_args
+    return download_json(full_url, SERVCIE_NAME, request_type, request_args, headers)
 
 
 def search_data(
@@ -90,5 +92,5 @@ def search_data(
 if __name__ == "__main__":
     print("Running Spotify API requests module...")
     track_id = "6xZZM6GDxTKsLjF3TNDREL"
-    api_response = request_lookup("tracks", track_id)
+    api_response = request_lookup("track", track_id)
     print("API response for track lookup:", api_response)

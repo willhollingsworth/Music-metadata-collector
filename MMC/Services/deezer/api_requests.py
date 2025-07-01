@@ -9,6 +9,7 @@ from mmc.utils.http_client import download_json
 # also examples of use here https://github.com/deepjyoti30/ytmdl/blob/master/ytmdl/meta/deezer.py
 
 DEEZER_API_URL = "https://api.deezer.com/"
+SERVCIE_NAME = "deezer"
 
 
 def request_lookup(
@@ -30,8 +31,8 @@ def request_lookup(
         request_url = request_types[request_type]
     else:
         raise TypeError(request_type)
-    url = DEEZER_API_URL + request_url + id_number
-    return download_json(url)
+    full_url = DEEZER_API_URL + request_url + id_number
+    return download_json(full_url, SERVCIE_NAME, request_type, id_number)
 
 
 def request_search(

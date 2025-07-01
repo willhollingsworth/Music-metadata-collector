@@ -7,11 +7,12 @@ from typing import Any
 
 import mmc
 from mmc.constants import (
+    CACHE_FOLDER,
     EXPECTED_FILENAME_PREFIX,
     LOOKUP_FUNCTION_SUFFIX,
     TEST_FIXTURE_DIR,
 )
-from mmc.utils.cache import load_cache_file
+from mmc.utils.cache import read_cache
 
 # recreated lookup logic in this file
 
@@ -47,10 +48,8 @@ class GenerateFixture:
 
         Loads the api response from the cache and writes it to a JSON file.
         """
-        api_response = load_cache_file(
-            self.service_name,
-            [self.fixture_type, *self.fixture_args],
-        )
+        cache_folder = CACHE_FOLDER / self.service_name / self.fixture_type
+        api_response = read_cache(cache_folder, self.fixture_args_str)
         api_file_path = self.fixture_type_folder / f"{self.fixture_args_str}.json"
         write_json_fixture(api_response, api_file_path)
         print(f"Fixture written to {api_file_path}")
