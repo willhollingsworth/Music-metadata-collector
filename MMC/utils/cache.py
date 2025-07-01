@@ -57,10 +57,21 @@ def delete_cache() -> None:
 
 def proccess_search_string(search_string: str) -> str:
     """Process a search string to ensure it is valid for searching."""
-    result = ""
-    result = search_string.replace("_", "")
-    result = result.lower()
-    return result
+    return search_string.replace("_", "").lower()
+
+
+def process_search_string_musicbrainz(search_string: str) -> str:
+    """Process a search string for MusicBrainz to ensure it is valid for searching.
+
+    handles mapping of search strings to MusicBrainz identifiers.
+    """
+    result = search_string
+    if search_string == "track":
+        result = "recording"
+    elif search_string == "album":
+        result = "release"
+
+    return proccess_search_string(result)
 
 
 def filter_filenames(filenames: list[Path], search_string: str) -> list[Path]:
@@ -74,6 +85,7 @@ def filter_filenames(filenames: list[Path], search_string: str) -> list[Path]:
 
 
 def load_cache_file(
+    service_name: str,
     search_strings: list[str],
 ) -> dict[str, Any]:
     """Search cache files for a single file using a series of search strings.
@@ -83,20 +95,37 @@ def load_cache_file(
 
     """
     cache_files = list(CACHE_FOLDER.iterdir())
+    processed_search_strings: list[str] = [proccess_search_string(service_name)]
     for search_string in search_strings:
-        cache_files = filter_filenames(cache_files, search_string)
+        if service_name == "music_brainz":
+            processed_search_strings.append(
+                process_search_string_musicbrainz(search_string),
+            )
+        else:
+            processed_search_strings.append(proccess_search_string(search_string))
+    for filter_string in processed_search_strings:
+        cache_files = filter_filenames(cache_files, filter_string)
     if len(cache_files) > 1:
         msg = (
             f"Multiple cache files found: {len(cache_files)}, "
-            f"for search string '{search_strings}'. "
+            f"for search string '{processed_search_strings}'. "
             "Please refine your search criteria."
         )
         raise ValueError(msg)
     if len(cache_files) == 0:
         msg = (
             f"No cache files found for search string '{search_strings}'. "
-            "Please check the search criteria."
+            f"for service '{service_name}'. Please check the search criteria."
         )
         raise ValueError(msg)
     with cache_files[0].open("r", encoding="utf-8") as f:
         return json.load(f)
+
+
+if __name__ == "__main__":
+    """Main function to delete the cache folder."""
+    search_restult = load_cache_file(
+        service_name="music_brainz",
+        search_strings=["track", "a9bdcdd0-e18b-4890-8b9c-b56aaa0792ab"],
+    )
+    print(search_restult)
