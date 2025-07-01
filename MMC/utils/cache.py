@@ -55,9 +55,14 @@ def delete_cache() -> None:
                 file_path.unlink()
 
 
-def proccess_search_string(search_string: str) -> str:
+def proccess_search_string(service_name: str, search_string: str) -> str:
     """Process a search string to ensure it is valid for searching."""
-    return search_string.replace("_", "").lower()
+    proccessed = search_string
+    if service_name == "music_brainz":
+        proccessed = process_search_string_musicbrainz(search_string)
+    if service_name == "last_fm":
+        proccessed = process_search_string_last_fm(search_string)
+    return proccessed.replace("_", "").lower()
 
 
 def process_search_string_musicbrainz(search_string: str) -> str:
@@ -70,17 +75,21 @@ def process_search_string_musicbrainz(search_string: str) -> str:
         result = "recording"
     elif search_string == "album":
         result = "release"
+    return result
 
-    return proccess_search_string(result)
+
+def process_search_string_last_fm(search_string: str) -> str:
+    """Process a search string for lastfm to ensure it is valid for searching."""
+    result = search_string
+    if search_string == "last_fm":
+        result = "audioscrobbler"
+    return result
 
 
 def filter_filenames(filenames: list[Path], search_string: str) -> list[Path]:
     """Filter a list of filenames based on a search string."""
-    processed_search_string = proccess_search_string(search_string)
     return [
-        filename
-        for filename in filenames
-        if processed_search_string in filename.name.lower()
+        filename for filename in filenames if search_string in filename.name.lower()
     ]
 
 
@@ -88,21 +97,20 @@ def load_cache_file(
     service_name: str,
     search_strings: list[str],
 ) -> dict[str, Any]:
-    """Search cache files for a single file using a series of search strings.
+    """Load a cache file using a service name and a series of search strings.
 
     Raises:
-        ValueError: If anything but 1 exact file is found.
+        ValueError: If anything but exactly 1 file is found.
 
     """
-    cache_files = list(CACHE_FOLDER.iterdir())
-    processed_search_strings: list[str] = [proccess_search_string(service_name)]
-    for search_string in search_strings:
-        if service_name == "music_brainz":
-            processed_search_strings.append(
-                process_search_string_musicbrainz(search_string),
-            )
-        else:
-            processed_search_strings.append(proccess_search_string(search_string))
+    cache_files: list[Path] = list(CACHE_FOLDER.iterdir())
+
+    processed_search_strings = [proccess_search_string(service_name, service_name)]
+    processed_search_strings.extend(
+        proccess_search_string(service_name, search_string)
+        for search_string in search_strings
+    )
+
     for filter_string in processed_search_strings:
         cache_files = filter_filenames(cache_files, filter_string)
     if len(cache_files) > 1:
