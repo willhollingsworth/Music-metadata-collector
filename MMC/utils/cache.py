@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 from typing import Any
 
 from mmc.constants import CACHE_FOLDER
@@ -62,28 +63,40 @@ def proccess_search_string(search_string: str) -> str:
     return result
 
 
+def filter_filenames(filenames: list[Path], search_string: str) -> list[Path]:
+    """Filter a list of filenames based on a search string."""
+    processed_search_string = proccess_search_string(search_string)
+    return [
+        filename
+        for filename in filenames
+        if processed_search_string in filename.name.lower()
+    ]
+
+
 def load_cache_file(
-    service: str,
-    id_value: str = "",
+    search_strings: list[str],
 ) -> dict[str, Any]:
-    """Search cache files for a single file of specific service and ID.
+    """Search cache files for a single file using a series of search strings.
 
     Raises:
         ValueError: If anything but 1 exact file is found.
 
     """
-    proceesed_service_name = proccess_search_string(service)
-    cache_files = CACHE_FOLDER.iterdir()
-    matching_file = [
-        f
-        for f in cache_files
-        if f.is_file() and proceesed_service_name in f.name and id_value in f.name
-    ]
-    if len(matching_file) != 1:
+    cache_files = list(CACHE_FOLDER.iterdir())
+    for search_string in search_strings:
+        cache_files = filter_filenames(cache_files, search_string)
+    if len(cache_files) > 1:
         msg = (
-            f"Multiple cache files found for service '{service}' and ID '{id_value}'. "
+            f"Multiple cache files found: {len(cache_files)}, "
+            f"for search string '{search_strings}'. "
             "Please refine your search criteria."
         )
         raise ValueError(msg)
-    with matching_file[0].open("r", encoding="utf-8") as f:
+    if len(cache_files) == 0:
+        msg = (
+            f"No cache files found for search string '{search_strings}'. "
+            "Please check the search criteria."
+        )
+        raise ValueError(msg)
+    with cache_files[0].open("r", encoding="utf-8") as f:
         return json.load(f)
