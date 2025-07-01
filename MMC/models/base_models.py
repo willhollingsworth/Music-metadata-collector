@@ -10,11 +10,20 @@ class BaseModel:
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> Self:
-        """Create an instance of the model from a dictionary."""
+        """Create an instance of the model from a dictionary.
+
+        Raises:
+            KeyError: If a required key is not found in the input data.
+
+        """
         field_values = {}
         for data_field in cls.__dataclass_fields__:
             dict_key = cls.__dataclass_fields__[data_field].metadata["key"]
-            dict_value = get_nested(data, dict_key)
+            try:
+                dict_value = get_nested(data, dict_key)
+            except KeyError as err:
+                msg = f"Key '{dict_key}' not found in data for field '{data_field}'. "
+                raise KeyError(msg) from err
             field_values[data_field] = dict_value
         return cls(**field_values)
 
