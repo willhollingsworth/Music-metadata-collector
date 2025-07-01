@@ -16,18 +16,28 @@ from mmc.utils.cache import load_cache_file
 # recreated lookup logic in this file
 
 
-class generate_fixture:
+class GenerateFixture:
     """Generate a fixture."""
 
     def __init__(
         self,
         service_name: str,
         fixture_type: str,
-        fixture_id: str,
+        fixture_args: list[str],
+        # TODO(Will): correctly support multiple args
     ) -> None:
+        """Initialize the GenerateFixture class.
+
+        Args:
+            service_name (str): The name of the service.
+            fixture_type (str): The type of fixture to generate.
+            fixture_args (list[str]): Arguments for the fixture.
+
+        """
         self.service_name = service_name
         self.fixture_type = fixture_type
-        self.fixture_id = fixture_id
+        self.fixture_args = fixture_args
+        self.fixture_args_str = "_".join(self.fixture_args)
         self.fixture_type_folder = TEST_FIXTURE_DIR / service_name / fixture_type
         self.generate_expected_lookup_response()
         self.generate_raw_api_response()
@@ -37,8 +47,11 @@ class generate_fixture:
 
         Loads the api response from the cache and writes it to a JSON file.
         """
-        api_response = load_cache_file(self.service_name, str(self.fixture_id))
-        api_file_path = self.fixture_type_folder / f"{self.fixture_id}.json"
+        api_response = load_cache_file(
+            self.service_name,
+            [self.fixture_type, *self.fixture_args],
+        )
+        api_file_path = self.fixture_type_folder / f"{self.fixture_args_str}.json"
         write_json_fixture(api_response, api_file_path)
         print(f"Fixture written to {api_file_path}")
 
@@ -59,10 +72,10 @@ class generate_fixture:
                 f'{LOOKUP_FUNCTION_SUFFIX}{self.fixture_type}"'
             )
             raise ValueError(msg)
-        expected_response = asdict(lookup_function(self.fixture_id))
+        expected_response = asdict(lookup_function(*self.fixture_args))
         expected_path = (
             self.fixture_type_folder
-            / f"{self.fixture_id}{EXPECTED_FILENAME_PREFIX}.json"
+            / f"{self.fixture_args_str}{EXPECTED_FILENAME_PREFIX}.json"
         )
         write_json_fixture(expected_response, expected_path)
         print(f"Fixture written to {expected_path}")
@@ -91,21 +104,38 @@ def service_setup(service_name: str) -> None:
 
 
 def loop_over_fixture_config(fixture_config_path: Path) -> None:
-    """Loop over the fixture configuration file and generate fixtures."""
+    """Loop over the fixture configuration file and generate fixtures.
+
+    Raises:
+        TypeError: If a fixture argument is not a list or string.
+
+    """
     with fixture_config_path.open(encoding="utf-8") as file:
         services = json.load(file)
         for service_name, types_list in services.items():
             print(f"Generating fixtures for {service_name}")
             service_setup(service_name)
-            for type_name, id_list in types_list.items():
-                for id_number in id_list:
+            for type_name, fixture_test_list in types_list.items():
+                for fixture_args in fixture_test_list:
+                    processed_args: list[str]
+                    if isinstance(fixture_args, list):
+                        processed_args = [str(arg) for arg in fixture_args]  # type: ignore[var-annotated]
+                    elif isinstance(fixture_args, str):
+                        processed_args = [str(fixture_args)]
+                    else:
+                        msg = (
+                            "Fixture must be list or str, instead it's "
+                            f"{type(fixture_args)}"
+                        )
+                        raise TypeError(msg)
                     print(
-                        f"Generating fixture for {service_name} {type_name} {id_number}",
+                        f"Generating fixture for {service_name} ",
+                        f"{type_name} {fixture_args}",
                     )
-                    generate_fixture(
+                    GenerateFixture(
                         service_name=service_name,
                         fixture_type=type_name,
-                        fixture_id=id_number,
+                        fixture_args=processed_args,
                     )
 
 
@@ -115,9 +145,3 @@ if __name__ == "__main__":
     loop_over_fixture_config(fixture_ids_path)
     # Delete existing fixtures
     # delete_deezer_fixtures()
-    # open the deezer_fixture_ids.json as json object
-
-    #         for fixture_id in id_list:
-    #             print(f"Generating fixture for {fixture_type} {fixture_id}")
-    #             generate_deezer_lookup_fixtures(fixture_type, fixture_id)
-    # print("All fixtures generated successfully.")
