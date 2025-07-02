@@ -25,7 +25,6 @@ class GenerateFixture:
         service_name: str,
         fixture_type: str,
         fixture_args: list[str],
-        # TODO(Will): correctly support multiple args
     ) -> None:
         """Initialize the GenerateFixture class.
 
@@ -47,10 +46,20 @@ class GenerateFixture:
         """Generate a raw API response fixture.
 
         Loads the api response from the cache and writes it to a JSON file.
+
+        Raises:
+            ValueError: If no cached response is found for the given args.
+
         """
         cache_folder = CACHE_FOLDER / self.service_name / self.fixture_type
         api_response = read_cache(cache_folder, self.fixture_args_str)
         api_file_path = self.fixture_type_folder / f"{self.fixture_args_str}.json"
+        if api_response is None:
+            msg = (
+                f"No cached response found for {self.service_name} "
+                f"{self.fixture_type} with args {self.fixture_args_str}"
+            )
+            raise ValueError(msg)
         write_json_fixture(api_response, api_file_path)
         print(f"Fixture written to {api_file_path}")
 
