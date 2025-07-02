@@ -16,6 +16,7 @@ from tests.utils.fixtures import (
     load_json_fixture,
     read_folder_names,
 )
+from tests.utils.functions import count_args
 
 # Define type aliases for readability
 LookupFunc = Callable[[str], DeezerEntity]
@@ -83,20 +84,21 @@ def test_lookup_success(service_name: str, lookup_type: str, id_value: str) -> N
     mock_api_data = load_json_fixture(api_response_fullpath)
     expected_result = load_json_fixture(expected_response_fullpath)
     # setup function variables
-    api_function_name = "request_lookup"
-    api_function_path = f"mmc.services.{service_name}.lookups.{api_function_name}"
+    api_func_name = "request_lookup"
+    api_func_path = f"mmc.services.{service_name}.lookups.{api_func_name}"
+    lookup_func_name = f"lookup_{lookup_type}"
     lookup_module_path = f"mmc.services.{service_name}.lookups"
-    lookup_function = f"lookup_{lookup_type}"
-    # import lookup function
     try:
         lookup_module = importlib.import_module(lookup_module_path)
-        lookup_func = getattr(lookup_module, lookup_function)
+        lookup_func = getattr(lookup_module, lookup_func_name)
     except (ModuleNotFoundError, AttributeError) as err:
-        msg = f"Function '{lookup_function}' not found in {lookup_module_path}"
+        msg = f"Function '{lookup_func_name}' not found in {lookup_module_path}"
         raise ValueError(msg) from err
+    lookup_func_arg_count = count_args(lookup_func)
+    dummy_lookup_args = [""] * lookup_func_arg_count
     # confirm lookup matches expected results
-    with patch(api_function_path, return_value=mock_api_data):
-        result = asdict(lookup_func(mock_api_data["id"]))
+    with patch(api_func_path, return_value=mock_api_data):
+        result = asdict(lookup_func(*dummy_lookup_args))
         assert result == expected_result
 
 
@@ -104,8 +106,3 @@ if __name__ == "__main__":
     # allow direct running of this script
     pytest.main(["-v", __file__])
     print("Tests completed.")
-    # print(globals())
-    # print(build_pytest_parameters())
-
-    # for service in build_service_names():
-    # print(build_lookup_types(service))
