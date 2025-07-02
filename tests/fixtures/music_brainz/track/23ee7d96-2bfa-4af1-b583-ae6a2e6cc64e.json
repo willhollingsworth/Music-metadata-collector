@@ -1,73 +1,73 @@
 {
-  "first-release-date": "2022-02-25",
-  "disambiguation": "",
   "releases": [
     {
-      "packaging": "None",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
       "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
-      "text-representation": {
-        "script": "Latn",
-        "language": "eng"
-      },
-      "barcode": null,
-      "status": "Official",
-      "date": "2022-02-25",
-      "country": "XW",
       "artist-credit": [
         {
-          "name": "Romain Garcia",
           "artist": {
-            "sort-name": "Garcia, Romain",
             "disambiguation": "",
-            "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
             "type": "Person",
+            "name": "Romain Garcia",
+            "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
             "country": "FR",
-            "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-            "name": "Romain Garcia"
+            "sort-name": "Garcia, Romain",
+            "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857"
           },
+          "name": "Romain Garcia",
           "joinphrase": ""
         }
       ],
+      "country": "XW",
+      "status": "Official",
       "release-events": [
         {
           "area": {
-            "sort-name": "[Worldwide]",
-            "disambiguation": "",
-            "type-id": null,
-            "type": null,
-            "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
             "iso-3166-1-codes": [
               "XW"
             ],
-            "name": "[Worldwide]"
+            "name": "[Worldwide]",
+            "disambiguation": "",
+            "type": null,
+            "type-id": null,
+            "sort-name": "[Worldwide]",
+            "id": "525d4e18-3d00-31b9-a58b-a146a916de8f"
           },
           "date": "2022-02-25"
         }
       ],
-      "quality": "normal",
+      "barcode": null,
+      "disambiguation": "",
       "id": "8cc18a30-cac7-4794-bcac-24feebdcda17",
-      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-      "title": "Before You Go",
-      "disambiguation": ""
+      "date": "2022-02-25",
+      "packaging": "None",
+      "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+      },
+      "quality": "normal",
+      "title": "Before You Go"
     }
   ],
   "video": false,
+  "disambiguation": "",
+  "id": "23ee7d96-2bfa-4af1-b583-ae6a2e6cc64e",
   "artist-credit": [
     {
-      "joinphrase": "",
       "artist": {
-        "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
         "name": "Romain Garcia",
+        "country": "FR",
+        "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+        "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
         "sort-name": "Garcia, Romain",
         "disambiguation": "",
-        "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-        "country": "FR",
         "type": "Person"
       },
-      "name": "Romain Garcia"
+      "name": "Romain Garcia",
+      "joinphrase": ""
     }
   ],
-  "id": "23ee7d96-2bfa-4af1-b583-ae6a2e6cc64e",
+  "first-release-date": "2022-02-25",
   "length": 241000,
   "title": "Before You Go"
 }
