@@ -3,6 +3,9 @@
 from mmc.services.deezer.lookups import lookup_album as deezer_lookup_album
 from mmc.services.deezer.lookups import lookup_artist as deezer_lookup_artist
 from mmc.services.deezer.lookups import lookup_track as deezer_lookup_track
+from mmc.services.last_fm.lookups import lookup_album as last_fm_lookup_album
+from mmc.services.last_fm.lookups import lookup_artist as last_fm_lookup_artist
+from mmc.services.last_fm.lookups import lookup_track as last_fm_lookup_track
 from mmc.services.music_brainz.lookups import lookup_album as music_brainz_lookup_album
 from mmc.services.music_brainz.lookups import (
     lookup_artist as music_brainz_lookup_artist,
@@ -19,6 +22,9 @@ __all__ = [
     "deezer_lookup_artist",
     "deezer_lookup_track",
     "delete_cache",
+    "last_fm_lookup_album",
+    "last_fm_lookup_artist",
+    "last_fm_lookup_track",
     "music_brainz_lookup_album",
     "music_brainz_lookup_artist",
     "music_brainz_lookup_track",
