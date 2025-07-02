@@ -40,5 +40,22 @@
                 "aba439cf-cc1a-412e-bb46-a5e57a24d880",
                 "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857"
             ]
+        },
+        "last_fm": {
+            "track": [
+                [
+                    "Starlings",
+                    "NTO"
+                ]
+            ],
+            "album": [
+                [
+                    "Starlings - Single",
+                    "NTO"
+                ]
+            ],
+            "artist": [
+                "NTO"
+            ]
         }
     }
