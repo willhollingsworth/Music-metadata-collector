@@ -33,11 +33,3 @@ def request_lookup(
         raise TypeError(request_type)
     full_url = DEEZER_API_URL + request_url + id_number
     return download_json(full_url, SERVCIE_NAME, request_type, id_number)
-
-
-def request_search(
-    input_string: str,
-) -> dict[str, Any] | list[Any]:
-    """Download data from the Deezer API."""
-    search_url = DEEZER_API_URL + "search?q=" + str(input_string)
-    return download_json(search_url)
