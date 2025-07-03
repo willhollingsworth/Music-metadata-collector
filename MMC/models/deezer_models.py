@@ -32,17 +32,18 @@ class Album(BaseModel):
     artist_name: str = field(metadata={"key": "artist.name"})
     artist_id: int = field(metadata={"key": "artist.id"})
     track_count: int = field(metadata={"key": "nb_tracks"})
-    fans: int = field(metadata={"key": "fans"})
-    release_date: str = field(metadata={"key": "release_date"})
+    fans: int = field(metadata={"key": "fans", "required": False})
+    release_date: str = field(metadata={"key": "release_date", "required": False})
     link: str = field(metadata={"key": "link"})
-    genres: list[Any] = field(metadata={"key": "genres.data"})
+    genres: list[Any] = field(metadata={"key": "genres.data", "required": False})
 
     def __post_init__(self) -> None:
         """Post-initialization to handle genres."""
-        proceed_genres: list[str] = [
-            cast("str", genre.get("name", "")) for genre in self.genres
-        ]
-        self.genres = proceed_genres
+        if self.genres:
+            proceed_genres: list[str] = [
+                cast("str", genre.get("name", "")) for genre in self.genres
+            ]
+            self.genres = proceed_genres
 
 
 @dataclass
