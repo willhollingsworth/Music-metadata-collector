@@ -1,4 +1,4 @@
-"""HTTP client utilities for downloading data"""
+"""HTTP client utilities for downloading data."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ def download_json(
     type_name: str,
     args: str,
     headers: dict[str, str] | None = None,
-) -> dict[str, Any]:
+) -> dict[str, Any] | list[dict[str, Any]]:
     """Download data from a URL and cache it locally.
 
     Raises:
@@ -40,13 +40,15 @@ def download_json(
     return cache_data
 
 
+"""
+
 def download_html(
     url: str,
     headers: dict[str, str] | None = None,
     overwrite: bool = False,
     debug: bool = False,
 ) -> str:
-    """Download HTML data from a URL and cache it locally."""
+    #Download HTML data from a URL and cache it locally.
     file_type = "html"
     if headers is None:
         headers = {}
@@ -69,3 +71,4 @@ def download_html(
 
     write_cache(url, file_type, html_content)
     return html_content
+"""
