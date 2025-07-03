@@ -17,5 +17,6 @@ def find_first_matching_dict(
     for result in search_list:
         if result[target_key] == taget_value:
             return result
-    msg = f"unable to find a keypair with {target_key}={taget_value} in the search results"
+    unique_values = {result[target_key] for result in search_list}
+    msg = f"No keypair {target_key}={taget_value}, only found {unique_values} "
     raise KeyError(msg)
