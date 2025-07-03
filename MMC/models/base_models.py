@@ -18,12 +18,18 @@ class BaseModel:
         """
         field_values = {}
         for data_field in cls.__dataclass_fields__:
+            required = cls.__dataclass_fields__[data_field].metadata.get(
+                "required",
+                True,
+            )
             dict_key = cls.__dataclass_fields__[data_field].metadata["key"]
             try:
                 dict_value = get_nested(data, dict_key)
             except KeyError as err:
-                msg = f"Key '{dict_key}' not found in data for field '{data_field}'. "
-                raise KeyError(msg) from err
+                if required:
+                    msg = f"Key '{dict_key}' is required but missing '{data_field}'. "
+                    raise KeyError(msg) from err
+                dict_value = None
             field_values[data_field] = dict_value
         return cls(**field_values)
 
