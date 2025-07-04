@@ -1,219 +1,205 @@
 {
+  "cover-art-archive": {
+    "count": 1,
+    "darkened": false,
+    "front": true,
+    "artwork": true,
+    "back": false
+  },
+  "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
   "status": "Official",
   "barcode": null,
   "release-events": [
     {
       "area": {
-        "sort-name": "France",
-        "id": "08310658-51eb-3801-80de-5a0739207115",
         "type-id": null,
-        "type": null,
+        "id": "08310658-51eb-3801-80de-5a0739207115",
+        "sort-name": "France",
+        "name": "France",
         "iso-3166-1-codes": [
           "FR"
         ],
-        "name": "France",
-        "disambiguation": ""
+        "disambiguation": "",
+        "type": null
       },
       "date": "2022-03-25"
     }
   ],
   "asin": null,
   "country": "FR",
+  "packaging-id": null,
   "artist-credit": [
     {
       "artist": {
         "type": "Person",
         "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-        "name": "Teho",
-        "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
         "sort-name": "Teho",
+        "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
         "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-        "country": "FR"
+        "country": "FR",
+        "name": "Teho"
       },
       "name": "Teho",
       "joinphrase": ""
     }
   ],
-  "packaging-id": null,
-  "cover-art-archive": {
-    "back": false,
-    "artwork": true,
-    "front": true,
-    "darkened": false,
-    "count": 1
-  },
-  "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-  "title": "Infinity",
-  "packaging": null,
-  "date": "2022-03-25",
-  "quality": "normal",
-  "text-representation": {
-    "script": null,
-    "language": null
-  },
-  "id": "e73e0fa9-97d6-4c38-97a0-2d60240f3a32",
   "disambiguation": "",
   "media": [
     {
-      "track-offset": 0,
-      "id": "1afe846e-29eb-3464-a8dc-891e48ab8475",
-      "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-      "title": "",
-      "track-count": 11,
       "position": 1,
       "tracks": [
         {
+          "position": 1,
           "recording": {
             "disambiguation": "",
             "video": false,
             "title": "Aurora",
             "length": 421213,
-            "id": "67caeda7-e9a5-4e5a-828e-8d9ae46e9d21",
+            "first-release-date": "2022-03-25",
             "artist-credit": [
               {
                 "artist": {
                   "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
                   "type": "Person",
+                  "name": "Teho",
                   "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
                   "country": "FR",
                   "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+                  "sort-name": "Teho"
+                },
+                "joinphrase": "",
+                "name": "Teho"
+              }
+            ],
+            "id": "67caeda7-e9a5-4e5a-828e-8d9ae46e9d21"
+          },
+          "artist-credit": [
+            {
+              "joinphrase": "",
+              "name": "Teho",
+              "artist": {
+                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+                "type": "Person",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "country": "FR",
+                "sort-name": "Teho",
+                "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+                "name": "Teho"
+              }
+            }
+          ],
+          "number": "1",
+          "id": "f3e493b3-ceb6-4559-8064-58024a400104",
+          "length": 421213,
+          "title": "Aurora"
+        },
+        {
+          "position": 2,
+          "recording": {
+            "id": "dda24014-a791-4e82-b256-32b2b32d2064",
+            "first-release-date": "2022-03-25",
+            "artist-credit": [
+              {
+                "artist": {
+                  "country": "FR",
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
                   "sort-name": "Teho",
-                  "name": "Teho"
+                  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+                  "name": "Teho",
+                  "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+                  "type": "Person"
                 },
                 "name": "Teho",
                 "joinphrase": ""
               }
             ],
-            "first-release-date": "2022-03-25"
-          },
-          "position": 1,
-          "title": "Aurora",
-          "length": 421213,
-          "id": "f3e493b3-ceb6-4559-8064-58024a400104",
-          "artist-credit": [
-            {
-              "artist": {
-                "type": "Person",
-                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-                "sort-name": "Teho",
-                "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "country": "FR",
-                "name": "Teho"
-              },
-              "joinphrase": "",
-              "name": "Teho"
-            }
-          ],
-          "number": "1"
-        },
-        {
-          "recording": {
-            "artist-credit": [
-              {
-                "artist": {
-                  "name": "Teho",
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "country": "FR",
-                  "sort-name": "Teho",
-                  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-                  "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-                  "type": "Person"
-                },
-                "joinphrase": "",
-                "name": "Teho"
-              }
-            ],
-            "first-release-date": "2022-03-25",
-            "id": "dda24014-a791-4e82-b256-32b2b32d2064",
             "length": 273000,
             "title": "At Any Cost",
             "video": false,
             "disambiguation": ""
           },
-          "position": 2,
-          "title": "At Any Cost",
-          "length": 273000,
           "id": "7745b669-e722-4ee5-9758-0d1c1257ff5e",
           "number": "2",
           "artist-credit": [
             {
+              "name": "Teho",
+              "joinphrase": "",
               "artist": {
-                "type": "Person",
-                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+                "name": "Teho",
                 "sort-name": "Teho",
                 "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
                 "country": "FR",
                 "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "name": "Teho"
-              },
-              "joinphrase": "",
-              "name": "Teho"
+                "type": "Person",
+                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France."
+              }
             }
-          ]
+          ],
+          "length": 273000,
+          "title": "At Any Cost"
         },
         {
-          "position": 3,
           "recording": {
-            "disambiguation": "",
             "video": false,
+            "disambiguation": "",
             "title": "Millie",
-            "length": 355746,
+            "first-release-date": "2022-03-25",
             "artist-credit": [
               {
                 "joinphrase": "",
                 "name": "Teho",
                 "artist": {
-                  "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-                  "type": "Person",
                   "country": "FR",
                   "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "sort-name": "Teho",
-                  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-                  "name": "Teho"
-                }
-              }
-            ],
-            "first-release-date": "2022-03-25",
-            "id": "71b72fb4-acbc-4c4d-9c03-4ec4aba198ad"
-          },
-          "number": "3",
-          "artist-credit": [
-            {
-              "artist": {
-                "sort-name": "Teho",
-                "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-                "country": "FR",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "name": "Teho",
-                "type": "Person",
-                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France."
-              },
-              "name": "Teho",
-              "joinphrase": ""
-            }
-          ],
-          "id": "0deadec4-3360-4b3b-9f65-5abce9582f36",
-          "length": 355746,
-          "title": "Millie"
-        },
-        {
-          "recording": {
-            "video": false,
-            "disambiguation": "",
-            "title": "Stern",
-            "id": "fdf70e97-4645-4d03-8c65-91660a0b4be9",
-            "first-release-date": "2022-03-25",
-            "artist-credit": [
-              {
-                "artist": {
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "country": "FR",
                   "sort-name": "Teho",
                   "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
                   "name": "Teho",
                   "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
                   "type": "Person"
+                }
+              }
+            ],
+            "id": "71b72fb4-acbc-4c4d-9c03-4ec4aba198ad",
+            "length": 355746
+          },
+          "position": 3,
+          "length": 355746,
+          "number": "3",
+          "artist-credit": [
+            {
+              "artist": {
+                "country": "FR",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+                "sort-name": "Teho",
+                "name": "Teho",
+                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+                "type": "Person"
+              },
+              "joinphrase": "",
+              "name": "Teho"
+            }
+          ],
+          "id": "0deadec4-3360-4b3b-9f65-5abce9582f36",
+          "title": "Millie"
+        },
+        {
+          "recording": {
+            "disambiguation": "",
+            "video": false,
+            "length": 379360,
+            "id": "fdf70e97-4645-4d03-8c65-91660a0b4be9",
+            "first-release-date": "2022-03-25",
+            "artist-credit": [
+              {
+                "artist": {
+                  "name": "Teho",
+                  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+                  "sort-name": "Teho",
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                  "country": "FR",
+                  "type": "Person",
+                  "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France."
                 },
                 "name": "Teho",
                 "joinphrase": " & "
@@ -222,8 +208,8 @@
                 "artist": {
                   "disambiguation": "Antoine Rigail",
                   "type": "Person",
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
                   "country": null,
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
                   "sort-name": "Ceas",
                   "id": "671d8f99-1eba-4c31-b727-e4a93513a97e",
                   "name": "Ceas"
@@ -232,13 +218,33 @@
                 "name": "Ceas"
               }
             ],
-            "length": 379360
+            "title": "Stern"
           },
           "position": 4,
-          "title": "Stern",
           "length": 379360,
-          "id": "4bc571dc-7b00-4f35-b9ff-7229b9eaaab3",
+          "artist-credit": [
+            {
+              "joinphrase": "",
+              "name": "Teho",
+              "artist": {
+                "type": "Person",
+                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+                "sort-name": "Teho",
+                "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+                "country": "FR",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "name": "Teho"
+              }
+            }
+          ],
           "number": "4",
+          "id": "4bc571dc-7b00-4f35-b9ff-7229b9eaaab3",
+          "title": "Stern"
+        },
+        {
+          "length": 324000,
+          "id": "7eebf6fc-2061-4a6d-8483-ddeeddf27407",
+          "number": "5",
           "artist-credit": [
             {
               "artist": {
@@ -250,129 +256,126 @@
                 "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
                 "country": "FR"
               },
-              "joinphrase": "",
-              "name": "Teho"
-            }
-          ]
-        },
-        {
-          "length": 324000,
-          "artist-credit": [
-            {
               "name": "Teho",
-              "joinphrase": "",
-              "artist": {
-                "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-                "sort-name": "Teho",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "country": "FR",
-                "name": "Teho",
-                "type": "Person",
-                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France."
-              }
+              "joinphrase": ""
             }
           ],
-          "number": "5",
-          "id": "7eebf6fc-2061-4a6d-8483-ddeeddf27407",
           "title": "Beyond",
           "recording": {
-            "video": false,
             "disambiguation": "",
-            "title": "Beyond",
+            "video": false,
+            "length": 324000,
             "first-release-date": "2022-03-25",
             "artist-credit": [
               {
-                "name": "Teho",
-                "joinphrase": " & ",
                 "artist": {
-                  "name": "Teho",
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "country": "FR",
-                  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-                  "sort-name": "Teho",
+                  "type": "Person",
                   "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-                  "type": "Person"
-                }
+                  "name": "Teho",
+                  "sort-name": "Teho",
+                  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                  "country": "FR"
+                },
+                "joinphrase": " & ",
+                "name": "Teho"
               },
               {
                 "artist": {
                   "type": "Person",
                   "disambiguation": "Aloys Almon",
-                  "name": "Aalson",
-                  "sort-name": "Aalson",
                   "id": "c8a43b08-9a5f-4177-891f-85486554dbc1",
+                  "sort-name": "Aalson",
                   "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "country": null
+                  "country": null,
+                  "name": "Aalson"
                 },
                 "name": "Aalson",
                 "joinphrase": ""
               }
             ],
             "id": "eb2ef387-df87-4bcf-9af8-87b206b11996",
-            "length": 324000
+            "title": "Beyond"
           },
           "position": 5
         },
         {
           "title": "Unlocked",
-          "id": "b11a19fe-8002-4eba-9daf-e18375624ad0",
-          "number": "6",
           "artist-credit": [
             {
               "artist": {
-                "type": "Person",
-                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
                 "name": "Teho",
-                "sort-name": "Teho",
-                "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
                 "country": "FR",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df"
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+                "sort-name": "Teho",
+                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+                "type": "Person"
               },
-              "name": "Teho",
-              "joinphrase": ""
+              "joinphrase": "",
+              "name": "Teho"
             }
           ],
+          "number": "6",
+          "id": "b11a19fe-8002-4eba-9daf-e18375624ad0",
           "length": 424973,
           "position": 6,
           "recording": {
-            "video": false,
-            "disambiguation": "",
-            "title": "Unlocked",
+            "length": 424973,
+            "first-release-date": "2022-03-25",
             "artist-credit": [
               {
+                "joinphrase": "",
+                "name": "Teho",
                 "artist": {
-                  "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-                  "type": "Person",
-                  "name": "Teho",
+                  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+                  "sort-name": "Teho",
                   "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
                   "country": "FR",
-                  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-                  "sort-name": "Teho"
-                },
-                "joinphrase": "",
-                "name": "Teho"
+                  "name": "Teho",
+                  "type": "Person",
+                  "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France."
+                }
               }
             ],
-            "first-release-date": "2022-03-25",
             "id": "ac4070ff-2191-415b-9532-68c7dd2f9c3f",
-            "length": 424973
+            "title": "Unlocked",
+            "disambiguation": "",
+            "video": false
           }
         },
         {
-          "position": 7,
+          "length": 333506,
+          "id": "4a11e843-77e9-471c-b766-25243a1caff8",
+          "number": "7",
+          "artist-credit": [
+            {
+              "name": "Teho",
+              "joinphrase": "",
+              "artist": {
+                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+                "type": "Person",
+                "name": "Teho",
+                "country": "FR",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "sort-name": "Teho",
+                "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880"
+              }
+            }
+          ],
+          "title": "Fury",
           "recording": {
-            "title": "Fury",
-            "first-release-date": "2022-03-25",
+            "length": 333506,
             "artist-credit": [
               {
                 "joinphrase": " & ",
                 "name": "Teho",
                 "artist": {
+                  "name": "Teho",
                   "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
                   "country": "FR",
                   "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
                   "sort-name": "Teho",
-                  "name": "Teho",
                   "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
                   "type": "Person"
                 }
@@ -381,53 +384,35 @@
                 "joinphrase": "",
                 "name": "Joris Delacroix",
                 "artist": {
-                  "disambiguation": "French house DJ & producer",
                   "type": "Person",
-                  "name": "Joris Delacroix",
+                  "disambiguation": "French house DJ & producer",
+                  "id": "f2c454ec-69a2-49a7-a79c-eaabef25ba44",
+                  "sort-name": "Delacroix, Joris",
                   "country": "FR",
                   "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "id": "f2c454ec-69a2-49a7-a79c-eaabef25ba44",
-                  "sort-name": "Delacroix, Joris"
+                  "name": "Joris Delacroix"
                 }
               }
             ],
+            "first-release-date": "2022-03-25",
             "id": "2c898955-4305-413d-8548-64ee75aaf06f",
-            "length": 333506,
-            "video": false,
-            "disambiguation": ""
+            "title": "Fury",
+            "disambiguation": "",
+            "video": false
           },
-          "title": "Fury",
-          "artist-credit": [
-            {
-              "artist": {
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "country": "FR",
-                "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-                "sort-name": "Teho",
-                "name": "Teho",
-                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-                "type": "Person"
-              },
-              "name": "Teho",
-              "joinphrase": ""
-            }
-          ],
-          "number": "7",
-          "id": "4a11e843-77e9-471c-b766-25243a1caff8",
-          "length": 333506
+          "position": 7
         },
         {
-          "title": "Dark Matter",
-          "id": "2ef4bd37-5db9-4474-a37c-decc71860185",
+          "length": 323226,
           "number": "8",
           "artist-credit": [
             {
               "artist": {
-                "name": "Teho",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
                 "country": "FR",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
                 "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
                 "sort-name": "Teho",
+                "name": "Teho",
                 "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
                 "type": "Person"
               },
@@ -435,182 +420,197 @@
               "joinphrase": ""
             }
           ],
-          "length": 323226,
-          "position": 8,
+          "id": "2ef4bd37-5db9-4474-a37c-decc71860185",
+          "title": "Dark Matter",
           "recording": {
-            "title": "Dark Matter",
+            "disambiguation": "",
+            "video": false,
+            "length": 323226,
             "id": "2bf656ca-0da6-4a6c-80ce-6858d5b9d94f",
-            "first-release-date": "2022-03-25",
             "artist-credit": [
               {
                 "artist": {
                   "type": "Person",
                   "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+                  "name": "Teho",
                   "sort-name": "Teho",
                   "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
                   "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "country": "FR",
-                  "name": "Teho"
+                  "country": "FR"
                 },
                 "joinphrase": "",
                 "name": "Teho"
               }
             ],
-            "length": 323226,
-            "video": false,
-            "disambiguation": ""
-          }
+            "first-release-date": "2022-03-25",
+            "title": "Dark Matter"
+          },
+          "position": 8
         },
         {
-          "title": "Mecha",
-          "length": 388973,
-          "artist-credit": [
-            {
-              "name": "Teho",
-              "joinphrase": "",
-              "artist": {
-                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-                "type": "Person",
-                "name": "Teho",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "country": "FR",
-                "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-                "sort-name": "Teho"
-              }
-            }
-          ],
-          "number": "9",
-          "id": "330fd24e-84af-4f1a-8760-5506f3348f7b",
+          "position": 9,
           "recording": {
+            "video": false,
+            "disambiguation": "",
             "title": "Mecha",
-            "length": 388973,
             "id": "fbb2c10f-5ccd-46d0-9543-8c6d48ddf444",
             "first-release-date": "2022-03-25",
             "artist-credit": [
               {
+                "name": "Teho",
+                "joinphrase": "",
                 "artist": {
-                  "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
                   "type": "Person",
-                  "name": "Teho",
+                  "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+                  "sort-name": "Teho",
+                  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
                   "country": "FR",
                   "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-                  "sort-name": "Teho"
-                },
-                "joinphrase": "",
-                "name": "Teho"
+                  "name": "Teho"
+                }
               }
             ],
-            "disambiguation": "",
-            "video": false
+            "length": 388973
           },
-          "position": 9
-        },
-        {
-          "length": 388973,
+          "title": "Mecha",
+          "number": "9",
           "artist-credit": [
             {
-              "joinphrase": "",
-              "name": "Teho",
               "artist": {
-                "type": "Person",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "country": "FR",
+                "sort-name": "Teho",
+                "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+                "name": "Teho",
                 "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+                "type": "Person"
+              },
+              "joinphrase": "",
+              "name": "Teho"
+            }
+          ],
+          "id": "330fd24e-84af-4f1a-8760-5506f3348f7b",
+          "length": 388973
+        },
+        {
+          "title": "Odyssey",
+          "id": "28729108-a7ef-4001-99ac-006ee7ee151d",
+          "number": "10",
+          "artist-credit": [
+            {
+              "artist": {
                 "name": "Teho",
                 "sort-name": "Teho",
                 "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
                 "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "country": "FR"
-              }
+                "country": "FR",
+                "type": "Person",
+                "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France."
+              },
+              "joinphrase": "",
+              "name": "Teho"
             }
           ],
-          "number": "10",
-          "id": "28729108-a7ef-4001-99ac-006ee7ee151d",
-          "title": "Odyssey",
+          "length": 388973,
+          "position": 10,
           "recording": {
-            "length": 388973,
+            "video": false,
+            "disambiguation": "",
+            "title": "Odyssey",
             "first-release-date": "2022-03-25",
             "artist-credit": [
               {
                 "artist": {
                   "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
                   "type": "Person",
-                  "name": "Teho",
                   "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
                   "country": "FR",
-                  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-                  "sort-name": "Teho"
-                },
-                "joinphrase": "",
-                "name": "Teho"
-              }
-            ],
-            "id": "f0c5a9b5-4931-4e38-9172-075183d3941c",
-            "title": "Odyssey",
-            "disambiguation": "",
-            "video": false
-          },
-          "position": 10
-        },
-        {
-          "position": 11,
-          "recording": {
-            "disambiguation": "",
-            "video": false,
-            "length": 264226,
-            "artist-credit": [
-              {
-                "name": "Teho",
-                "joinphrase": " & ",
-                "artist": {
-                  "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-                  "type": "Person",
-                  "country": "FR",
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
                   "sort-name": "Teho",
                   "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
                   "name": "Teho"
-                }
+                },
+                "name": "Teho",
+                "joinphrase": ""
+              }
+            ],
+            "id": "f0c5a9b5-4931-4e38-9172-075183d3941c",
+            "length": 388973
+          }
+        },
+        {
+          "recording": {
+            "length": 264226,
+            "id": "07011610-83b9-434a-bdee-2b5682a47177",
+            "artist-credit": [
+              {
+                "artist": {
+                  "type": "Person",
+                  "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+                  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+                  "sort-name": "Teho",
+                  "country": "FR",
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                  "name": "Teho"
+                },
+                "name": "Teho",
+                "joinphrase": " & "
               },
               {
                 "name": "Mashk",
                 "joinphrase": "",
                 "artist": {
-                  "id": "9c8465cb-7778-4f51-a483-186ae66e37de",
-                  "sort-name": "Mashk",
-                  "country": null,
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
                   "name": "Mashk",
-                  "type": "Person",
-                  "disambiguation": "Harold Grand-Jacquot"
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                  "country": null,
+                  "sort-name": "Mashk",
+                  "id": "9c8465cb-7778-4f51-a483-186ae66e37de",
+                  "disambiguation": "Harold Grand-Jacquot",
+                  "type": "Person"
                 }
               }
             ],
             "first-release-date": "2022-03-25",
-            "id": "07011610-83b9-434a-bdee-2b5682a47177",
-            "title": "Back Home"
+            "title": "Back Home",
+            "disambiguation": "",
+            "video": false
           },
+          "position": 11,
+          "length": 264226,
+          "id": "9e73bafc-80d7-4d93-9dac-889f111757ca",
+          "number": "11",
           "artist-credit": [
             {
               "artist": {
                 "type": "Person",
                 "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-                "sort-name": "Teho",
+                "name": "Teho",
                 "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+                "sort-name": "Teho",
                 "country": "FR",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "name": "Teho"
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df"
               },
               "name": "Teho",
               "joinphrase": ""
             }
           ],
-          "number": "11",
-          "id": "9e73bafc-80d7-4d93-9dac-889f111757ca",
-          "length": 264226,
           "title": "Back Home"
         }
       ],
-      "format": "CD"
+      "format": "CD",
+      "track-offset": 0,
+      "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+      "id": "1afe846e-29eb-3464-a8dc-891e48ab8475",
+      "title": "",
+      "track-count": 11
     }
-  ]
+  ],
+  "title": "Infinity",
+  "packaging": null,
+  "date": "2022-03-25",
+  "text-representation": {
+    "language": null,
+    "script": null
+  },
+  "quality": "normal",
+  "id": "e73e0fa9-97d6-4c38-97a0-2d60240f3a32"
 }

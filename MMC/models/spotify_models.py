@@ -32,6 +32,7 @@ class SpotifyAlbum(BaseModel):
     release_date: str = field(metadata={"key": "release_date"})
     album_type: str = field(metadata={"key": "album_type"})
     track_count: int = field(metadata={"key": "tracks.total"})
+    tracks: list[SpotifyTrack] = field(default_factory=list)
 
 
 @dataclass
@@ -42,3 +43,4 @@ class SpotifyArtist(BaseModel):
     artist_id: int = field(metadata={"key": "id"})
     followers: int = field(metadata={"key": "followers.total"})
     popularity: int = field(metadata={"key": "popularity"})
+    albums: list[SpotifyAlbum] = field(default_factory=list)

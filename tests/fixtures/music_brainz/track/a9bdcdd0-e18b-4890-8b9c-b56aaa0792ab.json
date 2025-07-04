@@ -1,134 +1,134 @@
 {
+  "title": "Anything",
+  "length": 187333,
+  "id": "a9bdcdd0-e18b-4890-8b9c-b56aaa0792ab",
+  "first-release-date": "2020-02-21",
   "artist-credit": [
     {
-      "name": "Teho",
       "artist": {
-        "sort-name": "Teho",
-        "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-        "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
         "name": "Teho",
+        "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
         "country": "FR",
-        "type": "Person",
-        "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880"
+        "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+        "sort-name": "Teho",
+        "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+        "type": "Person"
       },
+      "name": "Teho",
       "joinphrase": " feat. "
     },
     {
+      "name": "Carott",
       "joinphrase": "",
       "artist": {
-        "sort-name": "Carott",
-        "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
         "disambiguation": "Mathilde Gloumeaud",
-        "name": "Carott",
-        "id": "b35a6f21-8bfb-4228-a8bc-e7f7026cf43f",
         "type": "Person",
-        "country": null
-      },
-      "name": "Carott"
+        "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+        "country": null,
+        "id": "b35a6f21-8bfb-4228-a8bc-e7f7026cf43f",
+        "sort-name": "Carott",
+        "name": "Carott"
+      }
     }
   ],
-  "length": 187333,
+  "disambiguation": "",
+  "video": false,
   "releases": [
     {
-      "country": "FR",
+      "quality": "normal",
       "text-representation": {
-        "language": null,
-        "script": null
+        "script": null,
+        "language": null
       },
-      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-      "barcode": "4058765530528",
-      "disambiguation": "",
-      "title": "Polytone",
-      "status": "Official",
+      "packaging": "Digipak",
+      "date": "2020-02-21",
       "id": "c4eff4ec-4601-4220-93ab-ade1a95746d9",
+      "title": "Polytone",
+      "disambiguation": "",
+      "country": "FR",
+      "packaging-id": "8f931351-d2e2-310f-afc6-37b89ddba246",
+      "artist-credit": [
+        {
+          "artist": {
+            "country": "FR",
+            "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+            "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+            "sort-name": "Teho",
+            "name": "Teho",
+            "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+            "type": "Person"
+          },
+          "joinphrase": "",
+          "name": "Teho"
+        }
+      ],
+      "barcode": "4058765530528",
       "release-events": [
         {
           "date": "2020-02-21",
           "area": {
+            "type": null,
+            "name": "France",
             "iso-3166-1-codes": [
               "FR"
             ],
-            "name": "France",
-            "type": null,
+            "disambiguation": "",
             "id": "08310658-51eb-3801-80de-5a0739207115",
             "sort-name": "France",
-            "type-id": null,
-            "disambiguation": ""
+            "type-id": null
           }
         }
       ],
-      "artist-credit": [
-        {
-          "joinphrase": "",
-          "name": "Teho",
-          "artist": {
-            "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-            "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-            "sort-name": "Teho",
-            "type": "Person",
-            "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-            "country": "FR",
-            "name": "Teho"
-          }
-        }
-      ],
-      "packaging-id": "8f931351-d2e2-310f-afc6-37b89ddba246",
-      "quality": "normal",
-      "date": "2020-02-21",
-      "packaging": "Digipak"
+      "status": "Official",
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe"
     },
     {
+      "barcode": null,
+      "release-events": [
+        {
+          "area": {
+            "name": "France",
+            "iso-3166-1-codes": [
+              "FR"
+            ],
+            "disambiguation": "",
+            "type": null,
+            "type-id": null,
+            "id": "08310658-51eb-3801-80de-5a0739207115",
+            "sort-name": "France"
+          },
+          "date": "2020-02-21"
+        }
+      ],
+      "status": "Official",
+      "country": "FR",
+      "artist-credit": [
+        {
+          "artist": {
+            "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+            "type": "Person",
+            "name": "Teho",
+            "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+            "country": "FR",
+            "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+            "sort-name": "Teho"
+          },
+          "joinphrase": "",
+          "name": "Teho"
+        }
+      ],
+      "packaging-id": null,
+      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+      "title": "Polytone",
+      "text-representation": {
+        "language": null,
+        "script": null
+      },
+      "quality": "normal",
       "date": "2020-02-21",
       "packaging": null,
       "id": "3f9aa682-b39a-4f32-9b89-c810937e602d",
-      "quality": "normal",
-      "packaging-id": null,
-      "artist-credit": [
-        {
-          "joinphrase": "",
-          "name": "Teho",
-          "artist": {
-            "sort-name": "Teho",
-            "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-            "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-            "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-            "type": "Person",
-            "country": "FR",
-            "name": "Teho"
-          }
-        }
-      ],
-      "release-events": [
-        {
-          "date": "2020-02-21",
-          "area": {
-            "name": "France",
-            "type": null,
-            "id": "08310658-51eb-3801-80de-5a0739207115",
-            "iso-3166-1-codes": [
-              "FR"
-            ],
-            "type-id": null,
-            "disambiguation": "",
-            "sort-name": "France"
-          }
-        }
-      ],
-      "title": "Polytone",
-      "disambiguation": "",
-      "status": "Official",
-      "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-      "text-representation": {
-        "language": null,
-        "script": null
-      },
-      "country": "FR",
-      "barcode": null
+      "disambiguation": ""
     }
-  ],
-  "id": "a9bdcdd0-e18b-4890-8b9c-b56aaa0792ab",
-  "first-release-date": "2020-02-21",
-  "title": "Anything",
-  "disambiguation": "",
-  "video": false
+  ]
 }

@@ -1,28 +1,28 @@
 {
+  "isnis": [],
+  "type": "Person",
+  "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
+  "gender-id": "36d3d30a-839d-3eda-8cb3-29be4384e4a9",
+  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
+  "gender": "Male",
+  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+  "end-area": null,
+  "name": "Teho",
   "life-span": {
     "end": null,
     "ended": false,
     "begin": null
   },
   "area": {
-    "id": "c7ee402c-0137-4931-a72e-a262796c0d16",
-    "sort-name": "Montpellier",
-    "type-id": null,
-    "type": null,
     "disambiguation": "",
-    "name": "Montpellier"
+    "name": "Montpellier",
+    "type": null,
+    "type-id": null,
+    "id": "c7ee402c-0137-4931-a72e-a262796c0d16",
+    "sort-name": "Montpellier"
   },
   "sort-name": "Teho",
   "country": "FR",
-  "ipis": [],
   "begin-area": null,
-  "isnis": [],
-  "type": "Person",
-  "gender-id": "36d3d30a-839d-3eda-8cb3-29be4384e4a9",
-  "disambiguation": "Electronic Music Producer \"Theo Vicente\" from Montpellier, France.",
-  "id": "aba439cf-cc1a-412e-bb46-a5e57a24d880",
-  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-  "gender": "Male",
-  "end-area": null,
-  "name": "Teho"
+  "ipis": []
 }

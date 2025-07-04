@@ -13,12 +13,12 @@
           "name": "electronic"
         },
         {
-          "url": "https://www.last.fm/tag/techno",
-          "name": "techno"
-        },
-        {
           "url": "https://www.last.fm/tag/french",
           "name": "french"
+        },
+        {
+          "url": "https://www.last.fm/tag/techno",
+          "name": "techno"
         },
         {
           "url": "https://www.last.fm/tag/france",
@@ -77,7 +77,7 @@
             "fulltrack": "0",
             "#text": "0"
           },
-          "duration": 487,
+          "duration": 488,
           "url": "https://www.last.fm/music/NTO/Starlings+-+Single/Starlings+(Henry+Saiz+Remix)",
           "name": "Starlings (Henry Saiz Remix)",
           "@attr": {
@@ -109,7 +109,7 @@
       ]
     },
     "listeners": "29",
-    "playcount": "178",
+    "playcount": "185",
     "url": "https://www.last.fm/music/NTO/Starlings+-+Single"
   }
 }

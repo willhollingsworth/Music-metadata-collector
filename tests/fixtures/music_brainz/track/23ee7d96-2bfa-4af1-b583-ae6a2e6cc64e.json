@@ -1,73 +1,73 @@
 {
+  "id": "23ee7d96-2bfa-4af1-b583-ae6a2e6cc64e",
+  "title": "Before You Go",
+  "length": 241000,
+  "disambiguation": "",
+  "first-release-date": "2022-02-25",
   "releases": [
     {
+      "disambiguation": "",
+      "quality": "normal",
+      "title": "Before You Go",
+      "id": "8cc18a30-cac7-4794-bcac-24feebdcda17",
       "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-      "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
       "artist-credit": [
         {
+          "name": "Romain Garcia",
           "artist": {
-            "disambiguation": "",
             "type": "Person",
-            "name": "Romain Garcia",
-            "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
             "country": "FR",
+            "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+            "disambiguation": "",
             "sort-name": "Garcia, Romain",
+            "name": "Romain Garcia",
             "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857"
           },
-          "name": "Romain Garcia",
           "joinphrase": ""
         }
       ],
       "country": "XW",
-      "status": "Official",
       "release-events": [
         {
+          "date": "2022-02-25",
           "area": {
+            "disambiguation": "",
+            "sort-name": "[Worldwide]",
+            "type": null,
+            "type-id": null,
+            "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
             "iso-3166-1-codes": [
               "XW"
             ],
-            "name": "[Worldwide]",
-            "disambiguation": "",
-            "type": null,
-            "type-id": null,
-            "sort-name": "[Worldwide]",
-            "id": "525d4e18-3d00-31b9-a58b-a146a916de8f"
-          },
-          "date": "2022-02-25"
+            "name": "[Worldwide]"
+          }
         }
       ],
-      "barcode": null,
-      "disambiguation": "",
-      "id": "8cc18a30-cac7-4794-bcac-24feebdcda17",
-      "date": "2022-02-25",
       "packaging": "None",
+      "date": "2022-02-25",
+      "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
       "text-representation": {
         "language": "eng",
         "script": "Latn"
       },
-      "quality": "normal",
-      "title": "Before You Go"
+      "barcode": null,
+      "status": "Official"
     }
   ],
   "video": false,
-  "disambiguation": "",
-  "id": "23ee7d96-2bfa-4af1-b583-ae6a2e6cc64e",
   "artist-credit": [
     {
+      "name": "Romain Garcia",
+      "joinphrase": "",
       "artist": {
-        "name": "Romain Garcia",
-        "country": "FR",
-        "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-        "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
         "sort-name": "Garcia, Romain",
         "disambiguation": "",
-        "type": "Person"
-      },
-      "name": "Romain Garcia",
-      "joinphrase": ""
+        "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+        "type": "Person",
+        "country": "FR",
+        "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+        "name": "Romain Garcia"
+      }
     }
-  ],
-  "first-release-date": "2022-02-25",
-  "length": 241000,
-  "title": "Before You Go"
+  ]
 }

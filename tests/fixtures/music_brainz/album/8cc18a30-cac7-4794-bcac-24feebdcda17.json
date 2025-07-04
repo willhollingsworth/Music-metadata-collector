@@ -1,429 +1,429 @@
 {
-  "artist-credit": [
-    {
-      "name": "Romain Garcia",
-      "artist": {
-        "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-        "name": "Romain Garcia",
-        "sort-name": "Garcia, Romain",
-        "disambiguation": "",
-        "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-        "type": "Person",
-        "country": "FR"
-      },
-      "joinphrase": ""
-    }
-  ],
   "country": "XW",
   "asin": null,
+  "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
+  "artist-credit": [
+    {
+      "artist": {
+        "type": "Person",
+        "disambiguation": "",
+        "name": "Romain Garcia",
+        "sort-name": "Garcia, Romain",
+        "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+        "country": "FR",
+        "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df"
+      },
+      "joinphrase": "",
+      "name": "Romain Garcia"
+    }
+  ],
   "release-events": [
     {
-      "date": "2022-02-25",
       "area": {
         "sort-name": "[Worldwide]",
-        "disambiguation": "",
+        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
         "type-id": null,
         "type": null,
+        "name": "[Worldwide]",
         "iso-3166-1-codes": [
           "XW"
         ],
-        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
-        "name": "[Worldwide]"
-      }
+        "disambiguation": ""
+      },
+      "date": "2022-02-25"
     }
   ],
-  "packaging": "None",
-  "media": [
-    {
-      "track-offset": 0,
-      "tracks": [
-        {
-          "number": "1",
-          "recording": {
-            "disambiguation": "",
-            "first-release-date": "2022-02-25",
-            "video": false,
-            "artist-credit": [
-              {
-                "artist": {
-                  "sort-name": "Garcia, Romain",
-                  "disambiguation": "",
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "country": "FR",
-                  "type": "Person",
-                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                  "name": "Romain Garcia"
-                },
-                "joinphrase": "",
-                "name": "Romain Garcia"
-              }
-            ],
-            "id": "23ee7d96-2bfa-4af1-b583-ae6a2e6cc64e",
-            "title": "Before You Go",
-            "length": 241000
-          },
-          "artist-credit": [
-            {
-              "name": "Romain Garcia",
-              "joinphrase": "",
-              "artist": {
-                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                "name": "Romain Garcia",
-                "disambiguation": "",
-                "sort-name": "Garcia, Romain",
-                "type": "Person",
-                "country": "FR",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df"
-              }
-            }
-          ],
-          "id": "2669f5fd-8311-4f50-bf78-0b59cf992840",
-          "position": 1,
-          "title": "Before You Go",
-          "length": 241000
-        },
-        {
-          "number": "2",
-          "recording": {
-            "video": false,
-            "artist-credit": [
-              {
-                "joinphrase": "",
-                "artist": {
-                  "disambiguation": "",
-                  "sort-name": "Garcia, Romain",
-                  "country": "FR",
-                  "type": "Person",
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                  "name": "Romain Garcia"
-                },
-                "name": "Romain Garcia"
-              }
-            ],
-            "first-release-date": "2022-02-25",
-            "disambiguation": "",
-            "id": "57bb0257-b4e2-4f9d-9f13-89e9abaea6ce",
-            "length": 288000,
-            "title": "Lights"
-          },
-          "artist-credit": [
-            {
-              "artist": {
-                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                "name": "Romain Garcia",
-                "disambiguation": "",
-                "sort-name": "Garcia, Romain",
-                "type": "Person",
-                "country": "FR",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df"
-              },
-              "joinphrase": "",
-              "name": "Romain Garcia"
-            }
-          ],
-          "id": "da2b1cad-06fd-46be-b4e8-a028d1b0e2cd",
-          "position": 2,
-          "title": "Lights",
-          "length": 288000
-        },
-        {
-          "artist-credit": [
-            {
-              "name": "Romain Garcia",
-              "joinphrase": "",
-              "artist": {
-                "name": "Romain Garcia",
-                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                "country": "FR",
-                "type": "Person",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "disambiguation": "",
-                "sort-name": "Garcia, Romain"
-              }
-            }
-          ],
-          "number": "3",
-          "recording": {
-            "id": "b17e5a5c-4cd2-49a5-8bf3-0175f3681758",
-            "length": 206000,
-            "title": "Blue Parrot",
-            "first-release-date": "2022-02-25",
-            "disambiguation": "",
-            "video": false,
-            "artist-credit": [
-              {
-                "joinphrase": "",
-                "artist": {
-                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                  "name": "Romain Garcia",
-                  "disambiguation": "",
-                  "sort-name": "Garcia, Romain",
-                  "type": "Person",
-                  "country": "FR",
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df"
-                },
-                "name": "Romain Garcia"
-              }
-            ]
-          },
-          "title": "Blue Parrot",
-          "length": 206000,
-          "id": "e5ba93ff-0a10-4d57-9914-bde802a054f2",
-          "position": 3
-        },
-        {
-          "recording": {
-            "id": "d98e29b2-7509-4771-b402-6af1a5cd43d3",
-            "title": "Ona",
-            "length": 270000,
-            "disambiguation": "",
-            "first-release-date": "2022-02-25",
-            "video": false,
-            "artist-credit": [
-              {
-                "name": "Romain Garcia",
-                "artist": {
-                  "disambiguation": "",
-                  "sort-name": "Garcia, Romain",
-                  "country": "FR",
-                  "type": "Person",
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                  "name": "Romain Garcia"
-                },
-                "joinphrase": ""
-              }
-            ]
-          },
-          "number": "4",
-          "artist-credit": [
-            {
-              "name": "Romain Garcia",
-              "joinphrase": "",
-              "artist": {
-                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                "name": "Romain Garcia",
-                "sort-name": "Garcia, Romain",
-                "disambiguation": "",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "type": "Person",
-                "country": "FR"
-              }
-            }
-          ],
-          "position": 4,
-          "id": "3da8a618-d990-4568-a357-9fb189054f0f",
-          "length": 270000,
-          "title": "Ona"
-        },
-        {
-          "artist-credit": [
-            {
-              "name": "Romain Garcia",
-              "artist": {
-                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                "name": "Romain Garcia",
-                "sort-name": "Garcia, Romain",
-                "disambiguation": "",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "type": "Person",
-                "country": "FR"
-              },
-              "joinphrase": ""
-            }
-          ],
-          "recording": {
-            "first-release-date": "2022-02-25",
-            "disambiguation": "",
-            "video": false,
-            "artist-credit": [
-              {
-                "artist": {
-                  "type": "Person",
-                  "country": "FR",
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "disambiguation": "",
-                  "sort-name": "Garcia, Romain",
-                  "name": "Romain Garcia",
-                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857"
-                },
-                "joinphrase": "",
-                "name": "Romain Garcia"
-              }
-            ],
-            "id": "ac2db904-9c01-44b8-aba4-f7d1fc2a7b1c",
-            "length": 384000,
-            "title": "Before You Go (extended mix)"
-          },
-          "number": "5",
-          "length": 384000,
-          "title": "Before You Go (extended mix)",
-          "position": 5,
-          "id": "c259c496-ef07-4198-81a8-1b422b0d5242"
-        },
-        {
-          "id": "3fd894ab-1f6a-495a-8d84-b93caaea7e71",
-          "position": 6,
-          "title": "Lights (extended mix)",
-          "length": 521000,
-          "number": "6",
-          "recording": {
-            "artist-credit": [
-              {
-                "artist": {
-                  "disambiguation": "",
-                  "sort-name": "Garcia, Romain",
-                  "country": "FR",
-                  "type": "Person",
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                  "name": "Romain Garcia"
-                },
-                "joinphrase": "",
-                "name": "Romain Garcia"
-              }
-            ],
-            "video": false,
-            "disambiguation": "",
-            "first-release-date": "2022-02-25",
-            "title": "Lights (extended mix)",
-            "length": 521000,
-            "id": "be2f5a1a-a2d5-408e-9886-3173a6f7b159"
-          },
-          "artist-credit": [
-            {
-              "name": "Romain Garcia",
-              "artist": {
-                "country": "FR",
-                "type": "Person",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "disambiguation": "",
-                "sort-name": "Garcia, Romain",
-                "name": "Romain Garcia",
-                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857"
-              },
-              "joinphrase": ""
-            }
-          ]
-        },
-        {
-          "artist-credit": [
-            {
-              "artist": {
-                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                "name": "Romain Garcia",
-                "disambiguation": "",
-                "sort-name": "Garcia, Romain",
-                "country": "FR",
-                "type": "Person",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df"
-              },
-              "joinphrase": "",
-              "name": "Romain Garcia"
-            }
-          ],
-          "number": "7",
-          "recording": {
-            "video": false,
-            "artist-credit": [
-              {
-                "artist": {
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "type": "Person",
-                  "country": "FR",
-                  "sort-name": "Garcia, Romain",
-                  "disambiguation": "",
-                  "name": "Romain Garcia",
-                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857"
-                },
-                "joinphrase": "",
-                "name": "Romain Garcia"
-              }
-            ],
-            "first-release-date": "2022-02-25",
-            "disambiguation": "",
-            "id": "a5e3b42a-4623-4c55-b80f-f4ebd230e5f8",
-            "length": 366000,
-            "title": "Blue Parrot (extended mix)"
-          },
-          "title": "Blue Parrot (extended mix)",
-          "length": 366000,
-          "id": "771386f8-ee2b-42d8-8e96-6630802df160",
-          "position": 7
-        },
-        {
-          "title": "Ona (extended mix)",
-          "length": 508000,
-          "id": "3d73d9e4-584e-4b69-bfe0-67504ed45c97",
-          "position": 8,
-          "artist-credit": [
-            {
-              "name": "Romain Garcia",
-              "artist": {
-                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                "name": "Romain Garcia",
-                "sort-name": "Garcia, Romain",
-                "disambiguation": "",
-                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                "country": "FR",
-                "type": "Person"
-              },
-              "joinphrase": ""
-            }
-          ],
-          "number": "8",
-          "recording": {
-            "artist-credit": [
-              {
-                "name": "Romain Garcia",
-                "joinphrase": "",
-                "artist": {
-                  "name": "Romain Garcia",
-                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
-                  "country": "FR",
-                  "type": "Person",
-                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
-                  "disambiguation": "",
-                  "sort-name": "Garcia, Romain"
-                }
-              }
-            ],
-            "video": false,
-            "disambiguation": "",
-            "first-release-date": "2022-02-25",
-            "title": "Ona (extended mix)",
-            "length": 508000,
-            "id": "47b66991-ae4c-4584-9a88-b0e2fdc48d87"
-          }
-        }
-      ],
-      "track-count": 8,
-      "title": "",
-      "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-      "format": "Digital Media",
-      "position": 1,
-      "id": "c74a8e83-bd3a-3f74-bc09-cd27ec6820df"
-    }
-  ],
-  "date": "2022-02-25",
-  "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
   "barcode": null,
+  "status": "Official",
+  "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+  "cover-art-archive": {
+    "count": 1,
+    "darkened": false,
+    "front": true,
+    "artwork": true,
+    "back": false
+  },
   "text-representation": {
     "script": "Latn",
     "language": "eng"
   },
-  "status": "Official",
-  "cover-art-archive": {
-    "darkened": false,
-    "count": 1,
-    "artwork": true,
-    "front": true,
-    "back": false
-  },
-  "disambiguation": "",
   "quality": "normal",
+  "packaging": "None",
+  "date": "2022-02-25",
+  "id": "8cc18a30-cac7-4794-bcac-24feebdcda17",
   "title": "Before You Go",
-  "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-  "id": "8cc18a30-cac7-4794-bcac-24feebdcda17"
+  "media": [
+    {
+      "tracks": [
+        {
+          "title": "Before You Go",
+          "length": 241000,
+          "number": "1",
+          "artist-credit": [
+            {
+              "name": "Romain Garcia",
+              "joinphrase": "",
+              "artist": {
+                "name": "Romain Garcia",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "country": "FR",
+                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                "sort-name": "Garcia, Romain",
+                "disambiguation": "",
+                "type": "Person"
+              }
+            }
+          ],
+          "id": "2669f5fd-8311-4f50-bf78-0b59cf992840",
+          "recording": {
+            "disambiguation": "",
+            "video": false,
+            "length": 241000,
+            "id": "23ee7d96-2bfa-4af1-b583-ae6a2e6cc64e",
+            "first-release-date": "2022-02-25",
+            "artist-credit": [
+              {
+                "name": "Romain Garcia",
+                "joinphrase": "",
+                "artist": {
+                  "disambiguation": "",
+                  "type": "Person",
+                  "name": "Romain Garcia",
+                  "country": "FR",
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                  "sort-name": "Garcia, Romain",
+                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857"
+                }
+              }
+            ],
+            "title": "Before You Go"
+          },
+          "position": 1
+        },
+        {
+          "recording": {
+            "first-release-date": "2022-02-25",
+            "artist-credit": [
+              {
+                "name": "Romain Garcia",
+                "joinphrase": "",
+                "artist": {
+                  "name": "Romain Garcia",
+                  "sort-name": "Garcia, Romain",
+                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                  "country": "FR",
+                  "type": "Person",
+                  "disambiguation": ""
+                }
+              }
+            ],
+            "id": "57bb0257-b4e2-4f9d-9f13-89e9abaea6ce",
+            "length": 288000,
+            "title": "Lights",
+            "video": false,
+            "disambiguation": ""
+          },
+          "position": 2,
+          "title": "Lights",
+          "length": 288000,
+          "number": "2",
+          "artist-credit": [
+            {
+              "name": "Romain Garcia",
+              "joinphrase": "",
+              "artist": {
+                "name": "Romain Garcia",
+                "sort-name": "Garcia, Romain",
+                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                "country": "FR",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "type": "Person",
+                "disambiguation": ""
+              }
+            }
+          ],
+          "id": "da2b1cad-06fd-46be-b4e8-a028d1b0e2cd"
+        },
+        {
+          "position": 3,
+          "recording": {
+            "video": false,
+            "disambiguation": "",
+            "id": "b17e5a5c-4cd2-49a5-8bf3-0175f3681758",
+            "artist-credit": [
+              {
+                "name": "Romain Garcia",
+                "joinphrase": "",
+                "artist": {
+                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                  "sort-name": "Garcia, Romain",
+                  "country": "FR",
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                  "name": "Romain Garcia",
+                  "type": "Person",
+                  "disambiguation": ""
+                }
+              }
+            ],
+            "first-release-date": "2022-02-25",
+            "length": 206000,
+            "title": "Blue Parrot"
+          },
+          "title": "Blue Parrot",
+          "number": "3",
+          "artist-credit": [
+            {
+              "artist": {
+                "type": "Person",
+                "disambiguation": "",
+                "name": "Romain Garcia",
+                "sort-name": "Garcia, Romain",
+                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                "country": "FR",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df"
+              },
+              "joinphrase": "",
+              "name": "Romain Garcia"
+            }
+          ],
+          "id": "e5ba93ff-0a10-4d57-9914-bde802a054f2",
+          "length": 206000
+        },
+        {
+          "recording": {
+            "video": false,
+            "disambiguation": "",
+            "artist-credit": [
+              {
+                "artist": {
+                  "country": "FR",
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                  "sort-name": "Garcia, Romain",
+                  "name": "Romain Garcia",
+                  "disambiguation": "",
+                  "type": "Person"
+                },
+                "joinphrase": "",
+                "name": "Romain Garcia"
+              }
+            ],
+            "first-release-date": "2022-02-25",
+            "id": "d98e29b2-7509-4771-b402-6af1a5cd43d3",
+            "length": 270000,
+            "title": "Ona"
+          },
+          "position": 4,
+          "length": 270000,
+          "id": "3da8a618-d990-4568-a357-9fb189054f0f",
+          "artist-credit": [
+            {
+              "artist": {
+                "name": "Romain Garcia",
+                "sort-name": "Garcia, Romain",
+                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "country": "FR",
+                "type": "Person",
+                "disambiguation": ""
+              },
+              "joinphrase": "",
+              "name": "Romain Garcia"
+            }
+          ],
+          "number": "4",
+          "title": "Ona"
+        },
+        {
+          "position": 5,
+          "recording": {
+            "title": "Before You Go (extended mix)",
+            "id": "ac2db904-9c01-44b8-aba4-f7d1fc2a7b1c",
+            "first-release-date": "2022-02-25",
+            "artist-credit": [
+              {
+                "name": "Romain Garcia",
+                "joinphrase": "",
+                "artist": {
+                  "sort-name": "Garcia, Romain",
+                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                  "country": "FR",
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                  "name": "Romain Garcia",
+                  "type": "Person",
+                  "disambiguation": ""
+                }
+              }
+            ],
+            "length": 384000,
+            "video": false,
+            "disambiguation": ""
+          },
+          "artist-credit": [
+            {
+              "artist": {
+                "disambiguation": "",
+                "type": "Person",
+                "name": "Romain Garcia",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "country": "FR",
+                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                "sort-name": "Garcia, Romain"
+              },
+              "name": "Romain Garcia",
+              "joinphrase": ""
+            }
+          ],
+          "number": "5",
+          "id": "c259c496-ef07-4198-81a8-1b422b0d5242",
+          "length": 384000,
+          "title": "Before You Go (extended mix)"
+        },
+        {
+          "position": 6,
+          "recording": {
+            "video": false,
+            "disambiguation": "",
+            "id": "be2f5a1a-a2d5-408e-9886-3173a6f7b159",
+            "artist-credit": [
+              {
+                "artist": {
+                  "disambiguation": "",
+                  "type": "Person",
+                  "name": "Romain Garcia",
+                  "country": "FR",
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                  "sort-name": "Garcia, Romain"
+                },
+                "name": "Romain Garcia",
+                "joinphrase": ""
+              }
+            ],
+            "first-release-date": "2022-02-25",
+            "length": 521000,
+            "title": "Lights (extended mix)"
+          },
+          "number": "6",
+          "artist-credit": [
+            {
+              "artist": {
+                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                "sort-name": "Garcia, Romain",
+                "country": "FR",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "name": "Romain Garcia",
+                "type": "Person",
+                "disambiguation": ""
+              },
+              "joinphrase": "",
+              "name": "Romain Garcia"
+            }
+          ],
+          "id": "3fd894ab-1f6a-495a-8d84-b93caaea7e71",
+          "length": 521000,
+          "title": "Lights (extended mix)"
+        },
+        {
+          "position": 7,
+          "recording": {
+            "title": "Blue Parrot (extended mix)",
+            "length": 366000,
+            "id": "a5e3b42a-4623-4c55-b80f-f4ebd230e5f8",
+            "artist-credit": [
+              {
+                "artist": {
+                  "type": "Person",
+                  "disambiguation": "",
+                  "name": "Romain Garcia",
+                  "sort-name": "Garcia, Romain",
+                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                  "country": "FR"
+                },
+                "joinphrase": "",
+                "name": "Romain Garcia"
+              }
+            ],
+            "first-release-date": "2022-02-25",
+            "disambiguation": "",
+            "video": false
+          },
+          "title": "Blue Parrot (extended mix)",
+          "number": "7",
+          "artist-credit": [
+            {
+              "artist": {
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "country": "FR",
+                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                "sort-name": "Garcia, Romain",
+                "name": "Romain Garcia",
+                "disambiguation": "",
+                "type": "Person"
+              },
+              "joinphrase": "",
+              "name": "Romain Garcia"
+            }
+          ],
+          "id": "771386f8-ee2b-42d8-8e96-6630802df160",
+          "length": 366000
+        },
+        {
+          "artist-credit": [
+            {
+              "artist": {
+                "disambiguation": "",
+                "type": "Person",
+                "name": "Romain Garcia",
+                "country": "FR",
+                "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                "sort-name": "Garcia, Romain"
+              },
+              "joinphrase": "",
+              "name": "Romain Garcia"
+            }
+          ],
+          "number": "8",
+          "id": "3d73d9e4-584e-4b69-bfe0-67504ed45c97",
+          "length": 508000,
+          "title": "Ona (extended mix)",
+          "position": 8,
+          "recording": {
+            "video": false,
+            "disambiguation": "",
+            "title": "Ona (extended mix)",
+            "artist-credit": [
+              {
+                "joinphrase": "",
+                "name": "Romain Garcia",
+                "artist": {
+                  "disambiguation": "",
+                  "type": "Person",
+                  "type-id": "b6e035f4-3ce9-331c-97df-83397230b0df",
+                  "country": "FR",
+                  "sort-name": "Garcia, Romain",
+                  "id": "32c1c2f5-b510-4b57-bdf9-e0a3d7c79857",
+                  "name": "Romain Garcia"
+                }
+              }
+            ],
+            "first-release-date": "2022-02-25",
+            "id": "47b66991-ae4c-4584-9a88-b0e2fdc48d87",
+            "length": 508000
+          }
+        }
+      ],
+      "format": "Digital Media",
+      "position": 1,
+      "title": "",
+      "track-count": 8,
+      "track-offset": 0,
+      "id": "c74a8e83-bd3a-3f74-bc09-cd27ec6820df",
+      "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794"
+    }
+  ],
+  "disambiguation": ""
 }
