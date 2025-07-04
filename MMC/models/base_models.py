@@ -18,6 +18,10 @@ class BaseModel:
         """
         field_values = {}
         for data_field in cls.__dataclass_fields__:
+            # skip fields that dont have metadata
+            if "key" not in cls.__dataclass_fields__[data_field].metadata:
+                continue
+            # Check if the field is required and has a key in metadata
             required = cls.__dataclass_fields__[data_field].metadata.get(
                 "required",
                 True,
