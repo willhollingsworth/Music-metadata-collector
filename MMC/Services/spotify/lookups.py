@@ -20,16 +20,16 @@ def lookup_artist(artist_id: str) -> SpotifyArtist:
 
 
 if __name__ == "__main__":
-    print("Running Spotify lookups...")
+    print("Running Spotify lookups...", end="\n\n")
 
     track_id: str = "6xZZM6GDxTKsLjF3TNDREL"
-    print("track lookup", track_id, end=": ")
-    print(lookup_track(track_id))
+    print("track lookup", track_id)
+    print(lookup_track(track_id), end="\n\n")
 
     artist_id: str = "3tSvlEzeDnVbQJBTkIA6nO"
-    print("artist lookup with id", artist_id, end=": ")
-    print(lookup_artist(artist_id))
+    print("artist lookup with id", artist_id)
+    print(lookup_artist(artist_id), end="\n\n")
 
     album_id: str = "2dIGnmEIy1WZIcZCFSj6i8"
-    print("album lookup with id", album_id, end=": ")
-    print(lookup_album(album_id))
+    print("album lookup with id", album_id)
+    print(lookup_album(album_id), end="\n\n")
