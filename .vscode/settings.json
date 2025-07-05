@@ -1,15 +1,13 @@
 {
-    "python.testing.pytestArgs": [
-        "tests",
-    ],
+    "python.testing.pytestArgs": ["tests"],
     "python.testing.pytestEnabled": true,
-    // "python.testing.unittestEnabled": false,
-    "testing.automaticallyOpenTestResults": "neverOpen",
+    "python.testing.unittestEnabled": false,
+    "testing.automaticallyOpenTestResults": "openOnTestFailure",
     // "testing.showAllMessages": false,
 
     "runOnSave.onlyRunOnManualSave": true,
     "runOnSave.commands": [
-                {
+        {
             "languages": ["python"],
             "command": "testing.runAll",
             "runIn": "vscode"
@@ -19,6 +17,13 @@
             "command": "testing.runAll",
             "runIn": "vscode"
         }
-
     ],
+    "files.exclude": {
+        "**/*.rpyc": true,
+        "**/*.rpa": true,
+        "**/*.rpymc": true,
+        "**/cache/": true
+    },
+    "spellright.language": ["en"],
+    "spellright.documentTypes": ["markdown", "latex", "plaintext", "python"]
 }
