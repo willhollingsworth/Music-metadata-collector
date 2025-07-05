@@ -11,3 +11,4 @@ spotipy_testing.py
 temp_testing/*
 notes.md
 spotify playcount api.ipynb
+http_cache/*
