@@ -56,12 +56,8 @@ class Search:
             ValueError: If the search type is not supported.
 
         """
-        result = download_json(
-            self.search_url,
-            SERVICE_NAME,
-            "search_" + self.search_type,
-            self.search_string,
-        )
+        result = download_json(self.search_url)
+
         if isinstance(result, list):
             result = find_first_matching_dict(
                 result,

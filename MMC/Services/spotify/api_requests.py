@@ -32,20 +32,33 @@ def create_client_headers() -> dict[str, str]:
 
 
 def request_lookup(request_type: str, request_args: str) -> dict[str, Any]:
-    """Lookup data from the Spotify API."""
+    """Lookup data from the Spotify API.
+
+    Args:
+        request_type (str): The type of data to request (artist, album, track).
+        request_args (str): The ID to lookup.
+
+    Raises:
+        TypeError: If the request_type is not valid.
+        ValueError: If no data is found for the given request_args.
+
+    """
     headers = create_client_headers()
     request_types = {
         "artist": "artists/",
         "album": "albums/",
         "track": "tracks/",
     }
-    if request_type in request_types:
-        request_url = request_types[request_type]
-    else:
-        msg = f"wrong type selected, {request_type} is not allowed"
-        raise TypeError(msg)
+    request_url = request_types[request_type]
     full_url = SPOTIFY_API_URL + request_url + request_args
-    return download_json(full_url, SERVCIE_NAME, request_type, request_args, headers)
+    result = download_json(full_url, headers)
+    if not result:
+        msg = f"No data found for {request_type} with ID {request_args}"
+        raise ValueError(msg)
+    if isinstance(result, list):
+        msg = f"Multiple results found for {request_type} with ID {request_args}"
+        raise TypeError(msg)
+    return result
 
 
 def search_data(

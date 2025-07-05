@@ -32,4 +32,4 @@ def request_lookup(
     else:
         raise TypeError(request_type)
     full_url = DEEZER_API_URL + request_url + id_number
-    return download_json(full_url, SERVCIE_NAME, request_type, id_number)
+    return download_json(full_url)

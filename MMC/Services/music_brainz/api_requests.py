@@ -22,7 +22,7 @@ def request_lookup(request_type: str, id_value: str) -> dict[str, Any]:
     }
 
     formatted_url = f"{MUSIC_BRAINZ_API_URL}{url_mapper[request_type]}"
-    response = download_json(formatted_url, SERVCIE_NAME, request_type, id_value)
+    response = download_json(formatted_url)
     if "error" in response:
         msg = f"error on url arg: {formatted_url}, msg: {response['error']}"
         raise ValueError(msg)

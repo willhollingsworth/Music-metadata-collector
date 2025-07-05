@@ -6,19 +6,18 @@ from typing import Any
 
 import requests
 
-from mmc.constants import CACHE_FOLDER
-
 from .cache import read_cache, write_cache
 
 
 def download_json(
     url: str,
-    service_name: str,
-    type_name: str,
-    args: str,
     headers: dict[str, str] | None = None,
 ) -> dict[str, Any] | list[dict[str, Any]]:
     """Download data from a URL and cache it locally.
+
+    Args:
+        url (str): The URL to download data from.
+        headers (dict[str, str] | None): Optional headers to include in the request.
 
     Raises:
         ValueError: If the response data is empty or too small.
@@ -26,8 +25,8 @@ def download_json(
     """
     if headers is None:
         headers = {}
-    cache_folder = CACHE_FOLDER / service_name / type_name
-    cache_data = read_cache(cache_folder, args)
+    # add the cache folder to the start of the cache path
+    cache_data = read_cache(url)
     if not cache_data:
         response = requests.get(url, headers=headers)
         cache_data = response.json()
@@ -36,7 +35,7 @@ def download_json(
         if len(cache_data) < 1:
             msg = f"Error, response too small: {cache_data}"
             raise ValueError(msg)
-        write_cache(cache_data, cache_folder, args)
+        write_cache(cache_data, url)
     return cache_data
 
 
