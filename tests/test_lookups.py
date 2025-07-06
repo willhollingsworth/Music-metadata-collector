@@ -10,7 +10,7 @@ import pytest
 from mmc.constants import (
     TEST_FIXTURE_DIR,
 )
-from mmc.types.deezer_types import DeezerEntity
+from mmc.types.types import DeezerEntity
 from tests.utils.fixtures import (
     get_raw_json_filnames,
     load_json_fixture,

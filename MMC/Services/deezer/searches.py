@@ -1,7 +1,7 @@
 """Searches using Deezer API."""
 
 from mmc.models import deezer_models
-from mmc.types.deezer_types import DeezerEntity
+from mmc.types.types import DeezerEntity
 from mmc.utils.http_client import download_json
 from mmc.utils.list_helper import find_first_matching_dict
 from mmc.utils.url_builder import ApiUrlBuilder
