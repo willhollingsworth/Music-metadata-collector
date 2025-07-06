@@ -5,6 +5,7 @@ import requests
 from mmc.constants import SPOTIFY_API_URL, SPOTIFY_AUTH_URL
 from mmc.utils.credentials import load_credentials
 from mmc.utils.http_client import download_json
+from mmc.utils.url_builder import ApiUrlBuilder
 
 SERVCIE_NAME = "spotify"
 
@@ -12,8 +13,6 @@ SERVCIE_NAME = "spotify"
 def create_client_headers() -> dict[str, str]:
     """Create headers for spotify api requests."""
     credentials = load_credentials("spotify")
-    # generate auth token and headers
-    # POST
     auth_response = requests.post(
         SPOTIFY_AUTH_URL,
         {
@@ -22,9 +21,7 @@ def create_client_headers() -> dict[str, str]:
             "client_secret": credentials["client_secret"],
         },
     )
-    # convert the response to JSON
     auth_response_data = auth_response.json()
-    # save the access token
     access_token = auth_response_data["access_token"]
     return {
         "Authorization": f"Bearer {access_token}",
@@ -32,10 +29,20 @@ def create_client_headers() -> dict[str, str]:
 
 
 def request_lookup(request_type: str, request_args: str) -> dict[str, Any]:
+    """Redirect to universal request function."""
+    return spotify_request("lookup", request_type, request_args)
+
+
+def spotify_request(
+    request_type: str,
+    resource_type: str,
+    request_args: str,
+) -> dict[str, Any]:
     """Lookup data from the Spotify API.
 
     Args:
-        request_type (str): The type of data to request (artist, album, track).
+        request_type (str): The type of request to make (search or lookup).
+        resource_type (str): The type of resource to lookup (artist, album, track).
         request_args (str): The ID to lookup.
 
     Raises:
@@ -44,19 +51,18 @@ def request_lookup(request_type: str, request_args: str) -> dict[str, Any]:
 
     """
     headers = create_client_headers()
-    request_types = {
-        "artist": "artists/",
-        "album": "albums/",
-        "track": "tracks/",
-    }
-    request_url = request_types[request_type]
-    full_url = SPOTIFY_API_URL + request_url + request_args
+    full_url = ApiUrlBuilder(
+        SERVCIE_NAME,
+        request_type,
+        resource_type,
+        request_args,
+    ).full_url
     result = download_json(full_url, headers)
     if not result:
-        msg = f"No data found for {request_type} with ID {request_args}"
+        msg = f"No data found for {request_type}:{resource_type} with ID {request_args}"
         raise ValueError(msg)
     if isinstance(result, list):
-        msg = f"Multiple results found for {request_type} with ID {request_args}"
+        msg = f"Multiple results found for {request_type}:{resource_type}with ID {request_args}"
         raise TypeError(msg)
     return result
 
