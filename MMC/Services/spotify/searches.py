@@ -1,43 +1,42 @@
 from typing import Any
 
-from mmc.services.spotify.api_requests import spotify_download_data
+from mmc.services.spotify.api_requests import spotify_request
+from mmc.services.spotify.utils import cast_to_spotify_entity
+from mmc.types.types import SpotifyEntity
+
+SERVICE_NAME = "spotify"
 
 
-def search_artists(string):
-    """Search for an artist on Spotify."""
-    results = spotify_download_data("search_artist", string)
-    if False:
-        print_dict_keys(
-            results["artists"]["items"][0],
-            ["name", ["followers", "total"], "popularity", "genres"],
-        )
-    return results
+def search(search_type: str, search_arg: str) -> SpotifyEntity:
+    """Perform a search using the Deezer API.
 
+    Args:
+        search_type (str): The type to search for ('track', 'artist', 'album').
+        search_arg (list[str] | str): The arguments for the search query.
 
-def multi_search(track, artist):
-    """Search for a track and artist on Spotify."""
-    results = spotify_download_data("multi", {"track": track, "artist": "artist"})
-    return results
+    Returns:
+        DeezerEntity: The result of the search.
 
+    Raises:
+        ValueError: If no results are found for the given search_type and search_arg.
 
-def search_tracks(search_string: str, results: int = 1) -> list[dict[str, Any]]:
-    """Search for a track on Spotify."""
-    if results == 1:
-        return spotify_download_data("search_track", search_string)["tracks"]["items"][
-            0
-        ]
-    return spotify_download_data("search_track", search_string)["tracks"]["items"][
-        :results
-    ]
-
-
-def search_albums(string: str) -> dict[str, Any]:
-    """Search for an album on Spotify."""
-    return spotify_download_data("search_album", string)
+    """
+    result: dict[str, Any] = spotify_request("search", search_type, search_arg)
+    search_term_plural = search_arg + "s"
+    if search_term_plural not in result:
+        msg = f"No results found for {search_type} with argument {search_arg}."
+        raise ValueError(msg)
+    result = result.get(search_term_plural, [])["items"][0]
+    return cast_to_spotify_entity(search_type, result)
 
 
 if __name__ == "__main__":
     artist_string = "pendulum"
-    print('artist search with string "', artist_string, '"', end=" : ")
-    first_result = search_artists(artist_string)["artists"]["items"][0]
-    print(first_result)
+    track_string = "watercolour"
+    album_string = "in silico"
+    print(f"Searching for {artist_string}")
+    print(search("artist", artist_string))
+    print(f"Searching for {track_string}")
+    print(search("track", track_string))
+    print(f"Searching for {album_string}")
+    print(search("album", album_string))

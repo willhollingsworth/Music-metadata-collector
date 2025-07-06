@@ -20,6 +20,18 @@ URL_ARGS_FORMAT = {
             "track-album": 'search/track?q=track:"{}" "album:"{}"',
         },
     },
+    "spotify": {
+        "lookup": {
+            "album": "albums/{}",
+            "artist": "artists/{}",
+            "track": "tracks/{}",
+        },
+        "search": {
+            "track": "search?type=track&q={}",
+            "artist": "search?type=artist&q={}",
+            "album": "search?type=album&q={}",
+        },
+    },
 }
 
 

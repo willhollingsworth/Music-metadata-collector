@@ -1,8 +1,10 @@
+"""Spotify API Requests."""
+
 from typing import Any
 
 import requests
 
-from mmc.constants import SPOTIFY_API_URL, SPOTIFY_AUTH_URL
+from mmc.constants import SPOTIFY_AUTH_URL
 from mmc.utils.credentials import load_credentials
 from mmc.utils.http_client import download_json
 from mmc.utils.url_builder import ApiUrlBuilder
@@ -62,50 +64,16 @@ def spotify_request(
         msg = f"No data found for {request_type}:{resource_type} with ID {request_args}"
         raise ValueError(msg)
     if isinstance(result, list):
-        msg = f"Multiple results found for {request_type}:{resource_type}with ID {request_args}"
+        msg = (
+            f"Multiple results found for {request_type}:{resource_type} "
+            f"with ID {request_args}"
+        )
         raise TypeError(msg)
+    if "error" in result:
+        error_message = result["error"].get("message", "Unknown error")
+        msg = f"Error from Spotify API: {error_message}"
+        raise ValueError(msg)
     return result
-
-
-def search_data(
-    request_type: str,
-    input_value: str | dict[str, str],
-) -> dict[str, Any]:
-    """Download data from the Spotify API."""
-    # https://developer.spotify.com/documentation/web-api/reference/#/
-    headers = create_client_headers()
-    request_types = {
-        "artists": "artists/",
-        "albums": "albums/",
-        "tracks": "tracks/",
-    }
-    valid_search_types = ["artist", "track", "album", "genre"]
-    if request_type in request_types:
-        request_url = request_types[request_type]
-    elif request_type.split("_")[0] == "search":
-        search_type = request_type.split("_")[1]
-        if search_type in valid_search_types:
-            request_url = f"search?type={search_type}&q={search_type}:"
-        else:
-            raise Exception(
-                "wrong search selected, only the following are valid",
-                valid_search_types,
-                locals(),
-            )
-    else:
-        raise Exception("wrong type selected", locals())
-    processed_input = ""
-    if isinstance(input_value, dict):
-        for key in input_value:
-            if key == search_type:
-                processed_input += input_value[key]
-            else:
-                processed_input += "&" + key + ":" + input_value[key]
-    else:
-        processed_input = input_value
-
-    full_url = SPOTIFY_API_URL + request_url + processed_input
-    return download_json(full_url, headers)
 
 
 if __name__ == "__main__":

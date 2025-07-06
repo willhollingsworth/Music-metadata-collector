@@ -12,7 +12,7 @@ class SpotifyTrack(BaseModel):
     # TODO(Will): multiple artists support
     track_name: str = field(metadata={"key": "name"})
     track_id: str = field(metadata={"key": "id"})
-    popularity: int = field(metadata={"key": "popularity"})
+    popularity: int = field(metadata={"key": "popularity", "required": False})
     artist_name: str = field(metadata={"key": "artists.0.name"})
     artist_id: str = field(metadata={"key": "artists.0.id"})
     album_name: str = field(metadata={"key": "album.name"})
@@ -26,12 +26,12 @@ class SpotifyAlbum(BaseModel):
     # TODO(Will): add genres and multiple artists
     album_name: str = field(metadata={"key": "name"})
     album_id: int = field(metadata={"key": "id"})
-    popularity: int = field(metadata={"key": "popularity"})
+    popularity: int = field(metadata={"key": "popularity", "required": False})
     artist_name: str = field(metadata={"key": "artists.0.name"})
     artist_id: int = field(metadata={"key": "artists.0.id"})
     release_date: str = field(metadata={"key": "release_date"})
     album_type: str = field(metadata={"key": "album_type"})
-    track_count: int = field(metadata={"key": "tracks.total"})
+    track_count: int = field(metadata={"key": "total_tracks"})
     tracks: list[SpotifyTrack] = field(default_factory=list)
 
 
@@ -42,5 +42,5 @@ class SpotifyArtist(BaseModel):
     artist_name: str = field(metadata={"key": "name"})
     artist_id: int = field(metadata={"key": "id"})
     followers: int = field(metadata={"key": "followers.total"})
-    popularity: int = field(metadata={"key": "popularity"})
+    popularity: int = field(metadata={"key": "popularity", "required": False})
     albums: list[SpotifyAlbum] = field(default_factory=list)
