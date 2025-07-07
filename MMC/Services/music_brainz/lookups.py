@@ -28,12 +28,14 @@ def lookup_track(id_value: str) -> MusicBrainzTrack:
 
 
 if __name__ == "__main__":
-    from mmc.utils.cache import delete_cache
-
-    delete_cache()
+    print("Running MusicBrainz lookups module...", end="\n\n")
     track_id = "a9bdcdd0-e18b-4890-8b9c-b56aaa0792ab"
-    print("track lookup for: ", lookup_track(track_id))
+    print("track lookup for: ", track_id)
+    print(lookup_track(track_id), end="\n\n")
     artist_id = "aba439cf-cc1a-412e-bb46-a5e57a24d880"
-    print("artist lookup for ", lookup_artist(artist_id))
+    print("artist lookup for: ", artist_id)
+    print(lookup_artist(artist_id), end="\n\n")
     album_id = "e73e0fa9-97d6-4c38-97a0-2d60240f3a32"
-    print("album lookup for: ", lookup_album(album_id))
+    print("album lookup for: ", album_id)
+    print(lookup_album(album_id), end="\n\n")
+    print("All lookups completed")
