@@ -8,6 +8,8 @@ A work in progress but currently supports
 - Music Brainz
 - Last FM.
 
+## Examples
+Examples are available in the `examples` folder as Jupyter notebooks
 
 ## Testing
 Fixtures are dynamically generated using a JSON file at `scripts/fixture_ids.json` and the python file `scripts/generate_fixtures.py`
