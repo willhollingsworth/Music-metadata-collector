@@ -1,38 +1,14 @@
 """test for URLBuilder class"""
 
-from typing import Any
-
 import pytest
 
+from mmc.constants import TEST_FIXTURE_DIR
 from mmc.utils import url_builder
+from tests.utils.fixtures import load_json_fixture
 
-# list used to test the URLBuilder class
-# format is service_name, request_type, request_resource, url_args, expected url result
-url_tests: list[tuple[str, str, str, str | tuple[str, Any], str]] = [
-    ("deezer", "lookup", "album", "123456", "https://api.deezer.com/album/123456"),
-    (
-        "deezer",
-        "search",
-        "album",
-        ("ABC", "ZXY"),
-        'https://api.deezer.com/search/album?q=album:"ABC" "artist:"ZXY"',
-    ),
-    ("spotify", "lookup", "album", "55424", "https://api.spotify.com/v1/albums/55424"),
-    (
-        "spotify",
-        "search",
-        "artist",
-        "ABCD",
-        "https://api.spotify.com/v1/search?type=artist&q=ABCD",
-    ),
-    (
-        "music_brainz",
-        "lookup",
-        "track",
-        "FooBar",
-        "https://musicbrainz.org/ws/2/recording/FooBar?inc=artists+releases&fmt=json",
-    ),
-]
+# Load url_tests from JSON fixture file
+fixture_path = TEST_FIXTURE_DIR / "url_builder_fixtures.json"
+url_tests = load_json_fixture(fixture_path)
 
 
 @pytest.mark.parametrize(
@@ -43,7 +19,7 @@ def test_api_builder(
     service_name: str,
     request_type: str,
     request_resource: str,
-    url_args: str,
+    url_args: list[str],
     expected_url: str,
 ) -> None:
     url_result = url_builder.ApiUrlBuilder(
@@ -59,6 +35,3 @@ if __name__ == "__main__":
     print("running tests directly")
     pytest.main(["-v", __file__])
     print("All tests run")
-    # helper to populate list
-    # test_data = ("music_brainz", "lookup", "track", "FooBar")
-    # print(url_builder.ApiUrlBuilder(*test_data).full_url)
