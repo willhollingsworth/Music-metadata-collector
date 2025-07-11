@@ -22,7 +22,7 @@ def search(search_type: str, search_arg: str) -> SpotifyEntity:
 
     """
     result: dict[str, Any] = spotify_request("search", search_type, search_arg)
-    search_term_plural = search_arg + "s"
+    search_term_plural = search_type + "s"
     if search_term_plural not in result:
         msg = f"No results found for {search_type} with argument {search_arg}."
         raise ValueError(msg)
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     album_string = "in silico"
     print(f"Searching for {artist_string}")
     print(search("artist", artist_string))
-    print(f"Searching for {track_string}")
-    print(search("track", track_string))
-    print(f"Searching for {album_string}")
-    print(search("album", album_string))
+    print(f"Searching for {track_string} by {artist_string}")
+    print(search("track", [track_string, artist_string]))
+    print(f"Searching for {album_string} by {artist_string}")
+    print(search("album", [album_string, artist_string]))

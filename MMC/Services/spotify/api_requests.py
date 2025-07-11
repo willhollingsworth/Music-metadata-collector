@@ -38,7 +38,7 @@ def request_lookup(request_type: str, request_args: str) -> dict[str, Any]:
 def spotify_request(
     request_type: str,
     resource_type: str,
-    request_args: str,
+    request_args: str | list[str],
 ) -> dict[str, Any]:
     """Lookup data from the Spotify API.
 
