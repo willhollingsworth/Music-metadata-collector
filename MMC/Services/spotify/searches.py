@@ -7,7 +7,7 @@ from mmc.types.types import SpotifyEntity
 SERVICE_NAME = "spotify"
 
 
-def search(search_type: str, search_arg: str) -> SpotifyEntity:
+def search(search_type: str, search_arg: str | list[str]) -> SpotifyEntity:
     """Perform a search using the Deezer API.
 
     Args:
