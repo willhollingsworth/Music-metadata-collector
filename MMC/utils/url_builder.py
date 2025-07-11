@@ -30,9 +30,9 @@ URL_ARGS_FORMAT: URLArgsFormat = {
             "track": "tracks/{}",
         },
         "search": {
-            "track": "search?type=track&q={}",
-            "artist": "search?type=artist&q={}",
-            "album": "search?type=album&q={}",
+            "track": "search?type=track&q=track:{}&artist:{}&limit=5",
+            "artist": "search?type=artist&q=artist:{}&limit=5",
+            "album": "search?type=album&q=album:{}&artist:{}&limit=5",
         },
     },
     "music_brainz": {
